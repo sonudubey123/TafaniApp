@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <!--
+                Add menu items here
+                Menu items with icon and Title
+        -->
+        <item
+            android:id="@+id/accountbalance_ret"
+            android:icon="@drawable/ic_launcher"
+            android:title="@string/account_balance" />
+
+
+        <item
+            android:id="@+id/order_pin_ret"
+            android:icon="@drawable/ic_launcher"
+            android:title="@string/order_pin" />
+
+        <item
+            android:id="@+id/changempin_ret"
+            android:icon="@drawable/ic_launcher"
+            android:title="@string/change_mpin" />
+
+
+        <item
+            android:id="@+id/transactionHistory_ret"
+            android:icon="@drawable/ic_launcher"
+            android:title="@string/transaction_history" />
+
+
+        <item
+            android:id="@+id/reprint_ret"
+            android:icon="@drawable/ic_launcher"
+            android:title="@string/reprint" />
+
+
+
+        <item
+            android:id="@+id/languageChange_ret"
+            android:icon="@drawable/ic_launcher"
+            android:title="@string/language_change" />
+
+
+
+        <item
+            android:id="@+id/logout_ret"
+            android:icon="@drawable/ic_launcher"
+            android:title="@string/logout" />
+
+
+        <item
+            android:id="@+id/posstock_report"
+            android:icon="@drawable/ic_launcher"
+            android:title="@string/stock_report" />
+
+        <item
+            android:id="@+id/contact_details_ret"
+            android:icon="@drawable/ic_launcher"
+            android:title="@string/contact_details" />
+
+
+        <item
+            android:id="@+id/syn_ret"
+            android:icon="@drawable/ic_launcher"
+            android:title="@string/sync" />
+
+
+
+    </group>
+</menu>

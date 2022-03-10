@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_ret"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/tafani_logo_colour"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.drawerlayout.widget.DrawerLayout
+
+        android:id="@+id/drawer_layout_ret"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:openDrawer="start">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/topTxnTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:gravity="center"
+                android:text="@string/pin_sale"
+                android:textSize="25dp"
+                android:visibility="visible" />
+
+            <View
+                android:id="@+id/vendor_code"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/colorPrimary"
+                android:visibility="visible"></View>
+
+            <ScrollView
+                android:id="@+id/scrollView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp">
+
+                <LinearLayout
+                    android:id="@+id/startLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="5dp"
+                    android:visibility="visible">
+
+
+                    <RadioGroup
+                        android:id="@+id/optionRadioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="15dp"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal"
+                        android:visibility="visible">
+
+                        <RadioButton
+                            android:id="@+id/offlineradioButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="@color/tafani_logo_colour"
+                            android:checked="true"
+                            android:text="@string/offline" />
+
+                        <RadioButton
+                            android:id="@+id/onlineradioButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="60dp"
+                            android:buttonTint="@color/tafani_logo_colour"
+                            android:text="@string/online" />
+                    </RadioGroup>
+
+
+                    <LinearLayout
+                        android:id="@+id/linOffline"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <Spinner
+                            android:id="@+id/spinner_operator_offline"
+                            android:layout_width="250dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/squre_editext"
+                            android:gravity="center"
+                            android:hint="@string/please_select_operator"
+                            android:paddingStart="5dp"
+                            android:paddingTop="3dp"
+                            android:paddingEnd="5dp"
+                            android:paddingBottom="3dp"
+                            android:textSize="13sp"
+                            android:visibility="visible" />
+
+
+                        <Spinner
+                            android:id="@+id/spinner_product_offline"
+                            android:layout_width="250dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="15dp"
+                            android:background="@drawable/squre_editext"
+                            android:gravity="center"
+                            android:hint="@string/please_select_product"
+                            android:paddingStart="5dp"
+                            android:paddingTop="3dp"
+                            android:paddingEnd="5dp"
+                            android:paddingBottom="3dp"
+                            android:textSize="13sp"
+                            android:visibility="visible" />
+
+                        <EditText
+                            android:id="@+id/edittext_quantity"
+                            android:layout_width="250dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="15dp"
+                            android:background="@drawable/squre_editext"
+                            android:hint="@string/quantity"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:maxLength="2"
+                            android:paddingStart="8dp"
+                            android:textCursorDrawable="@null"
+
+                            android:paddingTop="3dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="3dp"
+                            android:textSize="13sp"
+                            android:visibility="visible" />
+
+                        <Spinner
+                            android:id="@+id/spinner_denomination_offline"
+                            android:layout_width="250dp"
+
+                            android:layout_height="40dp"
+                            android:background="@drawable/squre_editext"
+                            android:gravity="center"
+                            android:hint="@string/please_select_denomination"
+                            android:imeOptions="actionDone"
+                            android:paddingStart="5dp"
+                            android:paddingTop="3dp"
+                            android:paddingEnd="5dp"
+                            android:textSize="13sp"
+                            android:visibility="invisible" />
+
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_pinsale_orderpin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal"
+                        android:visibility="visible">
+
+
+                        <Button
+                            android:id="@+id/button_pinsale_offline"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="50dp"
+                            android:background="@drawable/squre_editext_orange"
+                            android:padding="10dp"
+                            android:text="@string/pin_sale"
+                            android:textColor="#fff" />
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/linOnline"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <Spinner
+                            android:id="@+id/spinner_operator_online"
+                            android:layout_width="250dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/squre_editext"
+                            android:gravity="center"
+                            android:hint="@string/please_select_operator"
+                            android:paddingStart="5dp"
+                            android:paddingTop="3dp"
+                            android:paddingEnd="5dp"
+                            android:paddingBottom="3dp"
+                            android:textAlignment="center"
+                            android:textSize="13sp"
+                            android:visibility="visible" />
+
+
+                        <Spinner
+                            android:id="@+id/spinner_productType_online"
+                            android:layout_width="250dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="15dp"
+                            android:background="@drawable/squre_editext"
+                            android:gravity="center"
+                            android:hint="@string/please_select_operator"
+                            android:paddingStart="5dp"
+                            android:paddingTop="3dp"
+                            android:paddingEnd="5dp"
+                            android:paddingBottom="3dp"
+                            android:textAlignment="center"
+                            android:textSize="13sp"
+                            android:visibility="visible" />
+
+                        <Spinner
+                            android:id="@+id/spinner_denomination_online"
+                            android:layout_width="250dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="15dp"
+                            android:background="@drawable/squre_editext"
+                            android:gravity="center"
+                            android:hint="@string/please_select_denomination"
+                            android:inputType="numberPassword"
+                            android:paddingStart="5dp"
+                            android:paddingTop="3dp"
+                            android:paddingEnd="5dp"
+                            android:paddingBottom="3dp"
+                            android:textAlignment="center"
+                            android:textSize="13sp"
+                            android:visibility="visible" />
+
+                        <EditText
+                            android:id="@+id/etPin"
+                            android:layout_width="250dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="15dp"
+                            android:background="@drawable/squre_editext"
+                            android:hint="@string/please_enter_online_mpin"
+                            android:imeOptions="actionDone"
+                            android:inputType="numberPassword"
+                            android:maxLength="4"
+                            android:textCursorDrawable="@null"
+
+                            android:paddingStart="8dp"
+                            android:paddingTop="3dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="3dp"
+                            android:textSize="13sp"
+                            android:visibility="visible" />
+
+                        <Button
+                            android:id="@+id/btnPrintPinOnline"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginBottom="50dp"
+                            android:background="@drawable/squre_editext_orange"
+                            android:padding="10dp"
+                            android:text="@string/purchase_pin_capita"
+                            android:textColor="#fff" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:id="@+id/ll_header_print"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal"
+            >
+
+            <ImageView
+                android:id="@+id/image_view_logo"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/ani_logo_jp"
+                />
+
+
+            <ImageView
+                android:id="@+id/image_view_rightside"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="70dp"
+                android:background="@drawable/ani_logo_jp" />
+
+
+        </LinearLayout>
+
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view_ret"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:headerLayout="@layout/nav_header_main"
+            app:itemTextColor="@color/black"
+            app:menu="@menu/left_menu_ret"
+
+
+
+            />
+    </androidx.drawerlayout.widget.DrawerLayout>
+</RelativeLayout>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:background="@color/green_loginpage_2"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/back_image"
+                android:layout_width="40dp"
+                android:padding="2dp"
+                android:src="@drawable/back"
+                android:layout_height="40dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginLeft="30dp"
+                android:textColor="@android:color/white"
+                android:textStyle="normal"
+                android:textSize="18sp"
+                android:text="@string/verification"
+                android:layout_height="wrap_content" />
+        </androidx.appcompat.widget.Toolbar>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:padding="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/text_name"
+                    android:layout_width="match_parent"
+                    android:textSize="16sp"
+                    android:text="@string/mobile_money"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/text_number"
+                    android:layout_width="match_parent"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="60dp"
+                    android:text="@string/mobile_money"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_height="wrap_content" />
+
+
+                <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edit_otp"
+                        android:textSize="16sp"
+                        android:textColor="@color/gray_colour"
+                        android:layout_marginTop="10dp"
+
+                        android:textColorHint="@color/gray_colour"                        android:hint="@string/please_enter_otp"
+                        android:layout_width="match_parent"
+                        android:maxLength="6"
+                        android:padding="10dp"
+                        android:inputType="number"
+                        android:background="@drawable/squre_editext"
+
+                        android:layout_height="50dp" />
+
+
+
+
+                <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edit_pin"
+                        android:textSize="16sp"
+                        android:layout_marginTop="10dp"
+                        android:padding="10dp"
+
+                        android:textColorHint="@color/gray_colour"
+                        android:textColor="@android:color/black"
+                        android:hint="@string/please_enter_mpin"
+                        android:maxLength="16"
+                        android:background="@drawable/squre_editext"
+
+                        android:inputType="textPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp" />
+
+
+
+
+                <TextView
+                    android:id="@+id/btn_submit"
+                    android:layout_marginTop="40dp"
+                    android:background="@drawable/squre_editext_2"
+                    android:layout_marginBottom="20dp"
+                    android:padding="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:text="@string/submit"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:layout_marginRight="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>

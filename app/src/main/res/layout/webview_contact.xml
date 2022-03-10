@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:layout_height="match_parent"
+
+
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:weightSum="3">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:layout_weight="0"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="119dp"
+                android:layout_height="67dp"
+                android:layout_margin="10dp"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:layout_width="117dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/logo" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:weightSum="2"
+
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="left"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:padding="10dp"
+
+
+                android:layout_height="40dp"
+                android:textColor="@color/black"
+                android:text="@string/phoneNumber_number_new" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="left"
+                android:textStyle="bold"
+
+                android:gravity="center"
+                android:padding="10dp"
+                android:layout_marginLeft="10dp"
+
+
+                android:layout_height="40dp"
+                android:textColor="@color/black"
+                android:text="0800900900" />
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:weightSum="2"
+
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="left"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:padding="10dp"
+
+
+                android:layout_height="40dp"
+                android:textColor="@color/black"
+                android:text="@string/email_url" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="left"
+                android:textStyle="bold"
+
+                android:gravity="center"
+                android:padding="10dp"
+                android:layout_marginLeft="10dp"
+
+
+                android:layout_height="40dp"
+                android:textColor="@color/black"
+                android:text="info@tafani.ly" />
+
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:paddingBottom="10dp"
+            android:weightSum="2"
+
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="left"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:padding="10dp"
+
+
+                android:layout_height="40dp"
+                android:textColor="@color/black"
+                android:text="@string/website_url" />
+
+            <TextView
+                android:id="@+id/website_click"
+
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="left"
+                android:textStyle="bold"
+
+                android:gravity="center"
+                android:padding="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="@color/tafani_logo_colour"
+
+
+                android:layout_height="40dp"
+                android:textColor="@color/black"
+                android:text="www.tafani.ly" />
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:paddingBottom="10dp"
+            android:weightSum="2"
+
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="left"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:padding="10dp"
+
+
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:text="@string/facebook_url" />
+
+            <TextView
+                android:id="@+id/facebook_url"
+
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="left"
+                android:textStyle="bold"
+
+                android:gravity="center"
+                android:padding="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="@color/greydark"
+
+
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="www.facebook.com/3tlibya" />
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:paddingBottom="10dp"
+            android:weightSum="2"
+
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="left"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:padding="10dp"
+
+
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:text="@string/linkedIn" />
+
+            <TextView
+                android:id="@+id/linkdin_url"
+
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="left"
+                android:textStyle="bold"
+
+                android:gravity="center"
+                android:padding="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="@color/red_colour"
+
+
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="@string/tafani_telecom_technology" />
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:weightSum="2"
+
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="left"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:padding="10dp"
+
+
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:text="@string/address_new" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:layout_marginLeft="10dp"
+
+
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Al Shat Road, beside Khalifa Al-hajaji School Sooq Al-juma, Tripoli,Libya" />
+
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>
+
+
+
+
+
+
+

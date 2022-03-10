@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="@android:color/white"
+        android:layout_height="match_parent"
+
+
+        >
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                android:layout_height="match_parent">
+
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="119dp"
+                        android:layout_height="67dp"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal">
+
+
+                        <ImageView
+                            android:layout_width="117dp"
+                            android:layout_height="80dp"
+                            android:layout_gravity="left"
+                            android:layout_marginTop="20dp"
+                            android:src="@drawable/logo" />
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_margin="10dp"
+                        android:layout_height="match_parent">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:visibility="gone"
+                            android:text="Brand Slogan"
+                            android:textSize="20dp"
+                            android:textColor="#000000"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:visibility="gone"
+                            android:textSize="20dp"
+                            android:textColor="#000000"
+                            android:text="Short Spiel"
+                            />
+
+
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="364dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:gravity="center"
+
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:text="G - Kala"
+
+                            android:textColor="@color/green_loginpage"
+                            android:textSize="25dp"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:gravity="left"
+                    android:orientation="horizontal">
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:layout_height="wrap_content">
+
+                    <ImageButton
+                        android:id="@+id/imageButton1"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/tLayout"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginRight="22dp"
+                        android:background="@drawable/conform" />
+
+
+
+
+                </LinearLayout>
+
+
+
+
+
+            </LinearLayout>
+
+
+
+
+
+
+        </ScrollView>
+    </LinearLayout>
+
+

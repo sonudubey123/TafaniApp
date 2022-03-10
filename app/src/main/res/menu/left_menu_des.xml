@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <!--
+                Add menu items here
+                Menu items with icon and Title
+        -->
+        <item
+            android:id="@+id/accountbalance_des"
+            android:icon="@drawable/ic_launcher"
+            android:title="@string/account_balance" />
+
+
+        <item
+            android:id="@+id/wallet_transfer_des"
+            android:icon="@drawable/ic_launcher"
+            android:title="@string/wallet_trabsfer" />
+
+        <item
+            android:id="@+id/changempin_des"
+            android:icon="@drawable/ic_launcher"
+            android:title="@string/change_mpin" />
+
+
+        <item
+            android:id="@+id/transactionHistory_des"
+            android:icon="@drawable/ic_launcher"
+            android:title="@string/transaction_history" />
+
+
+
+        <item
+            android:id="@+id/languageChange_des"
+            android:icon="@drawable/ic_launcher"
+            android:title="@string/language_change" />
+
+
+
+        <item
+            android:id="@+id/logout_des"
+            android:icon="@drawable/ic_launcher"
+            android:title="@string/logout" />
+
+
+
+    </group>
+</menu>
