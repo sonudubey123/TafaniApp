@@ -111,6 +111,19 @@ public class PosStockReport extends AppCompatActivity implements View.OnClickLis
             setContentView(R.layout.posstock_report);
 
 
+
+        } catch (Exception e) {
+            Toast.makeText(PosStockReport.this, e.toString(), Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        try{
             edittext_serialno = (EditText) findViewById(R.id.edittext_serialno);
             recycler_view = (RecyclerView) findViewById(R.id.recycler_view);
             imageButton1 = (Button) findViewById(R.id.imageButton1);
@@ -134,12 +147,12 @@ public class PosStockReport extends AppCompatActivity implements View.OnClickLis
 
 
             if (languageToUse.equalsIgnoreCase("ar")) {
-               // imageButton1.setBackgroundResource(R.drawable.conform);
-              //  edittext_serialno.setGravity(Gravity.RIGHT);
+                // imageButton1.setBackgroundResource(R.drawable.conform);
+                //  edittext_serialno.setGravity(Gravity.RIGHT);
 
             } else {
-              //  imageButton1.setBackgroundResource(R.drawable.confirmbutton);
-              //  edittext_serialno.setGravity(Gravity.LEFT);
+                //  imageButton1.setBackgroundResource(R.drawable.confirmbutton);
+                //  edittext_serialno.setGravity(Gravity.LEFT);
 
             }
 
@@ -186,16 +199,11 @@ public class PosStockReport extends AppCompatActivity implements View.OnClickLis
 
                 }
 
-                if(operator_pinsale.size()==1){
-
-                        Toast.makeText(PosStockReport.this,"No PIN available in stock",Toast.LENGTH_LONG).show();
-
-                }
-
-
             }
 
-
+            if(operator_pinsale.size()==1){
+                Toast.makeText(PosStockReport.this,getResources().getString(R.string.no_pin_available_in_stock),Toast.LENGTH_LONG).show();
+            }
 
             System.out.println("Operator Code  "+OperatorList.toString());
 
@@ -207,12 +215,9 @@ public class PosStockReport extends AppCompatActivity implements View.OnClickLis
 
             JSONArray jsonArray = new JSONArray();
 
-        } catch (Exception e) {
-            Toast.makeText(PosStockReport.this, e.toString(), Toast.LENGTH_LONG).show();
-            e.printStackTrace();
+        }catch(Exception e){
+
         }
-
-
     }
 
     public int hasValue(List<ModalPosStockReport> json, String key, String value) {
@@ -554,9 +559,7 @@ public class PosStockReport extends AppCompatActivity implements View.OnClickLis
 
 
 
-                        if(arrayList_report.size()==0){
-                            Toast.makeText(PosStockReport.this,"No PIN available in stock",Toast.LENGTH_LONG).show();
-                        }
+
 
 
                     System.out.println(arrayList_report);

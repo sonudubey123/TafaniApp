@@ -224,6 +224,7 @@
     <string name="welcome_to_nextgen">Welcome to NextGen</string>
     <string name="enter_agent_code">Enter agent code</string>
     <string name="enter_mpin">Enter 4-digit MPIN</string>
+    <string name="no_pin_available_in_stock">No PIN available in stock</string>
     <string name="login">Login</string>
     <string name="retailer_login">Retailer Login successful</string>
     <string name="distributor_login">Distributor Login successful</string>

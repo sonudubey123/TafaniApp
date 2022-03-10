@@ -1,8 +1,18 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="AppTheme.NoActionBar">
+    <style name="AppTheme.NoActionBar"  parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+
+        <!--<item name="colorPrimary">@color/purple_500</item>
+
+        &lt;!&ndash; colorPrimaryDark is used for the status bar &ndash;&gt;
+        <item name="colorPrimaryDark">@color/purple_500</item>
+
+        &lt;!&ndash; colorAccent is used as the default value for colorControlActivated
+             which is used to tint widgets &ndash;&gt;
+        &lt;!&ndash; THIS IS WHAT YOU'RE LOOKING FOR &ndash;&gt;
+        <item name="colorAccent">@color/purple_500</item>-->
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

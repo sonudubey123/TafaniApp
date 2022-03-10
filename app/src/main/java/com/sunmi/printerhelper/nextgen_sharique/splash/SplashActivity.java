@@ -21,6 +21,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 import tafani.sunmi.printer.R;
+
+import com.sunmi.printerhelper.nextgen_sharique.application_sharepreference.MyApplication;
 import com.sunmi.printerhelper.nextgen_sharique.ase_encription.AESEncryption;
 import com.sunmi.printerhelper.nextgen_sharique.languag_choose.LanguageChoose;
 import com.sunmi.printerhelper.nextgen_sharique.login.LoginActivation;
@@ -49,6 +51,9 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         initApplication();
+
+        System.out.println("Serial number "+ MyApplication.getSerialNumber());
+
 
         try {
 

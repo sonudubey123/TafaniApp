@@ -230,7 +230,7 @@
     <string name="enter_agent_code">أدخل العميل رمز </string>
     <string name="enter_mpin">دخل MPIN المكون من 4 أرقام</string>
     <string name="login">تسجيل الدخول</string>
-
+    <string name="no_pin_available_in_stock">لا يتوفر PIN في المخزون</string>
     <string name="retailer_login">نجح تسجيل دخول بائع التجزئة</string>
     <string name="distributor_login">تم تسجيل دخول الموزع بنجاح</string>
     <string name="balance_display"> للتحقق من الرصيد الرجاء ادخال كلمة المرور المتكونة من 4 أرقام </string>
