@@ -35,6 +35,7 @@ public class AllActivity extends BaseActivity implements View.OnClickListener {
         findViewById(R.id.multi_four).setOnClickListener(this);
         findViewById(R.id.multi_five).setOnClickListener(this);
         findViewById(R.id.multi_six).setOnClickListener(this);
+    // comeent sharique
     }
 
     /**
