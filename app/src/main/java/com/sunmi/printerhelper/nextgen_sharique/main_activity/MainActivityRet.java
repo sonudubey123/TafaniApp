@@ -18,6 +18,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -1293,6 +1294,17 @@ public class MainActivityRet extends AppCompatActivity
     }
 
 
+    public static Bitmap mergeToPin(Bitmap back, Bitmap front) {
+        Bitmap result = Bitmap.createBitmap(back.getWidth(), back.getHeight(), back.getConfig());
+        Canvas canvas = new Canvas(result);
+        int widthBack = back.getWidth();
+        int widthFront = front.getWidth();
+        float move = (widthBack - widthFront) / 2;
+        canvas.drawBitmap(back, 0f, 0f, null);
+        canvas.drawBitmap(front, move, move, null);
+        return result;
+    }
+
     protected void print_pos_data_online() {
 
         if(MyApplication.isSrviceStarted){
@@ -1306,9 +1318,11 @@ public class MainActivityRet extends AppCompatActivity
         if (!BluetoothUtil.isBlueToothPrinter) {
 
             Bitmap bitmap = null;
+            Bitmap bitmap2 = null;
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inTargetDensity = 200;
             options.inDensity = 200;
+           // bitmap2 = BitmapFactory.decodeResource(getResources(), R.drawable.logo, options);
 
 
             // Bitmap bitmap_new = getResizedBitmap(bitmap ,200);
@@ -1316,7 +1330,10 @@ public class MainActivityRet extends AppCompatActivity
             if(vendorcode_online.equalsIgnoreCase("LIBYANA"))
             {
               //  Toast.makeText(MainActivityRet.this, vendorcode_online, Toast.LENGTH_SHORT).show();
+              //  bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.arabic_logo, options);
                 bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ani_libyana, options);
+
+
 
                 if(languageToUse.equalsIgnoreCase("ar"))
                 {
@@ -1477,8 +1494,10 @@ public class MainActivityRet extends AppCompatActivity
             }
 
 
-            SunmiPrintHelper.getInstance().printBitmap_nextgen(bitmap,1);
+           // Bitmap bitmap3=mergeToPin(bitmap,bitmap2);
 
+            //SunmiPrintHelper.getInstance().printBitmap_nextgen(bitmap3,0);
+            SunmiPrintHelper.getInstance().printBitmap_nextgen(bitmap,0);
 
 
           /*  image_view_rightside.getLayoutParams().height = 400; //can change the size according to you requirements
@@ -1498,27 +1517,31 @@ public class MainActivityRet extends AppCompatActivity
             if (languageToUse.equalsIgnoreCase("en")) {
 
 
+                SunmiPrintHelper.getInstance().printText_nextgen( "\n\n"+transactionDate_online, 20, true, isUnderLine, testFont, 0);
+                SunmiPrintHelper.getInstance().printText_nextgen("               " + transactionTime_online + "\n", 20, isBold, isUnderLine, testFont, 2);
 
-                SunmiPrintHelper.getInstance().printText_nextgen( "\n\n"+getString(R.string.transaction_id), 20, isBold, isUnderLine, testFont, 0);
-                SunmiPrintHelper.getInstance().printText_nextgen("                " + transid_online + "\n", 20, isBold, isUnderLine, testFont, 2);
+
+                SunmiPrintHelper.getInstance().printText_nextgen( getString(R.string.transaction_id), 20, isBold, isUnderLine, testFont, 0);
+                SunmiPrintHelper.getInstance().printText_nextgen("                " + transid_online + "\n", 20, true, isUnderLine, testFont, 2);
 
 
-                SunmiPrintHelper.getInstance().printText_nextgen( transactionDate_online, 20, isBold, isUnderLine, testFont, 0);
-                SunmiPrintHelper.getInstance().printText_nextgen("                 " + transactionTime_online + "\n", 20, isBold, isUnderLine, testFont, 2);
 
                 SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.terminal_id), 20, isBold, isUnderLine, testFont, 0);
                 SunmiPrintHelper.getInstance().printText_nextgen("            " + MyApplication.getSaveString("terminalIdString", MainActivityRet.this) + "\n", 20, isBold, isUnderLine, testFont, 2);
 
 
-                SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.retailer), 20, isBold, isUnderLine, testFont, 0);
+              /*  SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.retailer), 20, isBold, isUnderLine, testFont, 0);
                 SunmiPrintHelper.getInstance().printText_nextgen("                   " + MyApplication.getSaveString("mobileNoString", MainActivityRet.this) + "\n", 20, isBold, isUnderLine, testFont, 2);
-
+*/
                 SunmiPrintHelper.getInstance().printText_nextgen("---------------" + "\n", 50, isBold, isUnderLine, testFont, 0);
 
-                SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.seriol_number) +" "+serialNumberString_online+"\n",  20, isBold, isUnderLine, testFont, 1);
-                SunmiPrintHelper.getInstance().printText_nextgen("LYD " +" "+amount_online+"\n",  20, true, isUnderLine, testFont, 1);
                 String pinNumberString_online_print = pinNumberString_online.replaceAll("...", "$0 ");
                 SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.pin_number) +" "+pinNumberString_online_print+"\n",  20, true, isUnderLine, testFont, 1);
+
+
+                SunmiPrintHelper.getInstance().printText_nextgen("LYD " +" "+amount_online+"\n",  30, true, isUnderLine, testFont, 1);
+
+                SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.seriol_number) +" "+serialNumberString_online+"\n",  20, isBold, isUnderLine, testFont, 1);
 
                 SunmiPrintHelper.getInstance().printText_nextgen("---------------" + "\n", 50, isBold, isUnderLine, testFont, 0);
 
@@ -1542,27 +1565,29 @@ public class MainActivityRet extends AppCompatActivity
 
 
 
-                    SunmiPrintHelper.getInstance().printText_nextgen(  "\n\n"+transid_online+"                    ", 20, isBold, isUnderLine, testFont, 0);
+
+
+                    SunmiPrintHelper.getInstance().printText_nextgen("\n\n"+transactionDate_online, 20, true, isUnderLine, testFont, 0);
+                    SunmiPrintHelper.getInstance().printText_nextgen("               " + transactionTime_online + "\n", 20, true, isUnderLine, testFont, 2);
+
+                    SunmiPrintHelper.getInstance().printText_nextgen(  transid_online+"                    ", 20, isBold, isUnderLine, testFont, 0);
                     SunmiPrintHelper.getInstance().printText_nextgen( getString(R.string.transaction_id) + "\n", 20, isBold, isUnderLine, testFont, 2);
 
-
-                    SunmiPrintHelper.getInstance().printText_nextgen(transactionDate_online, 20, isBold, isUnderLine, testFont, 0);
-                    SunmiPrintHelper.getInstance().printText_nextgen("                 " + transactionTime_online + "\n", 20, isBold, isUnderLine, testFont, 2);
 
                     SunmiPrintHelper.getInstance().printText_nextgen(  MyApplication.getSaveString("mobileNoString",MainActivityRet.this)+"              ", 20, isBold, isUnderLine, testFont, 0);
                     SunmiPrintHelper.getInstance().printText_nextgen( getString(R.string.terminal_id) +"      " + "\n", 20, isBold, isUnderLine, testFont, 2);
 
-                    SunmiPrintHelper.getInstance().printText_nextgen(  MyApplication.getSaveString("terminalIdString", MainActivityRet.this)+"              ", 20, isBold, isUnderLine, testFont, 0);
+                 /*   SunmiPrintHelper.getInstance().printText_nextgen(  MyApplication.getSaveString("terminalIdString", MainActivityRet.this)+"              ", 20, isBold, isUnderLine, testFont, 0);
                     SunmiPrintHelper.getInstance().printText_nextgen( getString(R.string.retailer)+"    " + "\n", 20, isBold, isUnderLine, testFont, 2);
-
+*/
                     SunmiPrintHelper.getInstance().printText_nextgen("---------------" + "\n", 50, isBold, isUnderLine, testFont, 0);
 
-
-                    SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.seriol_number) +" "+serialNumberString_online+"\n",  20, isBold, isUnderLine, testFont, 1);
-                    SunmiPrintHelper.getInstance().printText_nextgen("دينار " +" "+amount_online+"\n",  20, true, isUnderLine, testFont, 1);
                     String pinNumberString_online_print = pinNumberString_online.replaceAll("...", "$0 ");
                     SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.pin_number) +" "+pinNumberString_online_print+"\n",  20, true, isUnderLine, testFont, 1);
 
+
+                    SunmiPrintHelper.getInstance().printText_nextgen("دينار " +" "+amount_online+"\n",  30, true, isUnderLine, testFont, 1);
+                    SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.seriol_number) +" "+serialNumberString_online+"\n",  20, isBold, isUnderLine, testFont, 1);
 
                     SunmiPrintHelper.getInstance().printText_nextgen("---------------" + "\n", 50, isBold, isUnderLine, testFont, 0);
 

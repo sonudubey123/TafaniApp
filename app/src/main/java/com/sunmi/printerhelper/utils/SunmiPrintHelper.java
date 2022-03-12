@@ -334,7 +334,7 @@ public class SunmiPrintHelper {
      */
     public void printText_nextgen(String content, float size, boolean isBold, boolean isUnderLine,String typeface,int align) {
 
-        setAlign_nextgen(align);     // 0 left --- 1---centre-----2----left
+        setAlign_nextgen(align);     // 0 left --- 1---centre-----2----center
 
 
         if(sunmiPrinterService == null){

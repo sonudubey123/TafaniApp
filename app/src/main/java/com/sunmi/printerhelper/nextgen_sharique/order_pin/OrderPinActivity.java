@@ -86,7 +86,7 @@ public class OrderPinActivity extends AppCompatActivity
 
     String transid_online="",transactionDate_online="",transactionTime_online="",footer_first_online="",footer_second_online;
     private String testFont;
-
+    String productCode="";
 
 
 
@@ -477,7 +477,10 @@ public class OrderPinActivity extends AppCompatActivity
 
             JSONObject jsonObject_request = new JSONObject();
             jsonObject_request.put("agentcode", MyApplication.getSaveString("mobileNoString", OrderPinActivity.this));
+            //jsonObject_request.put("pin", MyApplication.getSaveString("activationCodeString", OrderPinActivity.this));
+            String key = Md5.getMd5Hash(MyApplication.getSaveString("mobileNoString", OrderPinActivity.this)+mpinString_orderPin).toUpperCase(Locale.ENGLISH);
             jsonObject_request.put("pin", MyApplication.getSaveString("activationCodeString", OrderPinActivity.this));
+            jsonObject_request.put("pinnew", key);
             jsonObject_request.put("vendorcode","TAFANI");
             jsonObject_request.put("clienttype","POS");
             jsonObject_request.put("terminalid",MyApplication.getSaveString("terminalIdString", OrderPinActivity.this));
@@ -550,7 +553,14 @@ public class OrderPinActivity extends AppCompatActivity
 
             JSONObject jsonObject_request = new JSONObject();
             jsonObject_request.put("agentcode", MyApplication.getSaveString("mobileNoString", OrderPinActivity.this));
+           // String mPin = MyApplication.getSaveString("mpinString", OrderPinActivity.this);
+
+            /*String key = Md5.getMd5Hash(MyApplication.getSaveString("mobileNoString", OrderPinActivity.this)+mpinString_orderPin).toUpperCase(Locale.ENGLISH);
+
+            jsonObject_request.put("pin",key);*/
+
             jsonObject_request.put("pin", MyApplication.getSaveString("activationCodeString", OrderPinActivity.this));
+
             jsonObject_request.put("vendorcode","TAFANI");
             jsonObject_request.put("clienttype","POS");
             jsonObject_request.put("terminalid",MyApplication.getSaveString("terminalIdString", OrderPinActivity.this));
@@ -998,16 +1008,17 @@ public class OrderPinActivity extends AppCompatActivity
 
                                 JSONArray jsonArray_records = jsonObject_response.getJSONArray("records");
 
+
                                 for(int i=0;i<jsonArray_records.length();i++) {
 
                                     JSONObject jsonObject = jsonArray_records.getJSONObject(i);
-
+                                     productCode=jsonObject.optString("productcode");
                                     // String productcode=jsonObject.getString("productcode");
                                     //  String denomination_bulkdownlaod=jsonObject.getString("denomination");
 
                                     JSONArray jsonArray_currentserialnos = jsonObject.getJSONArray("currentserialnos");
 
-
+                                    transid_online = jsonObject_response.getString("transid");
                                     for (int j = 0; j < jsonArray_currentserialnos.length(); j++) {
 
 
@@ -1638,14 +1649,23 @@ public class OrderPinActivity extends AppCompatActivity
                 SunmiPrintHelper.getInstance().printText_nextgen("\n\n" + transactionDate_online, 20, isBold, isUnderLine, testFont, 0);
                 SunmiPrintHelper.getInstance().printText_nextgen("                 " + transactionTime_online + "\n", 20, isBold, isUnderLine, testFont, 2);
 
+                SunmiPrintHelper.getInstance().printText_nextgen( getString(R.string.transaction_id), 20, isBold, isUnderLine, testFont, 0);
+                SunmiPrintHelper.getInstance().printText_nextgen("                " + transid_online + "\n", 20, true, isUnderLine, testFont, 2);
+
+
+
                 SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.terminalidId_print_colon), 20, isBold, isUnderLine, testFont, 0);
                 SunmiPrintHelper.getInstance().printText_nextgen("           " + MyApplication.getSaveString("terminalIdString", OrderPinActivity.this) + "\n", 20, isBold, isUnderLine, testFont, 2);
 
+            //    SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.product_code), 30, true, isUnderLine, testFont, 0);
 
-                SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.retailer_print_colon), 20, isBold, isUnderLine, testFont, 0);
+
+
+               /* SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.retailer_print_colon), 20, isBold, isUnderLine, testFont, 0);
                 SunmiPrintHelper.getInstance().printText_nextgen("                   " + MyApplication.getSaveString("mobileNoString", OrderPinActivity.this) + "\n", 20, isBold, isUnderLine, testFont, 2);
-
-                SunmiPrintHelper.getInstance().printText_nextgen("---------------" + "\n", 50, isBold, isUnderLine, testFont, 0);
+*/
+                SunmiPrintHelper.getInstance().printText_nextgen( "\n\n"+productCode + "\n", 30, true, isUnderLine, testFont, 1);
+                SunmiPrintHelper.getInstance().printText_nextgen("\n"+"---------------" + "\n", 50, isBold, isUnderLine, testFont, 0);
 
 
 
@@ -1653,7 +1673,7 @@ public class OrderPinActivity extends AppCompatActivity
                 {
 
                     SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.seriol_number)+" "+  posstock_s_List_pinsale.get(i).getSeriolNumber()+ "\n",20, isBold, isUnderLine, testFont, 0);
-                    SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.pin_number)+" "+   posstock_s_List_pinsale.get(i).getkNumber()+ "\n\n",20, isBold, isUnderLine, testFont, 0);
+                    //SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.pin_number)+" "+   posstock_s_List_pinsale.get(i).getkNumber()+ "\n\n",20, isBold, isUnderLine, testFont, 0);
 
 
                       /*try {
@@ -1701,22 +1721,31 @@ public class OrderPinActivity extends AppCompatActivity
                 SunmiPrintHelper.getInstance().printText_nextgen("\n" + transactionDate_online, 20, isBold, isUnderLine, testFont, 0);
                 SunmiPrintHelper.getInstance().printText_nextgen("                 " + transactionTime_online + "\n", 20, isBold, isUnderLine, testFont, 2);
 
+                SunmiPrintHelper.getInstance().printText_nextgen(  transid_online+"                    ", 20, isBold, isUnderLine, testFont, 0);
+                SunmiPrintHelper.getInstance().printText_nextgen( getString(R.string.transaction_id) + "\n", 20, isBold, isUnderLine, testFont, 2);
+
 
                 SunmiPrintHelper.getInstance().printText_nextgen(  MyApplication.getSaveString("mobileNoString", OrderPinActivity.this)+"                ", 20, isBold, isUnderLine, testFont, 0);
                 SunmiPrintHelper.getInstance().printText_nextgen( getString(R.string.terminalidId_print_colon) + "\n", 20, isBold, isUnderLine, testFont, 2);
 
 
-                SunmiPrintHelper.getInstance().printText_nextgen(  MyApplication.getSaveString("terminalIdString", OrderPinActivity.this)+"              ", 20, isBold, isUnderLine, testFont, 0);
+              /*  SunmiPrintHelper.getInstance().printText_nextgen(  MyApplication.getSaveString("terminalIdString", OrderPinActivity.this)+"              ", 20, isBold, isUnderLine, testFont, 0);
                 SunmiPrintHelper.getInstance().printText_nextgen( getString(R.string.retailer_print_colon) + "\n", 20, isBold, isUnderLine, testFont, 2);
+*/
 
-                SunmiPrintHelper.getInstance().printText_nextgen("---------------" + "\n", 50, isBold, isUnderLine, testFont, 0);
+                SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.terminalidId_print_colon), 20, isBold, isUnderLine, testFont, 0);
+                SunmiPrintHelper.getInstance().printText_nextgen("           " + MyApplication.getSaveString("terminalIdString", OrderPinActivity.this) + "\n", 20, isBold, isUnderLine, testFont, 2);
+
+              //  SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.product_code), 30, true, isUnderLine, testFont, 0);
+                SunmiPrintHelper.getInstance().printText_nextgen( "\n\n"+productCode + "\n", 30, true, isUnderLine, testFont, 1);
+                SunmiPrintHelper.getInstance().printText_nextgen("\n"+"---------------" + "\n", 50, isBold, isUnderLine, testFont, 0);
 
 
                 for(int i=0;i<posstock_s_List_pinsale.size();i++)
                 {
 
                     SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.seriol_number)+" "+  posstock_s_List_pinsale.get(i).getSeriolNumber()+ "\n",20, isBold, isUnderLine, testFont, 2);
-                    SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.pin_number)+" "+   posstock_s_List_pinsale.get(i).getkNumber()+ "\n\n",20, isBold, isUnderLine, testFont, 2);
+                   // SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.pin_number)+" "+   posstock_s_List_pinsale.get(i).getkNumber()+ "\n\n",20, isBold, isUnderLine, testFont, 2);
 
 
                  /*   try {

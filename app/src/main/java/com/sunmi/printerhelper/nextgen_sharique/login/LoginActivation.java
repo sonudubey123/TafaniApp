@@ -594,14 +594,14 @@ public class LoginActivation extends AppCompatActivity implements View.OnClickLi
 
                                 if (resultcode.equalsIgnoreCase("0")) {
 
-                                 /*   if (clienttype.equalsIgnoreCase("pos")||
-                                            clienttype.equalsIgnoreCase("POS")) {*/
+                                    if (clienttype.equalsIgnoreCase("pos")||
+                                            clienttype.equalsIgnoreCase("POS")) {
 
-                                    if (clienttype.equalsIgnoreCase("android")||
+                                  /*  if (clienttype.equalsIgnoreCase("android")||
                                             clienttype.equalsIgnoreCase("Android")||
                                             clienttype.equalsIgnoreCase("pos")||
                                             clienttype.equalsIgnoreCase("POS")||
-                                            clienttype.equalsIgnoreCase("")) {
+                                            clienttype.equalsIgnoreCase("")) {*/
 
                                         String loginType = jsonObject_response.getString("agenttype");
 

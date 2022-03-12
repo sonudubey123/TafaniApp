@@ -49,7 +49,10 @@ import com.sunmi.printerhelper.utils.SunmiPrintHelper;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -277,13 +280,24 @@ public class PosStockReport extends AppCompatActivity implements View.OnClickLis
             if (languageToUse.equalsIgnoreCase("en")) {
 
                 SunmiPrintHelper.getInstance().printText_nextgen("            "+getString(R.string.stock_report)+"\n\n", 30, isBold, isUnderLine, testFont, 0);
+                String currentDateTime=current_sell_dateTime(); // 26/01/2022 14:55:46
+
+                String[]  currentDateTime_temp = currentDateTime.split(" ");
+                String currentDate_offline = currentDateTime_temp[0];
+                String currentTime_offline = currentDateTime_temp[1];
+
+                SunmiPrintHelper.getInstance().printText_nextgen(  currentDate_offline, 20, isBold, isUnderLine, testFont, 0);
+                SunmiPrintHelper.getInstance().printText_nextgen("                    " + currentTime_offline + "\n", 20, isBold, isUnderLine, testFont, 2);
+
+
+
 
                 SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.terminalidId_print_colon), 20, isBold, isUnderLine, testFont, 0);
                 SunmiPrintHelper.getInstance().printText_nextgen("           " + MyApplication.getSaveString("terminalIdString", PosStockReport.this) + "\n", 20, isBold, isUnderLine, testFont, 2);
 
-                SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.retailer_print_colon), 20, isBold, isUnderLine, testFont, 0);
+               /* SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.retailer_print_colon), 20, isBold, isUnderLine, testFont, 0);
                 SunmiPrintHelper.getInstance().printText_nextgen("                   " + MyApplication.getSaveString("mobileNoString", PosStockReport.this) + "\n", 20, isBold, isUnderLine, testFont, 2);
-
+*/
                 SunmiPrintHelper.getInstance().printText_nextgen("---------------" + "\n", 50, isBold, isUnderLine, testFont, 0);
 
 
@@ -310,12 +324,21 @@ public class PosStockReport extends AppCompatActivity implements View.OnClickLis
 
 
 
+                String currentDateTime=current_sell_dateTime(); // 26/01/2022 14:55:46
+
+                String[]  currentDateTime_temp = currentDateTime.split(" ");
+                String currentDate_offline = currentDateTime_temp[0];
+                String currentTime_offline = currentDateTime_temp[1];
+
+                SunmiPrintHelper.getInstance().printText_nextgen(currentDate_offline, 20, isBold, isUnderLine, testFont, 0);
+                SunmiPrintHelper.getInstance().printText_nextgen("                    " + currentTime_offline + "\n", 20, isBold, isUnderLine, testFont, 2);
+
                 SunmiPrintHelper.getInstance().printText_nextgen(  MyApplication.getSaveString("mobileNoString",PosStockReport.this)+"              ", 20, isBold, isUnderLine, testFont, 0);
                 SunmiPrintHelper.getInstance().printText_nextgen( getString(R.string.terminal_id) +"      " + "\n", 20, isBold, isUnderLine, testFont, 2);
 
-                SunmiPrintHelper.getInstance().printText_nextgen(  MyApplication.getSaveString("terminalIdString", PosStockReport.this)+"              ", 20, isBold, isUnderLine, testFont, 0);
+              /*  SunmiPrintHelper.getInstance().printText_nextgen(  MyApplication.getSaveString("terminalIdString", PosStockReport.this)+"              ", 20, isBold, isUnderLine, testFont, 0);
                 SunmiPrintHelper.getInstance().printText_nextgen( getString(R.string.retailer)+"    " + "\n", 20, isBold, isUnderLine, testFont, 2);
-
+*/
 
                 SunmiPrintHelper.getInstance().printText_nextgen("---------------" + "\n", 50, isBold, isUnderLine, testFont, 0);
 
@@ -573,5 +596,17 @@ public class PosStockReport extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    public static String current_sell_dateTime() {
+
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date dateobj = new Date();
+
+        String  currentDateTime=df.format(dateobj);
+
+        //  currentDateTime ="31/12/21 20:08:33";
+
+        return currentDateTime;
     }
 }
