@@ -52,7 +52,7 @@ public class SplashActivity extends AppCompatActivity {
 
         initApplication();
 
-        System.out.println("Serial number "+ MyApplication.getSerialNumber());
+
 
 
         try {
@@ -130,7 +130,7 @@ public class SplashActivity extends AppCompatActivity {
                     @Override
                     public void onPermissionGranted() {
 
-
+                        System.out.println("Serial number NEW "+ MyApplication.getSN());
                         SharedPreferences prefs = getSharedPreferences("EU_MPIN", MODE_PRIVATE);
                         String checkLogin = prefs.getString("glo_login", null);
 

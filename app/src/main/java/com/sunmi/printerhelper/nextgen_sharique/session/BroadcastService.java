@@ -7,6 +7,8 @@ import android.os.IBinder;
 import android.util.Log;
 
 import com.sunmi.printerhelper.nextgen_sharique.application_sharepreference.MyApplication;
+import com.sunmi.printerhelper.nextgen_sharique.login.LoginActivityPin;
+import com.sunmi.printerhelper.nextgen_sharique.splash.SplashActivity;
 
 public class BroadcastService extends Service {
 
@@ -23,13 +25,20 @@ public class BroadcastService extends Service {
 
         Log.i(TAG, "Starting timer...");
 
-        cdt = new CountDownTimer(600000*6, 1000) {
+        cdt = new CountDownTimer(2*60*1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
 
                 Log.i(TAG, "Countdown seconds remaining: " + millisUntilFinished / 1000);
                 bi.putExtra("countdown", millisUntilFinished);
                 sendBroadcast(bi);
+                /*if((millisUntilFinished / 1000)==1) {
+                    Intent intent = new Intent(MyApplication.getInstance(), LoginActivityPin.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+
+                }*/
+
             }
 
             @Override

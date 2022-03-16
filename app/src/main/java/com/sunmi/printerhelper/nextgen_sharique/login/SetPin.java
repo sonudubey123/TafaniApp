@@ -767,8 +767,8 @@ public class SetPin extends AppCompatActivity implements View.OnClickListener, I
             json_main.put("apiname", "PINTRF");
 
             JSONObject jsonObject_request = new JSONObject();
-            // jsonObject_request.put("agentcode", MyApplication.getSaveString("mobileNoString", SetPin.this));
-            jsonObject_request.put("agentcode","0982650605");
+             jsonObject_request.put("agentcode", MyApplication.getSaveString("mobileNoString", SetPin.this));
+           // jsonObject_request.put("agentcode","0982650605");
             jsonObject_request.put("udv2","Pin select");
 
             jsonObject_request.put("destination",MyApplication.getSaveString("mobileNoString", SetPin.this));

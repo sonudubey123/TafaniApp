@@ -29,6 +29,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         handler = new Handler();
         initPrinterStyle();
+        //QA
     }
 
     @Override

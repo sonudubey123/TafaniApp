@@ -27,6 +27,13 @@ public class MyApplication extends Application {
     public static Boolean isTimerStopped=false;
 
 
+    public static String getSN() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            return Build.getSerial();
+        } else
+            return Build.SERIAL;
+    }
+
     public static String getSerialNumber() {
         String serialNumber;
 

@@ -415,6 +415,7 @@ public class MainActivityRet extends AppCompatActivity
         return true;
     }
 
+
     private void alertDialogue_orderPin() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivityRet.this);
@@ -1307,12 +1308,7 @@ public class MainActivityRet extends AppCompatActivity
 
     protected void print_pos_data_online() {
 
-        if(MyApplication.isSrviceStarted){
 
-        }else{
-            MyApplication.isSrviceStarted=true;
-            startService(new Intent(this, BroadcastService.class));
-        }
 
 
         if (!BluetoothUtil.isBlueToothPrinter) {
@@ -1653,7 +1649,9 @@ public class MainActivityRet extends AppCompatActivity
 
     private boolean checkValidation_orderPopup() {
 
-        mpinString_orderPin = editext_popup_order.getText().toString().trim();
+       mpinString_orderPin = editext_popup_order.getText().toString().trim();
+       // String offlinePinString = MyApplication.getSaveString("offlinePinString", MainActivityRet.this);
+        //mpinString_orderPin = offlinePinString;
 
         if (mpinString_orderPin.isEmpty()) {
             Toast.makeText(MainActivityRet.this, getResources().getString(R.string.plz_enter_5_digit_offline_pinn), Toast.LENGTH_SHORT).show();
@@ -2585,12 +2583,33 @@ public class MainActivityRet extends AppCompatActivity
     public void onResume() {
         super.onResume();
         registerReceiver(br, new IntentFilter(BroadcastService.COUNTDOWN_BR));
-        Log.i(TAG, "Registered broacast receiver"+MyApplication.getSerialNumber());
+        //Log.i(TAG, "Registered broacast receiver"+MyApplication.getSerialNumber());
+
+       /* if(MyApplication.isSrviceStarted){
+
+
+        }else{
+            MyApplication.isSrviceStarted=true;
+startService(new Intent(this, BroadcastService.class));
+        }*/
+       // MyApplication.isSrviceStarted=true;
+       // startService(new Intent(this, BroadcastService.class));
         if( MyApplication.isTimerStopped){
             etPin.setVisibility(View.VISIBLE);
         }
     }
 
+   /* @Override
+    public void onUserInteraction() {
+        super.onUserInteraction();
+        MyApplication.isSrviceStarted=false;
+        stopService(new Intent(this, BroadcastService.class));
+        Log.i(TAG, "Stopped service");
+
+        MyApplication.isSrviceStarted=true;
+        startService(new Intent(this, BroadcastService.class));
+    }
+*/
     @Override
     public void onPause() {
         super.onPause();
@@ -2621,9 +2640,10 @@ public class MainActivityRet extends AppCompatActivity
             long millisUntilFinished = intent.getLongExtra("countdown", 0);
             Log.i(TAG, "Countdown seconds remaining: " + millisUntilFinished / 1000 +SunmiPrintHelper.getInstance().getDeviceModel());
             if((millisUntilFinished / 1000)==1){
+
                 MyApplication.isTimerStopped=true;
                 MyApplication.isSrviceStarted=false;
-                etPin.setVisibility(View.VISIBLE);
+                etPin.setVisibility(View.INVISIBLE);
             }else{
                 MyApplication.isTimerStopped=false;
 
