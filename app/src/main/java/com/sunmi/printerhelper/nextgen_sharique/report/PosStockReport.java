@@ -271,7 +271,7 @@ public class PosStockReport extends AppCompatActivity implements View.OnClickLis
             options.inDensity = 200;
 
 
-            bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ani_logo_jp, options);
+            bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.logo, options);
 
             SunmiPrintHelper.getInstance().printBitmap_nextgen(bitmap,1);
 

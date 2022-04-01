@@ -9,6 +9,15 @@ public class TransactionHistoryRetModal {
   String walletbalance="";
   String amount="";
     String operator="";
+    String product="";
+
+    public String getProduct() {
+        return product;
+    }
+
+    public void setProduct(String product) {
+        this.product = product;
+    }
 
     public String getOperator() {
         return operator;

@@ -306,6 +306,7 @@
     <string name="account_balance">Account balance  </string>
     <string name="logout">Logout  </string>
     <string name="change_mpin">Change Mpin  </string>
+    <string name="change_oofline_mpin">Change Offline Mpin  </string>
     <string name="transaction_history">Transaction history  </string>
     <string name="stock_report">Stock report  </string>
     <string name="pin_sale">Pin sale  </string>
@@ -368,5 +369,15 @@
     <string name="email_url">Email</string>
     <string name="contact_details">Contact</string>
     <string name="tafani_telecom_technology">Tafani Telecom &amp; Technology</string>
+    <string name="enter_old_5_digit_offline_pin">Enter Old 5 Digit Offline PIN</string>
+    <string name="enter_new_5_digit_new_offline_pin">Enter New 5 Digit New Offline PIN</string>
+    <string name="confirm_5_digit_new_offline_pin">Confirm 5 Digit New Offline PIN</string>
+
+
+
+
+    <string name="old_offline_pin_is_not_correct_please_enter_correct_offline_old_pin">Old Offline PIN is not correct,Please Enter Correct Offline Old PIN</string>
+    <string name="your_offline_pin_is_successfully_changed">Your Offline PIn is successfully Changed</string>
+    <string name="old_and_new_offline_pin_should_be_same">Old and New Offline PIN Should be same</string>
 
 </resources>

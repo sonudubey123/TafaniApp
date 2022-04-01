@@ -227,16 +227,16 @@ public class LoginActivation extends AppCompatActivity implements View.OnClickLi
     {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
 
-         imeiString = Settings.Secure.getString(
-                    LoginActivation.this.getContentResolver(),
-                    Settings.Secure.ANDROID_ID);
-
-          //  Toast.makeText(this,"TerminalId is=" +imeiString, Toast.LENGTH_SHORT).show();
+        // imeiString = Settings.Secure.getString(LoginActivation.this.getContentResolver(), Settings.Secure.ANDROID_ID);
+            imeiString = MyApplication.getSN();
+          //Toast.makeText(this,"TerminalId is=" +imeiString, Toast.LENGTH_SHORT).show();
 
         }
         else {
-            TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-            imeiString = telephonyManager.getDeviceId();
+           /* TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+            imeiString = telephonyManager.getDeviceId();*/
+
+            imeiString = MyApplication.getSN();
 
          //   Toast.makeText(this,"TerminalId is=" +imeiString, Toast.LENGTH_SHORT).show();
 

@@ -111,7 +111,7 @@
                 android:id="@+id/image_view_logo"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="@drawable/ani_logo_jp"
+                android:background="@drawable/logo"
                 />
 
 
@@ -120,7 +120,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginLeft="70dp"
-                android:background="@drawable/ani_logo_jp" />
+                android:background="@drawable/logo" />
 
 
         </LinearLayout>

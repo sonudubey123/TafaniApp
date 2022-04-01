@@ -113,7 +113,7 @@ public class ReprintRetailer extends AppCompatActivity implements View.OnClickLi
             options.inTargetDensity = 200;
             options.inDensity = 200;
 
-            bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ani_logo_jp, options);
+            bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.logo, options);
 
             SunmiPrintHelper.getInstance().printBitmap_nextgen(bitmap,1);
 

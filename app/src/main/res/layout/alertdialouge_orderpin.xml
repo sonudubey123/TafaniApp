@@ -3,9 +3,9 @@
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal|top"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
         android:orientation="vertical"
         android:padding="10dp" >
 
@@ -20,8 +20,8 @@
 
             <ImageView
                 android:layout_width="80dp"
-                android:layout_height="50dp"
-                android:background="@drawable/logo" />
+                android:layout_height="60dp"
+                android:background="@drawable/ani_green_g" />
 
             <TextView
                 android:id="@+id/titleTxtView"
@@ -34,7 +34,7 @@
         </LinearLayout>
 
         <TextView
-            android:layout_width="230dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="center"
@@ -43,7 +43,7 @@
             android:textSize="14dp" />
 
         <TextView
-            android:layout_width="230dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
             android:gravity="center"
@@ -52,7 +52,7 @@
             android:textSize="16dp" />
 
         <TextView
-            android:layout_width="230dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
             android:gravity="center"
@@ -61,29 +61,29 @@
             android:textSize="14dp" />
         <TextView
             android:id="@+id/text_operator"
-            android:layout_width="230dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:gravity="start"
+            android:gravity="center"
             android:text="Txn Id: 1234651234"
             android:textColor="#837e6c"
             android:textSize="14dp" />
         <TextView
             android:id="@+id/textview_amount_quantity"
-            android:layout_width="230dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:gravity="start"
+            android:gravity="center"
             android:text="Txn Id: 1234651234"
             android:textColor="#837e6c"
             android:textSize="14dp" />
 
         <TextView
             android:id="@+id/textview_total_quantity"
-            android:layout_width="230dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:gravity="start"
+            android:gravity="center"
             android:text="Txn Id: 1234651234"
             android:textColor="#837e6c"
             android:textSize="14dp" />

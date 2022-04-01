@@ -1482,7 +1482,7 @@ public class OrderPinActivity extends AppCompatActivity
             else if(select_operatorCode.equalsIgnoreCase("CFNET"))   // Not available
             {
                 Toast.makeText(OrderPinActivity.this, select_operatorCode, Toast.LENGTH_SHORT).show();
-                bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ani_logo_jp, options);  // Not available
+                bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.logo, options);  // Not available
 
                 if(languageToUse.equalsIgnoreCase("ar"))
                 {
@@ -1620,7 +1620,7 @@ public class OrderPinActivity extends AppCompatActivity
 
             else {
 
-                bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ani_logo_jp, options);
+                bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.logo, options);
                 footer_first_online="";
                 footer_second_online="";
             }
@@ -1655,7 +1655,7 @@ public class OrderPinActivity extends AppCompatActivity
 
 
                 SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.terminalidId_print_colon), 20, isBold, isUnderLine, testFont, 0);
-                SunmiPrintHelper.getInstance().printText_nextgen("           " + MyApplication.getSaveString("terminalIdString", OrderPinActivity.this) + "\n", 20, isBold, isUnderLine, testFont, 2);
+                SunmiPrintHelper.getInstance().printText_nextgen("             " + MyApplication.getSaveString("terminalIdString", OrderPinActivity.this) + "\n", 20, isBold, isUnderLine, testFont, 2);
 
             //    SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.product_code), 30, true, isUnderLine, testFont, 0);
 
@@ -1664,7 +1664,7 @@ public class OrderPinActivity extends AppCompatActivity
                /* SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.retailer_print_colon), 20, isBold, isUnderLine, testFont, 0);
                 SunmiPrintHelper.getInstance().printText_nextgen("                   " + MyApplication.getSaveString("mobileNoString", OrderPinActivity.this) + "\n", 20, isBold, isUnderLine, testFont, 2);
 */
-                SunmiPrintHelper.getInstance().printText_nextgen( "\n\n"+productCode + "\n", 30, true, isUnderLine, testFont, 1);
+                SunmiPrintHelper.getInstance().printText_nextgen( "\n"+productCode + "\n", 30, true, isUnderLine, testFont, 1);
                 SunmiPrintHelper.getInstance().printText_nextgen("\n"+"---------------" + "\n", 50, isBold, isUnderLine, testFont, 0);
 
 

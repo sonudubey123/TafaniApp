@@ -50,9 +50,8 @@
                 android:id="@+id/et_oldPin"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:textCursorDrawable="@null"
-
                 android:layout_below="@+id/textView1"
+
                 android:layout_alignLeft="@+id/imageView1"
                 android:layout_alignRight="@+id/imageView1"
                 android:layout_marginLeft="4dp"
@@ -67,6 +66,7 @@
                 android:padding="10dp"
                 android:singleLine="true"
                 android:textColor="@android:color/black"
+                android:textCursorDrawable="@null"
                 android:textSize="15sp" />
 
 
@@ -108,9 +108,8 @@
             <EditText
                 android:id="@+id/et_newPin"
                 android:layout_width="wrap_content"
-                android:textCursorDrawable="@null"
-
                 android:layout_height="40dp"
+
                 android:layout_below="@+id/et_oldPin"
                 android:layout_alignLeft="@+id/et_oldPin"
                 android:layout_alignRight="@+id/et_oldPin"
@@ -124,6 +123,7 @@
                 android:padding="10dp"
                 android:singleLine="true"
                 android:textColor="@android:color/black"
+                android:textCursorDrawable="@null"
                 android:textSize="15sp" />
         </RelativeLayout>
     </RelativeLayout>

@@ -52,6 +52,7 @@ import com.sunmi.printerhelper.nextgen_sharique.account_balance.AccountBalanceRe
 import com.sunmi.printerhelper.nextgen_sharique.account_balance.DemoTemp;
 import com.sunmi.printerhelper.nextgen_sharique.application_sharepreference.MyApplication;
 import com.sunmi.printerhelper.nextgen_sharique.changeMpin.ChangeMpinRetailer;
+import com.sunmi.printerhelper.nextgen_sharique.changeMpin.ChangeOfflineMpinRetailer;
 import com.sunmi.printerhelper.nextgen_sharique.contact.ContactDetails;
 import com.sunmi.printerhelper.nextgen_sharique.database.adapter_online.DenominationAdapter;
 import com.sunmi.printerhelper.nextgen_sharique.database.adapter_online.ProductAdapter;
@@ -319,7 +320,7 @@ public class MainActivityRet extends AppCompatActivity
 
         else if (id == R.id.changempin_ret)
         {
-            Intent intent = new Intent(MainActivityRet.this, ChangeMpinRetailer.class);
+            Intent intent = new Intent(MainActivityRet.this, ChangeOfflineMpinRetailer.class);
             startActivity(intent);
         }
 
@@ -1030,7 +1031,7 @@ public class MainActivityRet extends AppCompatActivity
             else if(vendorcode_offline_print.equalsIgnoreCase("CFNET"))   // Not available
             {
                // Toast.makeText(MainActivityRet.this, vendorcode_offline_print, Toast.LENGTH_SHORT).show();
-                bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ani_logo_jp, options);  // Not available
+                bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.logo, options);  // Not available
 
                 if(languageToUse.equalsIgnoreCase("ar"))
                 {
@@ -1171,7 +1172,7 @@ public class MainActivityRet extends AppCompatActivity
                // Toast.makeText(MainActivityRet.this, vendorcode_offline_print, Toast.LENGTH_SHORT).show();
 
 
-                bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ani_logo_jp, options);
+                bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.logo, options);
                 footer_first_offline="";
                 footer_second_offline="";
             }
@@ -1192,8 +1193,11 @@ public class MainActivityRet extends AppCompatActivity
                 SunmiPrintHelper.getInstance().printText_nextgen("                    " + currentTime_offline + "\n", 20, isBold, isUnderLine, testFont, 2);
 
                 SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.terminalidId_print_colon), 20, isBold, isUnderLine, testFont, 0);
-                SunmiPrintHelper.getInstance().printText_nextgen("           " + MyApplication.getSaveString("terminalIdString", MainActivityRet.this) + "\n", 20, isBold, isUnderLine, testFont, 2);
-
+                SunmiPrintHelper.getInstance().printText_nextgen("             " + MyApplication.getSaveString("terminalIdString", MainActivityRet.this) + "\n", 20, isBold, isUnderLine, testFont, 2);
+               /* String txts[] = new String[]{getString(R.string.terminalidId_print_colon), MyApplication.getSaveString("terminalIdString", MainActivityRet.this)};
+                int width[] = new int[]{1, 1};
+                int align[] = new int[]{0, 2};
+                SunmiPrintHelper.getInstance().printTable(txts,width,align);*/
 
                 SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.retailer_print_colon), 20, isBold, isUnderLine, testFont, 0);
                 SunmiPrintHelper.getInstance().printText_nextgen("                   " + MyApplication.getSaveString("mobileNoString", MainActivityRet.this) + "\n", 20, isBold, isUnderLine, testFont, 2);
@@ -1346,7 +1350,7 @@ public class MainActivityRet extends AppCompatActivity
            else if(vendorcode_online.equalsIgnoreCase("CFNET"))   // Not available
             {
                // Toast.makeText(MainActivityRet.this, vendorcode_online, Toast.LENGTH_SHORT).show();
-                bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ani_logo_jp, options);  // Not available
+                bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.logo, options);  // Not available
 
                 if(languageToUse.equalsIgnoreCase("ar"))
                 {
@@ -1484,7 +1488,7 @@ public class MainActivityRet extends AppCompatActivity
 
             else {
 
-                bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ani_logo_jp, options);
+                bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.logo, options);
                 footer_first_online="";
                 footer_second_online="";
             }

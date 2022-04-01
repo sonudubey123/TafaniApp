@@ -36,6 +36,7 @@ public class TransactionHistoryRetAdapter extends RecyclerView.Adapter<Transacti
 
         viewHolder.wallet_balance.setText(arrayList_modalUserData.get(i).getWalletbalance());
         viewHolder.operator.setText(arrayList_modalUserData.get(i).getOperator());
+        viewHolder.product.setText(arrayList_modalUserData.get(i).getProduct());
 
         if(arrayList_modalUserData.get(i).getTranstype().equalsIgnoreCase("PURCHASE")) {
             viewHolder.transaction_type.setText("Pin Purchase online");
@@ -68,7 +69,7 @@ public class TransactionHistoryRetAdapter extends RecyclerView.Adapter<Transacti
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView transaction_id, transaction_date,transaction_type,transaction_amount,wallet_balance,operator;
+        public TextView product,transaction_id, transaction_date,transaction_type,transaction_amount,wallet_balance,operator;
         Button action_click;
 
         public ViewHolder(View itemView) {
@@ -80,7 +81,7 @@ public class TransactionHistoryRetAdapter extends RecyclerView.Adapter<Transacti
             transaction_type = (TextView) itemView.findViewById(R.id.transaction_type);
             wallet_balance = (TextView) itemView.findViewById(R.id.wallet_balance);
             operator= (TextView) itemView.findViewById(R.id.operator);
-
+            product= (TextView) itemView.findViewById(R.id.product);
 
         }
     }

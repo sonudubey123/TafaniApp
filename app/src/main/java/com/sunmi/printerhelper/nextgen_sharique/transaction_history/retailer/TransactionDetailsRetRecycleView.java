@@ -118,6 +118,11 @@ public class TransactionDetailsRetRecycleView extends AppCompatActivity implemen
                     transactionHistoryRetModal.setTransid(transid);
                 }
 
+                if (jsonObject3.has("productcode")) {
+                    String productcode = jsonObject3.getString("productcode");
+                    transactionHistoryRetModal.setProduct(productcode);
+                }
+
                 if (jsonObject3.has("vendorcode")) {
                     String vendorcode = jsonObject3.getString("vendorcode");
                     transactionHistoryRetModal.setOperator(vendorcode);
