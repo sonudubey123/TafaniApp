@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,7 +45,7 @@ public class SetPin extends AppCompatActivity implements View.OnClickListener, I
 
     TextView btn_submit;
     EditText edittext_offlinePin,edittext_mpin;
-    String offlinePinString="",mpinString;
+    String offlinePinString="",mpinString,ansString;
     AlertDialog dialog;
 
     String dateOfBirthString;
@@ -53,6 +54,9 @@ public class SetPin extends AppCompatActivity implements View.OnClickListener, I
     String languageToUse="";
 
     ServiceRepository serviceRepository;
+    Spinner spinner_seq_offline;
+
+    EditText edittext_ans;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -82,6 +86,8 @@ public class SetPin extends AppCompatActivity implements View.OnClickListener, I
 
             edittext_offlinePin = (EditText) findViewById(R.id.edittext_offlinePin);
             edittext_mpin = (EditText) findViewById(R.id.edittext_mpin);
+            spinner_seq_offline = (Spinner) findViewById(R.id.spinner_seq_offline);
+            edittext_ans = (EditText) findViewById(R.id.edittext_ans);
             btn_submit = (TextView) findViewById(R.id.btn_submit);
             btn_submit.setOnClickListener(this);
 
@@ -179,8 +185,8 @@ public class SetPin extends AppCompatActivity implements View.OnClickListener, I
         private boolean checkValidation() {
 
         offlinePinString = edittext_offlinePin.getText().toString().trim();
-            mpinString = edittext_mpin.getText().toString().trim();
-
+        mpinString = edittext_mpin.getText().toString().trim();
+            ansString= edittext_ans.getText().toString().trim();
         if (offlinePinString.isEmpty()) {
             Toast.makeText(SetPin.this, getResources().getString(R.string.plz_enter_5_digit_offline_pin), Toast.LENGTH_SHORT).show();
             return false;
@@ -200,6 +206,17 @@ public class SetPin extends AppCompatActivity implements View.OnClickListener, I
                 Toast.makeText(SetPin.this, getResources().getString(R.string.enter_mpin_balance_text), Toast.LENGTH_SHORT).show();
                 return false;
             }
+
+            if(spinner_seq_offline.getSelectedItemPosition()==0)
+            {
+                Toast.makeText(SetPin.this, R.string.choose_sequrity_question, Toast.LENGTH_SHORT).show();
+                return false;
+            }
+            if (ansString.isEmpty()) {
+                Toast.makeText(SetPin.this, getResources().getString(R.string.enter_ans), Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
 
 
 
@@ -490,6 +507,9 @@ public class SetPin extends AppCompatActivity implements View.OnClickListener, I
 
                                 MyApplication.saveString("LOGIN_APP", "RETAILER", SetPin.this);
 
+                                MyApplication.saveString("ANSWER", ansString, SetPin.this);
+                                MyApplication.saveString("QUESTION", spinner_seq_offline.getSelectedItem().toString(), SetPin.this);
+
                                 Intent intent = new Intent(SetPin.this, LoginActivityPin.class);
                                 startActivity(intent);
                                 finish();
@@ -664,7 +684,7 @@ public class SetPin extends AppCompatActivity implements View.OnClickListener, I
 
             JSONObject jsonObject_request = new JSONObject();
             jsonObject_request.put("agentcode", MyApplication.getSaveString("mobileNoString", SetPin.this));
-
+            jsonObject_request.put("posserialno",MyApplication.getSN());
             String mPin = MyApplication.getSaveString("mpinString", SetPin.this);
 
             String key = Md5.getMd5Hash(MyApplication.getSaveString("mobileNoString", SetPin.this)+mPin).toUpperCase(Locale.ENGLISH);
@@ -716,6 +736,7 @@ public class SetPin extends AppCompatActivity implements View.OnClickListener, I
 
             JSONObject jsonObject_request = new JSONObject();
             jsonObject_request.put("agentcode", MyApplication.getSaveString("mobileNoString", SetPin.this));
+            jsonObject_request.put("posserialno",MyApplication.getSN());
             jsonObject_request.put("agenttransid",MyApplication.getSaveString("terminalIdString", SetPin.this));
             jsonObject_request.put("vendorcode","TAFANI");
             jsonObject_request.put("terminalid",MyApplication.getSaveString("terminalIdString", SetPin.this));
@@ -770,7 +791,7 @@ public class SetPin extends AppCompatActivity implements View.OnClickListener, I
              jsonObject_request.put("agentcode", MyApplication.getSaveString("mobileNoString", SetPin.this));
            // jsonObject_request.put("agentcode","0982650605");
             jsonObject_request.put("udv2","Pin select");
-
+            jsonObject_request.put("posserialno",MyApplication.getSN());
             jsonObject_request.put("destination",MyApplication.getSaveString("mobileNoString", SetPin.this));
             jsonObject_request.put("destination","0982650606");
 

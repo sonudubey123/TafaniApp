@@ -493,6 +493,8 @@ public class SunmiPrintHelper {
 
             sunmiPrinterService.printBitmap(bitmap, null);
 
+
+
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -686,7 +688,7 @@ public class SunmiPrintHelper {
             sunmiPrinterService.printerInit(null);
             sunmiPrinterService.setAlignment(1, null);
             sunmiPrinterService.printText("测试样张\n", null);
-            Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.sunmi);
+            Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.logo);
             sunmiPrinterService.printBitmap(bitmap, null);
             sunmiPrinterService.lineWrap(1, null);
             sunmiPrinterService.setAlignment(0, null);

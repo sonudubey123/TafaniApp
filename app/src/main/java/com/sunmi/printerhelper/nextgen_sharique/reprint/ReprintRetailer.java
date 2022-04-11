@@ -334,6 +334,7 @@ public class ReprintRetailer extends AppCompatActivity implements View.OnClickLi
             json_main.put("apiname", "REPRINT");
 
             JSONObject jsonObject_request = new JSONObject();
+            jsonObject_request.put("posserialno",MyApplication.getSN());
             jsonObject_request.put("agentcode",MyApplication.getSaveString("mobileNoString", ReprintRetailer.this));
             jsonObject_request.put("terminalid",MyApplication.getSaveString("terminalIdString", ReprintRetailer.this));
             jsonObject_request.put("vendorcode","TAFANI");

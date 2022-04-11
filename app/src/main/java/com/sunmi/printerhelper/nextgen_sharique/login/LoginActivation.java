@@ -400,7 +400,7 @@ public class LoginActivation extends AppCompatActivity implements View.OnClickLi
             json_main.put("apiname", "ACTIVATION");
             JSONObject jsonObject_request = new JSONObject();
             jsonObject_request.put("agentcode", mobileNoString);
-
+            //jsonObject_request.put("posserialno",MyApplication.getSN());
           //  String key = Md5.getMd5Hash(mobileNoString+mpinString).toUpperCase(Locale.ENGLISH);
           //  jsonObject_request.put("pin", key);
             jsonObject_request.put("activationcode", activationCodeString);

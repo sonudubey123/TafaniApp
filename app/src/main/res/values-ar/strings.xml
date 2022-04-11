@@ -372,11 +372,27 @@
     <string name="email_url">بريد الالكتروني</string>
     <string name="contact_details">اتصل</string>
     <string name="tafani_telecom_technology">Tafani Telecom &amp; Technology</string>
-    <string name="enter_old_5_digit_offline_pin">Enter Old 5 Digit Offline PIN</string>
-    <string name="enter_new_5_digit_new_offline_pin">Enter New 5 Digit New Offline PIN</string>
-    <string name="confirm_5_digit_new_offline_pin">Confirm 5 Digit New Offline PIN</string>
-    <string name="old_offline_pin_is_not_correct_please_enter_correct_offline_old_pin">Old Offline PIN is not correct,Please Enter Correct Offline Old PIN</string>
-    <string name="your_offline_pin_is_successfully_changed">Your Offline PIn is successfully Changed</string>
-    <string name="old_and_new_offline_pin_should_be_same">Old and New Offline PIN Should be same</string>
+    <string name="enter_old_5_digit_offline_pin">ادخل الرقم السري القديم Offline</string>
+    <string name="enter_new_5_digit_new_offline_pin">ادخل الرقم السري جديد Offline</string>
+    <string name="confirm_5_digit_new_offline_pin">اعد ادخال الرقم</string>
+    <string name="old_offline_pin_is_not_correct_please_enter_correct_offline_old_pin">
+        الرقم السري القديم غير صحيح, الرجاء ادخال الرقم الصحيح</string>
+    <string name="your_offline_pin_is_successfully_changed">رقمك السري Offline قد تم تغيره بنجاح</string>
+    <string name="old_and_new_offline_pin_should_be_same">الرقم السري الجديد يجب ان لا يكون نفسه القديم</string>
+    <string name="enter_sequrity_question_answer">أدخل جواب سؤال Sequrity</string>
+    <string name="choose_sequrity_question">اختر سؤال التسلسل</string>
+    <string name="enter_ans">أدخل إجابة السؤال التسلسلي </string>
+    <string name="forgot_offline_pin">نسيت رقمي السري Offline</string>
+    <string name="choose_correct_sequrity_question">اختر سؤال التسلسل الصحيح</string>
+    <string name="your_answer_is_incorrect_please_enter_again">إجابتك غير صحيحة الرجاء إدخال مرة أخرى</string>
+
+
+
+
+    <string-array name="spinner_question">
+    <item>Sequrity Question*</item>
+    <item>ما هو اسم وموديل اول سيارة امتلكتها ؟</item>
+
+</string-array>
 
 </resources>

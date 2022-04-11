@@ -44,7 +44,7 @@ import java.util.Locale;
 public class LoginActivityPin extends AppCompatActivity implements View.OnClickListener, InterHttpServerResponse {
 
 
-    TextView btn_submit;
+    TextView btn_submit,forgot_offline_pin;
     EditText edit_mobile_number,edittext_mpin;
     String mobileNoString="",mpinString="";
     AlertDialog dialog;
@@ -82,8 +82,14 @@ public class LoginActivityPin extends AppCompatActivity implements View.OnClickL
             setContentView(R.layout.login_activity_pin);
 
 
+            MyApplication.getSaveString("ANSWER", LoginActivityPin.this);
+            MyApplication.getSaveString("QUESTION",  LoginActivityPin.this);
+
+
             edit_mobile_number = (EditText) findViewById(R.id.edit_mobile_number);
             edittext_mpin = (EditText) findViewById(R.id.edittext_mpin);
+            forgot_offline_pin= (TextView) findViewById(R.id.forgot_offline_pin);
+            forgot_offline_pin.setOnClickListener(this);
             btn_submit = (TextView) findViewById(R.id.btn_submit);
             btn_submit.setOnClickListener(this);
 
@@ -218,8 +224,6 @@ public class LoginActivityPin extends AppCompatActivity implements View.OnClickL
                                    LoginActivityPin.this.finish();
                                }
 
-
-
                            }
                            else
                            {
@@ -247,11 +251,12 @@ public class LoginActivityPin extends AppCompatActivity implements View.OnClickL
                 }
                 break;
 
-//            case R.id.text_forgot_password:
-//
-//                showForgotPasswordAlertDialog();
-//
-//                break;
+            case R.id.forgot_offline_pin:
+                Intent i = new Intent(LoginActivityPin.this, ForgotOfflineMpinRetailer.class);
+                startActivity(i);
+
+
+                break;
 
 
 
@@ -300,11 +305,13 @@ public class LoginActivityPin extends AppCompatActivity implements View.OnClickL
             jsonObject_request.put("agentcode", MyApplication.getSaveString("mobileNoString", LoginActivityPin.this));
             jsonObject_request.put("pin", MyApplication.getSaveString("activationCodeString", LoginActivityPin.this));
             jsonObject_request.put("vendorcode","TAFANI");
+            jsonObject_request.put("posserialno",MyApplication.getSN());
             jsonObject_request.put("clienttype","POS");
             jsonObject_request.put("terminalid",MyApplication.getSaveString("terminalIdString", LoginActivityPin.this));
             jsonObject_request.put("action","S");
             jsonObject_request.put("comments","POSSTOCK STATUS");
             jsonObject_request.put("transtypecode","OFFLINEPURCHASE");
+            jsonObject_request.put("posserialno",MyApplication.getSN());
 
 
 

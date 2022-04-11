@@ -419,7 +419,7 @@ public class OrderPinActivity extends AppCompatActivity
 
             JSONObject jsonObject_request = new JSONObject();
             jsonObject_request.put("agentcode", MyApplication.getSaveString("mobileNoString", OrderPinActivity.this));
-
+            jsonObject_request.put("posserialno",MyApplication.getSN());
             String mPin = MyApplication.getSaveString("mpinString", OrderPinActivity.this);
 
             String key = Md5.getMd5Hash(MyApplication.getSaveString("mobileNoString", OrderPinActivity.this)+mPin).toUpperCase(Locale.ENGLISH);
@@ -478,6 +478,7 @@ public class OrderPinActivity extends AppCompatActivity
             JSONObject jsonObject_request = new JSONObject();
             jsonObject_request.put("agentcode", MyApplication.getSaveString("mobileNoString", OrderPinActivity.this));
             //jsonObject_request.put("pin", MyApplication.getSaveString("activationCodeString", OrderPinActivity.this));
+            jsonObject_request.put("posserialno",MyApplication.getSN());
             String key = Md5.getMd5Hash(MyApplication.getSaveString("mobileNoString", OrderPinActivity.this)+mpinString_orderPin).toUpperCase(Locale.ENGLISH);
             jsonObject_request.put("pin", MyApplication.getSaveString("activationCodeString", OrderPinActivity.this));
             jsonObject_request.put("pinnew", key);
@@ -489,10 +490,9 @@ public class OrderPinActivity extends AppCompatActivity
             jsonObject_request.put("comments","ORDER PIN");
 
 
+
             JSONObject jsonObject_inner = new JSONObject();
-
             JSONArray jsonArray = new JSONArray();
-
             for(int i=0;i<1;i++)
             {
                 jsonObject_inner.put("productcode",select_productCode);
@@ -554,7 +554,7 @@ public class OrderPinActivity extends AppCompatActivity
             JSONObject jsonObject_request = new JSONObject();
             jsonObject_request.put("agentcode", MyApplication.getSaveString("mobileNoString", OrderPinActivity.this));
            // String mPin = MyApplication.getSaveString("mpinString", OrderPinActivity.this);
-
+            jsonObject_request.put("posserialno",MyApplication.getSN());
             /*String key = Md5.getMd5Hash(MyApplication.getSaveString("mobileNoString", OrderPinActivity.this)+mpinString_orderPin).toUpperCase(Locale.ENGLISH);
 
             jsonObject_request.put("pin",key);*/
@@ -631,6 +631,7 @@ public class OrderPinActivity extends AppCompatActivity
 
             JSONObject jsonObject_request = new JSONObject();
             jsonObject_request.put("agentcode", MyApplication.getSaveString("mobileNoString", OrderPinActivity.this));
+            jsonObject_request.put("posserialno",MyApplication.getSN());
             jsonObject_request.put("agenttransid",MyApplication.getSaveString("terminalIdString", OrderPinActivity.this));
             jsonObject_request.put("vendorcode","TAFANI");
             jsonObject_request.put("terminalid",MyApplication.getSaveString("terminalIdString", OrderPinActivity.this));

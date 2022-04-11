@@ -281,6 +281,7 @@ public class TransactionHistoryDistributor extends AppCompatActivity implements 
             JSONObject jsonObject_request = new JSONObject();
 
             jsonObject_request.put("agentcode",MyApplication.getSaveString("mobileNoString", TransactionHistoryDistributor.this));
+            jsonObject_request.put("posserialno",MyApplication.getSN());
             String key = Md5.getMd5Hash(MyApplication.getSaveString("mobileNoString", TransactionHistoryDistributor.this)+mpinString).toUpperCase(Locale.ENGLISH);
             jsonObject_request.put("pin",key);
             jsonObject_request.put("vendorcode","TAFANI");

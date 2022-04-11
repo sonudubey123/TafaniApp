@@ -105,6 +105,9 @@
         <activity
             android:name="com.sunmi.printerhelper.nextgen_sharique.login.LoginActivityPin"
             android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.sunmi.printerhelper.nextgen_sharique.login.ForgotOfflineMpinRetailer"
+            android:windowSoftInputMode="stateHidden" />
 
         <activity
             android:name="com.sunmi.printerhelper.nextgen_sharique.database.online.OnlineRetRecycleViewPage"

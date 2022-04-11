@@ -1,8 +1,8 @@
-package com.sunmi.printerhelper.nextgen_sharique.account_balance;
+package com.sunmi.printerhelper.nextgen_sharique.login;
 
 
 import static com.sunmi.printerhelper.nextgen_sharique.voly_url.Url.base_url;
-import static com.sunmi.printerhelper.nextgen_sharique.voly_url.Url.login_ret_balance_apinname;
+import static com.sunmi.printerhelper.nextgen_sharique.voly_url.Url.login_ret_changeMpin_apinname;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -11,17 +11,17 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import tafani.sunmi.printer.R;
 import com.sunmi.printerhelper.local_set.LocalSetLanguage;
 import com.sunmi.printerhelper.nextgen_sharique.application_sharepreference.MyApplication;
 import com.sunmi.printerhelper.nextgen_sharique.interf.InterHttpServerResponse;
@@ -35,31 +35,31 @@ import org.json.JSONObject;
 
 import java.util.Locale;
 
+import tafani.sunmi.printer.R;
 
 /**
  * Created by Estel_WP on 28-Mar-19.
  */
 
-public class AccountBalanceDistributor extends AppCompatActivity implements View.OnClickListener, InterHttpServerResponse {
-
+public class ForgotOfflineMpinRetailer extends AppCompatActivity implements View.OnClickListener, InterHttpServerResponse {
 
 
     private boolean isBold, isUnderLine;
     private String testFont;
 
-    String amountFromServer="",transactionStatus="",transid="",transactionDate="",transactionTime="";
+    String transactionStatus="",transid="",transactionDate="",transactionTime="";
+
 
     private Dialog dialog;
 
     Button imageButton1;
-    EditText edittext_mpin;
-    String mpinString="";
-
-    String dateOfBirthString;
+    EditText et_oldPin,et_newPin,et_confirmPin,edittext_ans;
+    String oldPinStr="",newPinStr="",confirmPinStr="";
     MyApplication myApplication;
 
     String languageToUse="";
-
+    Spinner spinner_seq_offline;
+    String offlinePinString="",mpinString,ansString;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,22 +68,28 @@ public class AccountBalanceDistributor extends AppCompatActivity implements View
 
         try {
             myApplication = (MyApplication) getApplicationContext();
-            languageToUse=myApplication.getmSharedPreferences().getString("languageToUse","");
 
+            languageToUse=myApplication.getmSharedPreferences().getString("languageToUse","");
             if (languageToUse.trim().length() == 0) {
 
                 languageToUse = "ar";
-                LocalSetLanguage.LocalSet(languageToUse, AccountBalanceDistributor.this);
+                LocalSetLanguage.LocalSet(languageToUse, ForgotOfflineMpinRetailer.this);
             }
             else
             {
-                LocalSetLanguage.LocalSet(languageToUse,AccountBalanceDistributor.this);
+                LocalSetLanguage.LocalSet(languageToUse, ForgotOfflineMpinRetailer.this);
             }
 
-            setContentView(R.layout.account_balance_distributor);
 
 
-            edittext_mpin = (EditText) findViewById(R.id.edittext_mpin);
+            setContentView(R.layout.forgot_offline_mpin_ret);
+
+
+            et_oldPin = (EditText) findViewById(R.id.et_oldPin);
+            et_newPin = (EditText) findViewById(R.id.et_newPin);
+            et_confirmPin = (EditText) findViewById(R.id.et_confirmPin);
+            spinner_seq_offline = (Spinner) findViewById(R.id.spinner_seq_offline);
+            edittext_ans = (EditText) findViewById(R.id.edittext_ans);
             imageButton1 = (Button) findViewById(R.id.imageButton1);
             imageButton1.setOnClickListener(this);
 
@@ -91,14 +97,18 @@ public class AccountBalanceDistributor extends AppCompatActivity implements View
 
             if(languageToUse.equalsIgnoreCase("ar"))
             {
-               // imageButton1.setBackgroundResource(R.drawable.conform);
-              // edittext_mpin.setGravity(Gravity.RIGHT);
+              //  imageButton1.setBackgroundResource(R.drawable.conform);
+                et_oldPin.setGravity(Gravity.RIGHT);
+                et_newPin.setGravity(Gravity.RIGHT);
+                et_confirmPin.setGravity(Gravity.RIGHT);
 
             }
             else
             {
                // imageButton1.setBackgroundResource(R.drawable.confirmbutton);
-               // edittext_mpin.setGravity(Gravity.LEFT);
+                et_oldPin.setGravity(Gravity.LEFT);
+                et_newPin.setGravity(Gravity.LEFT);
+                et_confirmPin.setGravity(Gravity.LEFT);
 
             }
 
@@ -108,7 +118,7 @@ public class AccountBalanceDistributor extends AppCompatActivity implements View
         }
         catch (Exception e)
         {
-            Toast.makeText(AccountBalanceDistributor.this,e.toString(),Toast.LENGTH_LONG).show();
+            Toast.makeText(ForgotOfflineMpinRetailer.this,e.toString(),Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
 
@@ -118,10 +128,10 @@ public class AccountBalanceDistributor extends AppCompatActivity implements View
 
     }
 
+
     protected void print_pos_data() {
 
         if (!BluetoothUtil.isBlueToothPrinter) {
-
 
             Bitmap bitmap = null;
             BitmapFactory.Options options = new BitmapFactory.Options();
@@ -133,51 +143,100 @@ public class AccountBalanceDistributor extends AppCompatActivity implements View
 
             SunmiPrintHelper.getInstance().printText_nextgen("\n\n"+ getString(R.string.retailer_capital)+  "  " + "\n", 30, true, isUnderLine, testFont,1);
             SunmiPrintHelper.getInstance().printText_nextgen("---------------" + "\n", 50, isBold, isUnderLine, testFont,0);
-            SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.transaction_type)+" : "+getString(R.string.account_balance) + "\n", 20, isBold, isUnderLine, testFont,0);
+            SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.transaction_type)+" : "+getString(R.string.change_mpin) + "\n", 20, isBold, isUnderLine, testFont,0);
             SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.terminal_id)+" : "+transid + "\n", 20, isBold, isUnderLine, testFont,0);
             SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.transaction_id)+" : "+transid + "\n", 20, isBold, isUnderLine, testFont,0);
             SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.transaction_date)+" : "+transactionDate + "\n", 20, isBold, isUnderLine, testFont,0);
             SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.transaction_time)+" : "+transactionTime + "\n", 20, isBold, isUnderLine, testFont,0);
-            SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.account_balance) +" : "+ amountFromServer + " LYD", 20, isBold, isUnderLine, testFont,0);
+            SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.your_mpin_hasbeen_changed_your_transaction_id_is), 20, isBold, isUnderLine, testFont,0);
             SunmiPrintHelper.getInstance().printText_nextgen("\n" + "---------------", 50, isBold, isUnderLine, testFont,0);
 
             SunmiPrintHelper.getInstance().feedPaper();
+        }
 
-
-        } else {
+      else {
             // SunmiPrintHelper.getInstance().printText(getString(R.string.account_balance) + " : " + amountFromServer + " LYD", 30, true, isUnderLine, testFont);
         }
 
     }
 
 
-    protected void successResponse() {
+    protected void successResponse()
+    {
 
-        TextView textresponse, textheading;
+        TextView textresponse,textheading;
         //LayoutInflater layoutInflater=(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         //Drawable d = new ColorDrawable(R.color.transparent);
 
-        dialog = new Dialog(AccountBalanceDistributor.this);
+        dialog = new Dialog(ForgotOfflineMpinRetailer.this);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         //dialog.getWindow().setBackgroundDrawable(d);
-        dialog.setContentView(R.layout.dialogbox);
-        textheading = (TextView) ((dialog)).findViewById(R.id.res_heading);
-        textheading.setText(transactionStatus);
-        textresponse = (TextView) ((dialog)).findViewById(R.id.responsestring);
-        textresponse.setText(getString(R.string.account_balance) + " : " + amountFromServer + " LYD");
+        dialog.setContentView(R.layout.dialogbox_without_print);
+        textheading=(TextView)((dialog)).findViewById(R.id.res_heading);
+        textheading.setText(getString(R.string.transaction_result));
+
+        textresponse=(TextView)((dialog)).findViewById(R.id.responsestring);
+
+
+        try {
+
+
+            if (transactionStatus.equalsIgnoreCase("Invalid PIN")) {
+
+                textresponse.setText(getString(R.string.invalid_pin));
+            }
+            else if ((transactionStatus.equalsIgnoreCase("Subscriber Blocked"))) {
+                textresponse.setText(getString(R.string.subscriber_blocked));
+
+            }
+
+            else if ((transactionStatus.equalsIgnoreCase("Your account is Blocked"))) {
+                textresponse.setText("العميل محظور");  // Subscriber Blocked
+
+                textresponse.setText(getString(R.string.subscriber_blocked));
+
+            }
+            else if ((transactionStatus.equalsIgnoreCase("Insufficient Fund"))) {
+
+                textresponse.setText(getString(R.string.insuffience_fund));
+            }
+
+            else if ((transactionStatus.equalsIgnoreCase("Insufficient Wallet"))) {
+
+                textresponse.setText(getString(R.string.insuffience_wallet));
+            }
+            else if ((transactionStatus.equalsIgnoreCase("Transaction Successful")))
+            {
+               textresponse.setText(getString(R.string.your_mpin_hasbeen_changed_your_transaction_id_is)+" "+transid);
+            }
+
+            else
+                {
+                textresponse.setText(transactionStatus);
+               }
+        }
+        catch (Exception e)
+        {
+            textresponse.setText("نتيجة العملية");
+            e.printStackTrace();
+        }
+
+
 
 
         Button dialogbutton1=(Button) ((dialog)).findViewById(R.id.dialogbutton1);
 
         if(languageToUse.equalsIgnoreCase("ar"))
         {
-            // dialogbutton1.setBackgroundResource(R.drawable.conform);
+          //  dialogbutton1.setBackgroundResource(R.drawable.conform);
 
         }
         else
         {
-            // dialogbutton1.setBackgroundResource(R.drawable.confirmbutton);
+         //  dialogbutton1.setBackgroundResource(R.drawable.confirmbutton);
         }
+
+
 
         dialogbutton1.setOnClickListener(new View.OnClickListener()
         {
@@ -186,7 +245,7 @@ public class AccountBalanceDistributor extends AppCompatActivity implements View
             {
                 dialog.dismiss();
 
-                AccountBalanceDistributor.this.finish();
+                ForgotOfflineMpinRetailer.this.finish();
 
             }
         });
@@ -206,34 +265,105 @@ public class AccountBalanceDistributor extends AppCompatActivity implements View
     }
 
 
+    protected void successResponseOffline()
+    {
+
+        TextView textresponse,textheading;
+        //LayoutInflater layoutInflater=(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        //Drawable d = new ColorDrawable(R.color.transparent);
+
+        dialog = new Dialog(ForgotOfflineMpinRetailer.this);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        //dialog.getWindow().setBackgroundDrawable(d);
+        dialog.setContentView(R.layout.dialogbox_without_print);
+        textheading=(TextView)((dialog)).findViewById(R.id.res_heading);
+        textheading.setText(getString(R.string.transaction_result));
+
+        textresponse=(TextView)((dialog)).findViewById(R.id.responsestring);
 
 
+        try {
+
+            textresponse.setText(getString(R.string.your_offline_pin_is_successfully_changed)+" "+transid);
+
+        }
+        catch (Exception e)
+        {
+            textresponse.setText("نتيجة العملية");
+            e.printStackTrace();
+        }
+
+
+
+
+        Button dialogbutton1=(Button) ((dialog)).findViewById(R.id.dialogbutton1);
+
+        if(languageToUse.equalsIgnoreCase("ar"))
+        {
+            //  dialogbutton1.setBackgroundResource(R.drawable.conform);
+
+        }
+        else
+        {
+            //  dialogbutton1.setBackgroundResource(R.drawable.confirmbutton);
+        }
+
+
+
+        dialogbutton1.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                dialog.dismiss();
+
+                ForgotOfflineMpinRetailer.this.finish();
+
+            }
+        });
+
+        Button printButton=(Button) ((dialog)).findViewById(R.id.printButton);
+        printButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                print_pos_data();
+
+            }
+        });
+
+        dialog.show();
+    }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.imageButton1:
-                if (checkValidation()) {
 
-                    if (CommonUtility.isOnline(AccountBalanceDistributor.this)) {
+            case R.id.imageButton1:
+
+                if (validation_Details()) {
+                    MyApplication.saveString("offlinePinString",offlinePinString,ForgotOfflineMpinRetailer.this);
+                    successResponseOffline();
+                   /* if (CommonUtility.isOnline(ChangeOfflineMpinRetailer.this)) {
 
                         //  serverRequest(4);
 
                         try {
 
-                            CommonUtility.showProgressDialog(AccountBalanceDistributor.this);
+                            CommonUtility.showProgressDialog(ChangeOfflineMpinRetailer.this);
 
 
 
-                               serverRequest_balance_volly(101);
+                               serverRequest_changempin_volly(101);
 
                               // serverRequest_login_retrofit(100);
 
                         } catch (Exception e) {
 
-                            CommonUtility.hideProgressDialog(AccountBalanceDistributor.this);
+                            CommonUtility.hideProgressDialog(ChangeOfflineMpinRetailer.this);
 
-                            Toast.makeText(AccountBalanceDistributor.this, e.toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ChangeOfflineMpinRetailer.this, e.toString(), Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
                         }
 
@@ -242,7 +372,7 @@ public class AccountBalanceDistributor extends AppCompatActivity implements View
 
                     } else {
                         Toast.makeText(this, R.string.please_check_connection, Toast.LENGTH_SHORT).show();
-                    }
+                    }*/
                 }
                 break;
 
@@ -259,68 +389,153 @@ public class AccountBalanceDistributor extends AppCompatActivity implements View
     }
 
 
+    boolean validation_Details()
+    {
+       // String offlinePinString = MyApplication.getSaveString("offlinePinString", ForgotOfflineMpinRetailer.this);
+        oldPinStr = et_oldPin.getText().toString().trim();
+        newPinStr = et_newPin.getText().toString().trim();
+        confirmPinStr = et_confirmPin.getText().toString().trim();
+        ansString=edittext_ans.getText().toString().trim();
+        offlinePinString = et_confirmPin.getText().toString().trim();
 
-    private boolean checkValidation() {
+        String answer= MyApplication.getSaveString("ANSWER",ForgotOfflineMpinRetailer.this);
+        String question=MyApplication.getSaveString("QUESTION", ForgotOfflineMpinRetailer.this);
 
-        mpinString = edittext_mpin.getText().toString().trim();
 
-        if (mpinString.isEmpty()) {
-            Toast.makeText(AccountBalanceDistributor.this, getResources().getString(R.string.enter_mpin), Toast.LENGTH_SHORT).show();
+        if(spinner_seq_offline.getSelectedItemPosition()==0)
+        {
+            Toast.makeText(ForgotOfflineMpinRetailer.this, R.string.choose_sequrity_question, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(!spinner_seq_offline.getSelectedItem().toString().equalsIgnoreCase(question))
+        {
+            Toast.makeText(ForgotOfflineMpinRetailer.this, R.string.choose_correct_sequrity_question, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (ansString.isEmpty()) {
+            Toast.makeText(ForgotOfflineMpinRetailer.this, getResources().getString(R.string.enter_ans), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(!ansString.equalsIgnoreCase(answer))
+        {
+            Toast.makeText(ForgotOfflineMpinRetailer.this, R.string.your_answer_is_incorrect_please_enter_again, Toast.LENGTH_SHORT).show();
             return false;
         }
 
-        if (mpinString.length() < 4) {
-            Toast.makeText(AccountBalanceDistributor.this, getResources().getString(R.string.enter_mpin), Toast.LENGTH_SHORT).show();
+
+       /* if(oldPinStr.isEmpty()) {
+
+
+            Toast.makeText(ForgotOfflineMpinRetailer.this,getString(R.string.enter_old_5_digit_offline_pin), Toast.LENGTH_SHORT).show();
+
+
+            return false;
+        }
+
+        else if(oldPinStr.length() >5) {
+
+            Toast.makeText(ForgotOfflineMpinRetailer.this,getString(R.string.enter_old_5_digit_offline_pin), Toast.LENGTH_SHORT).show();
+
+
+            return false;
+        }*/
+
+        else if(newPinStr.isEmpty()) {
+
+            Toast.makeText(ForgotOfflineMpinRetailer.this,getString(R.string.enter_new_5_digit_new_offline_pin), Toast.LENGTH_SHORT).show();
+
+
+            return false;
+        }
+
+        else if(newPinStr.length() > 5) {
+
+
+            Toast.makeText(ForgotOfflineMpinRetailer.this,getString(R.string.enter_new_5_digit_new_offline_pin), Toast.LENGTH_SHORT).show();
+
+
+            return false;
+        }
+
+        else if(confirmPinStr.isEmpty()) {
+
+            Toast.makeText(ForgotOfflineMpinRetailer.this,getString(R.string.confirm_5_digit_new_offline_pin), Toast.LENGTH_SHORT).show();
+
+
+            return false;
+        }
+
+        else if(confirmPinStr.length() > 5) {
+
+            Toast.makeText(ForgotOfflineMpinRetailer.this,getString(R.string.confirm_5_digit_new_offline_pin), Toast.LENGTH_SHORT).show();
+
+
+            return false;
+        }
+
+        else if(!newPinStr.equalsIgnoreCase(confirmPinStr)) {
+
+            Toast.makeText(ForgotOfflineMpinRetailer.this,getString(R.string.new_coinfirm_should_be_same), Toast.LENGTH_SHORT).show();
+
+
             return false;
         }
 
 
+       /* else if(!oldPinStr.equalsIgnoreCase(offlinePinString)) {
+
+            Toast.makeText(ForgotOfflineMpinRetailer.this,getString(R.string.old_offline_pin_is_not_correct_please_enter_correct_offline_old_pin), Toast.LENGTH_SHORT).show();
+
+
+            return false;
+        }
+*/
         return true;
     }
 
 
 
-    private void serverRequest_balance_volly(int requestNo) {
+    private void serverRequest_changempin_volly(int requestNo) {
 
-
-/*
-        {
-            "apiname": "BALANCE",
+/*        {
+            "apiname": "CHANGEPIN",
                 "request": {
-                    "agentcode": "0982650605",
+            "agentcode": "0982650605",
                     "pin": "E24B7D1BCA5464639ECE18EBF63ABA2C",
-                    "destination": "0982650605",
-                    "vendorcode": "TAFANI",
-                    "clienttype": "GPRS"
+                    "source": "0982650605",
+                    "newpin": "E24B7D1BCA5464639ECE18EBF63ABA2C",
+                    "vendorcode":"TAFANI",
+                    "clienttype": "GPRS",
+                    "requestcts":"2021-12-08 15:40:46"
         }
-        }
-*/
+        }*/
 
         try {
 
-
-
-
             JSONObject json_main = new JSONObject();
 
-            json_main.put("apiname", "BALANCE");
+            json_main.put("apiname", "CHANGEPIN");
 
             JSONObject jsonObject_request = new JSONObject();
-            jsonObject_request.put("agentcode",MyApplication.getSaveString("mobileNoString", AccountBalanceDistributor.this));
-            String key = Md5.getMd5Hash(MyApplication.getSaveString("mobileNoString", AccountBalanceDistributor.this)+mpinString).toUpperCase(Locale.ENGLISH);
-            jsonObject_request.put("pin",key);
+            jsonObject_request.put("agentcode",MyApplication.getSaveString("mobileNoString", ForgotOfflineMpinRetailer.this));
             jsonObject_request.put("posserialno",MyApplication.getSN());
-            jsonObject_request.put("destination",MyApplication.getSaveString("mobileNoString", AccountBalanceDistributor.this));
+            String key_old_pin = Md5.getMd5Hash(MyApplication.getSaveString("mobileNoString", ForgotOfflineMpinRetailer.this)+oldPinStr).toUpperCase(Locale.ENGLISH);
+            String key_new_pin = Md5.getMd5Hash(MyApplication.getSaveString("mobileNoString", ForgotOfflineMpinRetailer.this)+newPinStr).toUpperCase(Locale.ENGLISH);
+
+            jsonObject_request.put("pin",key_old_pin);
+            jsonObject_request.put("newpin",key_new_pin);
+            jsonObject_request.put("source",MyApplication.getSaveString("mobileNoString", ForgotOfflineMpinRetailer.this));
             jsonObject_request.put("vendorcode","TAFANI");
             jsonObject_request.put("clienttype","POS");
+            jsonObject_request.put("requestcts","2021-12-08 15:40:46");
 
             json_main.put("request", jsonObject_request);
 
-            new VollyRequestResponse(AccountBalanceDistributor.this, AccountBalanceDistributor.this, requestNo, base_url+login_ret_balance_apinname, json_main.toString());
+            new VollyRequestResponse(ForgotOfflineMpinRetailer.this, ForgotOfflineMpinRetailer.this, requestNo, base_url+login_ret_changeMpin_apinname, json_main.toString());
 
         } catch (Exception e) {
             Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
-            CommonUtility.hideProgressDialog(AccountBalanceDistributor.this);
+            CommonUtility.hideProgressDialog(ForgotOfflineMpinRetailer.this);
 
             e.printStackTrace();
         }
@@ -331,7 +546,7 @@ public class AccountBalanceDistributor extends AppCompatActivity implements View
 
 
     private void showAlertDialog(String msg, final int requestId) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(AccountBalanceDistributor.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(ForgotOfflineMpinRetailer.this);
         builder.setTitle(getResources().getString(R.string.transaction_result));
         builder.setCancelable(false);
         builder.setMessage(msg);
@@ -408,7 +623,7 @@ public class AccountBalanceDistributor extends AppCompatActivity implements View
 
     private void showAlertDialog_sh(String msg) {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(AccountBalanceDistributor.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(ForgotOfflineMpinRetailer.this);
         builder.setTitle(getResources().getString(R.string.transaction_result));
         builder.setCancelable(false);
         builder.setMessage(msg);
@@ -424,11 +639,10 @@ public class AccountBalanceDistributor extends AppCompatActivity implements View
     }
 
 
-
     @Override
     public void serverResponse(int requestNo, JSONObject serverResponse) {
 
-        CommonUtility.hideProgressDialog(AccountBalanceDistributor.this);
+        CommonUtility.hideProgressDialog(ForgotOfflineMpinRetailer.this);
 
         try {
 
@@ -445,7 +659,7 @@ public class AccountBalanceDistributor extends AppCompatActivity implements View
 
                 if (requestNo == 101) {
 
-                 //   serverResponse = new JSONObject("{\"apiname\":\"BALANCE\",\"response\":{\"responsects\":\"17-12-2021 02:25:11 PM\",\"amount\":\"62.00\",\"agentcode\":\"0982650605\",\"agentname\":\"Prashun\",\"destination\":\"0982650605\",\"vendorcode\":\"TAFANI\",\"transid\":\"45629584\",\"resultcode\":\"0\",\"resultdescription\":\"Transaction Successful\",\"clienttype\":\"GPRS\"}}");
+                  // serverResponse = new JSONObject("{ \"apiname\": \"CHANGEPIN\", \"response\": { \"responsects\": \"12/17/2021 02:38:12 PM\", \"agentcode\": \"0982650605\", \"vendorcode\": \"TAFANI\", \"transid\": \"45629590\", \"resultcode\": \"0\", \"resultdescription\": \"Transaction Successful\", \"clienttype\": \"GPRS\", \"walletbalance\": \"56.0\", \"source\": \"0982650605\" } }");
 
                     if (serverResponse.has("response")) {
 
@@ -459,18 +673,21 @@ public class AccountBalanceDistributor extends AppCompatActivity implements View
 
                             if (resultcode.equalsIgnoreCase("0")) {
 
-                                 amountFromServer = jsonObject_response.getString("amount");
-                                 transactionStatus = jsonObject_response.getString("resultdescription");
+                                 transid = jsonObject_response.getString("transid");
+                                transactionStatus = jsonObject_response.getString("resultdescription");
 
                                // Toast.makeText(this, amount, Toast.LENGTH_SHORT).show();
 
-                                transid = jsonObject_response.getString("transid");
                                 String transactionDateTemp = jsonObject_response.getString("responsects");
                                 String[] transactionDate_array=transactionDateTemp.split(" ");
                                 transactionDate=transactionDate_array[0];
                                 transactionTime=transactionDate_array[1]+" "+ transactionDate_array[2];;
 
+
+
+
                                 successResponse();
+
 
 
                             } else {

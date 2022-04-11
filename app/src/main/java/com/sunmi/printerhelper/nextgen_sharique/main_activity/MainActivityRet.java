@@ -305,11 +305,15 @@ public class MainActivityRet extends AppCompatActivity
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.accountbalance_ret) {
-
-            Intent intent = new Intent(MainActivityRet.this, AccountBalanceRetailer.class);
+        if (id == R.id.pinsale_ret_new) {
+            finish();
+            Intent intent = new Intent(MainActivityRet.this, MainActivityRet.class);
             startActivity(intent);
 
+        }
+        if (id == R.id.accountbalance_ret) {
+            Intent intent = new Intent(MainActivityRet.this, AccountBalanceRetailer.class);
+            startActivity(intent);
         }
 
         else if (id == R.id.order_pin_ret)
@@ -1733,6 +1737,7 @@ public class MainActivityRet extends AppCompatActivity
             JSONObject jsonObject_request = new JSONObject();
             jsonObject_request.put("agentcode", MyApplication.getSaveString("mobileNoString", MainActivityRet.this));
             jsonObject_request.put("pin", MyApplication.getSaveString("activationCodeString", MainActivityRet.this));
+            jsonObject_request.put("posserialno",MyApplication.getSN());
             jsonObject_request.put("vendorcode","TAFANI");
             jsonObject_request.put("clienttype","POS");
             jsonObject_request.put("terminalid",MyApplication.getSaveString("terminalIdString", MainActivityRet.this));
@@ -1862,7 +1867,7 @@ public class MainActivityRet extends AppCompatActivity
 
             JSONObject jsonObject_request = new JSONObject();
             jsonObject_request.put("agentcode", MyApplication.getSaveString("mobileNoString", MainActivityRet.this));
-
+            jsonObject_request.put("posserialno",MyApplication.getSN());
             String mPin = MyApplication.getSaveString("mpinString", MainActivityRet.this);
 
             String key = Md5.getMd5Hash(MyApplication.getSaveString("mobileNoString", MainActivityRet.this)+mPin).toUpperCase(Locale.ENGLISH);
@@ -2290,7 +2295,7 @@ public class MainActivityRet extends AppCompatActivity
 
             JSONObject jsonObject_request = new JSONObject();
             jsonObject_request.put("agentcode", MyApplication.getSaveString("mobileNoString", MainActivityRet.this));
-
+            jsonObject_request.put("posserialno",MyApplication.getSN());
             if(etPin.getVisibility() == View.VISIBLE)
             {
                 String mPin = etPin.getText().toString();
@@ -2350,6 +2355,7 @@ public class MainActivityRet extends AppCompatActivity
 
             JSONObject jsonObject_request = new JSONObject();
             jsonObject_request.put("agentcode", MyApplication.getSaveString("mobileNoString", MainActivityRet.this));
+            jsonObject_request.put("posserialno",MyApplication.getSN());
             jsonObject_request.put("pin",MyApplication.getSaveString("activationCodeString", MainActivityRet.this));
             jsonObject_request.put("terminalid",MyApplication.getSaveString("terminalIdString", MainActivityRet.this));
             jsonObject_request.put("vendorcode","TAFANI");

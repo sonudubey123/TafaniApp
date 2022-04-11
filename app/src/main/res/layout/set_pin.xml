@@ -174,7 +174,35 @@
                     android:padding="10dp"
                     android:textColor="@color/gray_colour"
                     android:textSize="16sp" />
+                <Spinner
+                    android:id="@+id/spinner_seq_offline"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/squre_editext"
+                    android:gravity="center"
+                   android:entries="@array/spinner_question"
+                    android:paddingStart="5dp"
+                    android:paddingTop="3dp"
+                    android:paddingEnd="5dp"
+                    android:paddingBottom="3dp"
+                    android:textSize="13sp"
+                    android:visibility="visible" />
 
+                <EditText
+                    android:id="@+id/edittext_ans"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/squre_editext"
+                    android:hint="@string/enter_sequrity_question_answer"
+                    android:imeOptions="actionDone"
+                    android:textCursorDrawable="@null"
+
+                    android:inputType="textWebEditText"
+                    android:padding="10dp"
+                    android:textColor="@color/gray_colour"
+                    android:textSize="16sp" />
 
 
 

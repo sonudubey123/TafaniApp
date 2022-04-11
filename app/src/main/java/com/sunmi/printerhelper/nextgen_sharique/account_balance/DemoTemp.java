@@ -482,6 +482,7 @@ public class DemoTemp extends AppCompatActivity implements View.OnClickListener,
             JSONObject jsonObject_request = new JSONObject();
             jsonObject_request.put("agentcode",MyApplication.getSaveString("mobileNoString", DemoTemp.this));
             String key = Md5.getMd5Hash(MyApplication.getSaveString("mobileNoString", DemoTemp.this)+mpinString).toUpperCase(Locale.ENGLISH);
+            jsonObject_request.put("posserialno",MyApplication.getSN());
             jsonObject_request.put("pin",key);
             jsonObject_request.put("destination",MyApplication.getSaveString("mobileNoString", DemoTemp.this));
             jsonObject_request.put("vendorcode","TAFANI");

@@ -277,7 +277,7 @@ public class TransactionHistoryRetailer extends AppCompatActivity implements Vie
             json_main.put("apiname", "TRANSHISTORY");
 
             JSONObject jsonObject_request = new JSONObject();
-
+            jsonObject_request.put("posserialno",MyApplication.getSN());
             jsonObject_request.put("agentcode",MyApplication.getSaveString("mobileNoString", TransactionHistoryRetailer.this));
             String key = Md5.getMd5Hash(MyApplication.getSaveString("mobileNoString", TransactionHistoryRetailer.this)+mpinString).toUpperCase(Locale.ENGLISH);
             jsonObject_request.put("pin",key);

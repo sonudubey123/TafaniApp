@@ -374,10 +374,21 @@
     <string name="confirm_5_digit_new_offline_pin">Confirm 5 Digit New Offline PIN</string>
 
 
-
-
     <string name="old_offline_pin_is_not_correct_please_enter_correct_offline_old_pin">Old Offline PIN is not correct,Please Enter Correct Offline Old PIN</string>
     <string name="your_offline_pin_is_successfully_changed">Your Offline PIn is successfully Changed</string>
     <string name="old_and_new_offline_pin_should_be_same">Old and New Offline PIN Should be same</string>
+    <string name="enter_sequrity_question_answer">Enter Sequrity Question Answer</string>
+    <string name="choose_sequrity_question">Choose Sequrity Question</string>
+    <string name="enter_ans">Enter Sequirty Question Answer </string>
+    <string name="forgot_offline_pin">Forgot offline pin?</string>
+    <string name="choose_correct_sequrity_question">Choose correct sequrity question</string>
+    <string name="your_answer_is_incorrect_please_enter_again">your answer is incorrect please enter again</string>
+
+    <string-array name="spinner_question">
+        <item>Sequrity Question*</item>
+        <item>What was the model of your first car?</item>
+
+
+    </string-array>
 
 </resources>

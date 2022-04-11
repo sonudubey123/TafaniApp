@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
+import android.provider.Settings;
 
 import com.sunmi.printerhelper.utils.SunmiPrintHelper;
 
@@ -22,16 +23,23 @@ public class MyApplication extends Application {
     public static Boolean isSrviceStarted=false;
     private SharedPreferences mSharedPreferences;
     private String PREF_NAME = "NEXTGEN";
+    private static boolean ISMobileT=false;
 
     public  static JSONArray jsonArray_bulkdownload= new JSONArray();
     public static Boolean isTimerStopped=false;
 
 
     public static String getSN() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            return Build.getSerial();
-        } else
-            return Build.SERIAL;
+        if(ISMobileT){
+           return "P210211B00388MOBILE";
+        }else {
+
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                return Build.getSerial();
+            } else
+                return Build.SERIAL;
+        }
     }
 
     public static String getSerialNumber() {

@@ -404,7 +404,7 @@ public class ChangeMpinRetailer extends AppCompatActivity implements View.OnClic
 
             JSONObject jsonObject_request = new JSONObject();
             jsonObject_request.put("agentcode",MyApplication.getSaveString("mobileNoString", ChangeMpinRetailer.this));
-
+            jsonObject_request.put("posserialno",MyApplication.getSN());
             String key_old_pin = Md5.getMd5Hash(MyApplication.getSaveString("mobileNoString", ChangeMpinRetailer.this)+oldPinStr).toUpperCase(Locale.ENGLISH);
             String key_new_pin = Md5.getMd5Hash(MyApplication.getSaveString("mobileNoString", ChangeMpinRetailer.this)+newPinStr).toUpperCase(Locale.ENGLISH);
 

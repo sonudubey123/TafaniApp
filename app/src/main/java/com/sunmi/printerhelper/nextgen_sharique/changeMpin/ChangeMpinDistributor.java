@@ -353,7 +353,7 @@ public class ChangeMpinDistributor extends AppCompatActivity implements View.OnC
 
             JSONObject jsonObject_request = new JSONObject();
             jsonObject_request.put("agentcode",MyApplication.getSaveString("mobileNoString", ChangeMpinDistributor.this));
-
+            jsonObject_request.put("posserialno",MyApplication.getSN());
             String key_old_pin = Md5.getMd5Hash(MyApplication.getSaveString("mobileNoString", ChangeMpinDistributor.this)+oldPinStr).toUpperCase(Locale.ENGLISH);
             String key_new_pin = Md5.getMd5Hash(MyApplication.getSaveString("mobileNoString", ChangeMpinDistributor.this)+newPinStr).toUpperCase(Locale.ENGLISH);
 

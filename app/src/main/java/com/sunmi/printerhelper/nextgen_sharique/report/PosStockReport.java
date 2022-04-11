@@ -271,21 +271,24 @@ public class PosStockReport extends AppCompatActivity implements View.OnClickLis
             options.inDensity = 200;
 
 
-            bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.logo, options);
+
+            bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.logo_stock, options);
 
             SunmiPrintHelper.getInstance().printBitmap_nextgen(bitmap,1);
+           // SunmiPrintHelper.getInstance().printText_nextgen(  "\n", 20, isBold, isUnderLine, testFont, 0);
 
 
 
             if (languageToUse.equalsIgnoreCase("en")) {
 
-                SunmiPrintHelper.getInstance().printText_nextgen("            "+getString(R.string.stock_report)+"\n\n", 30, isBold, isUnderLine, testFont, 0);
+                SunmiPrintHelper.getInstance().printText_nextgen("            \n"+getString(R.string.stock_report)+"\n\n", 30, true, isUnderLine, testFont, 1);
                 String currentDateTime=current_sell_dateTime(); // 26/01/2022 14:55:46
 
                 String[]  currentDateTime_temp = currentDateTime.split(" ");
                 String currentDate_offline = currentDateTime_temp[0];
                 String currentTime_offline = currentDateTime_temp[1];
 
+                SunmiPrintHelper.getInstance().printText_nextgen(  "\n", 20, isBold, isUnderLine, testFont, 0);
                 SunmiPrintHelper.getInstance().printText_nextgen(  currentDate_offline, 20, isBold, isUnderLine, testFont, 0);
                 SunmiPrintHelper.getInstance().printText_nextgen("                    " + currentTime_offline + "\n", 20, isBold, isUnderLine, testFont, 2);
 
@@ -293,7 +296,7 @@ public class PosStockReport extends AppCompatActivity implements View.OnClickLis
 
 
                 SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.terminalidId_print_colon), 20, isBold, isUnderLine, testFont, 0);
-                SunmiPrintHelper.getInstance().printText_nextgen("           " + MyApplication.getSaveString("terminalIdString", PosStockReport.this) + "\n", 20, isBold, isUnderLine, testFont, 2);
+                SunmiPrintHelper.getInstance().printText_nextgen("             " + MyApplication.getSaveString("terminalIdString", PosStockReport.this) + "\n", 20, isBold, isUnderLine, testFont, 2);
 
                /* SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.retailer_print_colon), 20, isBold, isUnderLine, testFont, 0);
                 SunmiPrintHelper.getInstance().printText_nextgen("                   " + MyApplication.getSaveString("mobileNoString", PosStockReport.this) + "\n", 20, isBold, isUnderLine, testFont, 2);

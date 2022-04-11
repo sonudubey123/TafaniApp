@@ -6,6 +6,10 @@
                 Menu items with icon and Title
         -->
         <item
+            android:id="@+id/pinsale_ret_new"
+            android:icon="@drawable/ic_launcher"
+            android:title="@string/pin_sale" />
+        <item
             android:id="@+id/accountbalance_ret"
             android:icon="@drawable/ic_launcher"
             android:title="@string/account_balance" />
