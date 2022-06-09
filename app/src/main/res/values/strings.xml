@@ -166,7 +166,7 @@
     <string name="table_instruction">specifications: Bluetooth printing table could only provide examples and printing test. Specific methods could refer to Epson instruction set.  </string>
 
 
-    <string name="app_name">Tafani</string>
+    <string name="app_name">Tafani_TEST</string>
     <string name="mobile_money">Subscriber Mobile Money</string>
     <string name="app_display_name">Tafani</string>
     <string name="please_enter_user_mobile_number">Please Enter User mobile Number</string>
