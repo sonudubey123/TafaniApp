@@ -42,7 +42,7 @@
                 android:layout_marginTop="29dp"
                 android:layout_marginRight="6dp"
                 android:gravity="right"
-                android:text="@string/change_mpin_display"
+                android:text="@string/change_ofline_mpin_display"
                 android:textColor="@android:color/black"
                 android:textSize="12sp" />
 

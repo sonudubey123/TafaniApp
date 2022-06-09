@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="tafani.sunmi.printer" >
+    package="com.sunmi.tafani_printerhelper" >
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
@@ -23,10 +23,10 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@drawable/ani_green_g"
         android:supportsRtl="true"
-        android:name="com.sunmi.printerhelper.nextgen_sharique.application_sharepreference.MyApplication"
+        android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.application_sharepreference.MyApplication"
         android:theme="@style/AppTheme.NoActionBar" >
 
-        <activity android:name="com.sunmi.printerhelper.nextgen_sharique.splash.SplashActivity">
+        <activity android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.splash.SplashActivity">
 
 
             <intent-filter>
@@ -37,24 +37,24 @@
 
         </activity>
 
-        <activity android:name="com.sunmi.printerhelper.nextgen_sharique.contact.ContactDetails"
+        <activity android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.contact.ContactDetails"
             android:windowSoftInputMode="stateHidden">
 
 
         </activity>
 
         <service
-            android:name="com.sunmi.printerhelper.nextgen_sharique.session.BroadcastService"
+            android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.session.BroadcastService"
             android:enabled="true">
         </service>
-        <activity android:name="com.sunmi.printerhelper.nextgen_sharique.contact.WebViewUrl"
+        <activity android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.contact.WebViewUrl"
             android:windowSoftInputMode="stateHidden">
 
 
 
 
         </activity>
-        <activity android:name="com.sunmi.printerhelper.nextgen_sharique.contact.WebViewUrlFaceBook"
+        <activity android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.contact.WebViewUrlFaceBook"
             android:windowSoftInputMode="stateHidden">
 
 
@@ -64,14 +64,14 @@
 
 
         <activity
-            android:name="com.sunmi.printerhelper.nextgen_sharique.main_activity.MainActivityRet"
+            android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.main_activity.MainActivityRet"
             android:windowSoftInputMode="stateHidden">
 
 
         </activity>
 
         <activity
-            android:name="com.sunmi.printerhelper.nextgen_sharique.account_balance.DemoTemp"
+            android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.account_balance.DemoTemp"
             android:windowSoftInputMode="stateHidden">
 
            <!--  <intent-filter>
@@ -83,104 +83,104 @@
 
 
         <activity
-            android:name="com.sunmi.printerhelper.nextgen_sharique.login.SetPin"
+            android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.login.SetPin"
             android:windowSoftInputMode="stateHidden" />
 
 
         <activity
-            android:name="com.sunmi.printerhelper.nextgen_sharique.order_pin.modal_orderpin.OrderPinreceiptPage"
+            android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.order_pin.modal_orderpin.OrderPinreceiptPage"
             android:windowSoftInputMode="stateHidden" />
 
         <activity
-            android:name="com.sunmi.printerhelper.nextgen_sharique.report.PosStockReport"
+            android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.report.PosStockReport"
             android:windowSoftInputMode="stateHidden"/>
 
         <activity
-            android:name="com.sunmi.printerhelper.nextgen_sharique.order_pin.OrderPinActivity"
+            android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.order_pin.OrderPinActivity"
             android:windowSoftInputMode="stateHidden"/>
 
         <activity
-            android:name="com.sunmi.printerhelper.nextgen_sharique.database.offline.modal_offline.orderpin_receiptpage.OrderPinOfflineReceiptPage"
+            android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.database.offline.modal_offline.orderpin_receiptpage.OrderPinOfflineReceiptPage"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.sunmi.printerhelper.nextgen_sharique.login.LoginActivityPin"
+            android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.login.LoginActivityPin"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.sunmi.printerhelper.nextgen_sharique.login.ForgotOfflineMpinRetailer"
-            android:windowSoftInputMode="stateHidden" />
-
-        <activity
-            android:name="com.sunmi.printerhelper.nextgen_sharique.database.online.OnlineRetRecycleViewPage"
+            android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.login.ForgotOfflineMpinRetailer"
             android:windowSoftInputMode="stateHidden" />
 
-
         <activity
-            android:name="com.sunmi.printerhelper.nextgen_sharique.database.online.OnlineDisRecycleViewPage"
+            android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.database.online.OnlineRetRecycleViewPage"
             android:windowSoftInputMode="stateHidden" />
 
 
         <activity
-            android:name="com.sunmi.printerhelper.nextgen_sharique.login.LoginActivation"
-            android:windowSoftInputMode="stateHidden" />
-
-        <activity
-            android:name="com.sunmi.printerhelper.nextgen_sharique.accept_page.AcceptPage"
-            android:windowSoftInputMode="stateHidden" />
-
-        <activity
-            android:name="com.sunmi.printerhelper.nextgen_sharique.wallet_transfer.WalletTransferDis"
+            android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.database.online.OnlineDisRecycleViewPage"
             android:windowSoftInputMode="stateHidden" />
 
 
         <activity
-            android:name="com.sunmi.printerhelper.nextgen_sharique.languag_choose.LanguageChoose"
+            android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.login.LoginActivation"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.accept_page.AcceptPage"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.wallet_transfer.WalletTransferDis"
             android:windowSoftInputMode="stateHidden" />
 
 
         <activity
-            android:name="com.sunmi.printerhelper.nextgen_sharique.account_balance.AccountBalanceRetailer"
+            android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.languag_choose.LanguageChoose"
             android:windowSoftInputMode="stateHidden" />
 
 
         <activity
-            android:name="com.sunmi.printerhelper.nextgen_sharique.account_balance.AccountBalanceDistributor"
+            android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.account_balance.AccountBalanceRetailer"
             android:windowSoftInputMode="stateHidden" />
 
 
         <activity
-            android:name="com.sunmi.printerhelper.nextgen_sharique.transaction_history.retailer.TransactionHistoryRetailer"
+            android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.account_balance.AccountBalanceDistributor"
+            android:windowSoftInputMode="stateHidden" />
+
+
+        <activity
+            android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.transaction_history.retailer.TransactionHistoryRetailer"
             android:windowSoftInputMode="stateHidden" />
 
         <activity
-            android:name="com.sunmi.printerhelper.nextgen_sharique.transaction_history.distributor.TransactionHistoryDistributor"
+            android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.transaction_history.distributor.TransactionHistoryDistributor"
             android:windowSoftInputMode="stateHidden" />
 
         <activity
-            android:name="com.sunmi.printerhelper.nextgen_sharique.transaction_history.distributor.TransactionDetailsDistributorRetRecycleView"
+            android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.transaction_history.distributor.TransactionDetailsDistributorRetRecycleView"
             android:windowSoftInputMode="stateHidden" />
 
         <activity
-            android:name="com.sunmi.printerhelper.nextgen_sharique.transaction_history.retailer.TransactionDetailsRetRecycleView"
+            android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.transaction_history.retailer.TransactionDetailsRetRecycleView"
             android:windowSoftInputMode="stateHidden" />
 
         <activity
-            android:name="com.sunmi.printerhelper.nextgen_sharique.changeMpin.ChangeMpinDistributor"
+            android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.changeMpin.ChangeMpinDistributor"
             android:windowSoftInputMode="stateHidden" />
 
         <activity
-            android:name="com.sunmi.printerhelper.nextgen_sharique.changeMpin.ChangeMpinRetailer"
+            android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.changeMpin.ChangeMpinRetailer"
             android:windowSoftInputMode="stateHidden" />
 
         <activity
-            android:name="com.sunmi.printerhelper.nextgen_sharique.changeMpin.ChangeOfflineMpinRetailer"
+            android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.changeMpin.ChangeOfflineMpinRetailer"
             android:windowSoftInputMode="stateHidden" />
 
         <activity
-            android:name="com.sunmi.printerhelper.nextgen_sharique.Signup.SignUpPage"
+            android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.Signup.SignUpPage"
             android:windowSoftInputMode="stateHidden" />
 
         <activity
-            android:name="com.sunmi.printerhelper.nextgen_sharique.reprint.ReprintRetailer"
+            android:name="com.sunmi.tafani_printerhelper.nextgen_sharique.reprint.ReprintRetailer"
             android:windowSoftInputMode="stateHidden" />
 
 

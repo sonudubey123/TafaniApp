@@ -155,7 +155,6 @@
     <string name="custom_font">Custom typeface</string>
 
 
-
     <!--about content-->
     <string name="about_content">PrinterHelper is suitable for the sunmi series. \nPrinterHelper integrate two connection type: AIDL and BLUETOOTH. It also provide a series of printing testing module, which help the developer to connect with the sunmi printing function faster. \n upload the information that need to be printed, which allows sunmi to better locate the issues. \n official site: http://www.sunmi.com. \n developer documentation: http://docs.sunmi.com</string>
 
@@ -168,9 +167,9 @@
     <string name="table_instruction">specifications: Bluetooth printing table could only provide examples and printing test. Specific methods could refer to Epson instruction set.  </string>
 
 
-    <string name="app_name">NextGen</string>
+    <string name="app_name">Tafani</string>
     <string name="mobile_money">Subscriber Mobile Money</string>
-    <string name="app_display_name">Bus Tickat Booking</string>
+    <string name="app_display_name">Tafani</string>
     <string name="please_enter_user_mobile_number">Please Enter User mobile Number</string>
     <string name="id_number">id number</string>
     <string name="network">Network</string>
@@ -212,7 +211,7 @@
     <string name="please_enter_valid_user_mobile_number">please enter valid user mobile number</string>
 
     <string name="englisg">English</string>
-    <string name="nextGen">NextGen</string>
+    <string name="nextGen">Tafani</string>
     <string name="arabic">عربى</string>
     <string name="etopabg">Etop up Image</string>
     <string name="e_top_display"> لتحويل الرصيد الرجاء إدخال المعلومات المطلوبة </string>
@@ -226,7 +225,7 @@
     <string name="accept"> موافق</string>
     <string name="not_accept"> غير موافق</string>
     <string name="languageChoose">Choose Language</string>
-    <string name="welcome_to_nextgen">مرحبا بكم في الجيل التالي</string>
+    <string name="welcome_to_nextgen">مرحبا بك مع التفاني</string>
     <string name="enter_agent_code">أدخل العميل رمز </string>
     <string name="enter_mpin">دخل MPIN المكون من 4 أرقام</string>
     <string name="login">تسجيل الدخول</string>
@@ -245,7 +244,7 @@
     <string name="subscriber_agent_blocked">العميل محظور</string>
     <string name="insuffience_fund">المبلغ غير كافي</string>
     <string name="insuffience_wallet">المحفظة غير كافية</string>
-    <string name="close">قريب</string>
+    <string name="close">اغلاق</string>
     <string name="retailer_capital">العميل</string>
     <string name="distributor_capital">موزع</string>
     <string name="retailer">العميل</string>
@@ -254,6 +253,7 @@
     <string name="transaction_date">تاريخ الصفقة</string>
     <string name="transaction_type">نوع المعاملة</string>
     <string name="wallet_balance">رصيد المحفظة</string>
+    <string name="change_ofline_mpin_display"> لتغيير MPIN في وضع عدم الاتصال ، يرجى إدخال MPIN المكون من 5 أرقام</string>
     <string name="change_mpin_display">  لتغيير كلمة المرور الرجاء ادخال المعلومات المطلوبة في الأسفل</string>
     <string name="enter_old_pin"> ادخل كلمة المرور القديمة </string>
     <string name="enter_new_mpin"> ادخل كلمة المرور الجديدة </string>
@@ -293,13 +293,13 @@
     <string name="account_balance">رصيد الحساب</string>
     <string name="logout"> تسجيل الخروج</string>
     <string name="change_mpin">تغير كلمة المرور</string>
-    <string name="change_oofline_mpin">Change Offline Mpin  </string>
+    <string name="change_oofline_mpin">غير كلمة السر </string>
     <string name="transaction_history">تاريخ العمليات</string>
     <string name="pin_sale">  بيع </string>
     <string name="order_pin">طلب كروت</string>
 
     <string name="nav_open">فتح</string>
-    <string name="nav_close">قريب</string>
+    <string name="nav_close">اغلاق</string>
     <string name="transaction_time">وقت المعاملة</string>
     <string name="offline">بيع غير مباشر</string>
     <string name="online">بيع مباشر</string>
@@ -361,7 +361,7 @@
     <string name="online_pin_sale_sucess">البيع عبر الإنترنت هو النجاح</string>
     <string name="orderpin_success">تم بنجاح إدخال رقم التعريف الشخصي</string>
     <string name="product_code">الفئة</string>
-    <string name="purchase_pin_capita">دبوس الشراء</string>
+    <string name="purchase_pin_capita"> بيع</string>
 
     <string name="mobile_number_new">رقم الهاتف المحمول</string>
     <string name="phoneNumber_number_new">رقم التليفون</string>
@@ -379,20 +379,19 @@
         الرقم السري القديم غير صحيح, الرجاء ادخال الرقم الصحيح</string>
     <string name="your_offline_pin_is_successfully_changed">رقمك السري Offline قد تم تغيره بنجاح</string>
     <string name="old_and_new_offline_pin_should_be_same">الرقم السري الجديد يجب ان لا يكون نفسه القديم</string>
-    <string name="enter_sequrity_question_answer">أدخل جواب سؤال Sequrity</string>
-    <string name="choose_sequrity_question">اختر سؤال التسلسل</string>
+    <string name="enter_Security_question_answer">أدخل جواب سؤال Security</string>
+    <string name="choose_Security_question">اختر سؤال التسلسل</string>
     <string name="enter_ans">أدخل إجابة السؤال التسلسلي </string>
     <string name="forgot_offline_pin">نسيت رقمي السري Offline</string>
-    <string name="choose_correct_sequrity_question">اختر سؤال التسلسل الصحيح</string>
+    <string name="choose_correct_Security_question">اختر سؤال التسلسل الصحيح</string>
     <string name="your_answer_is_incorrect_please_enter_again">إجابتك غير صحيحة الرجاء إدخال مرة أخرى</string>
 
 
-
-
     <string-array name="spinner_question">
-    <item>Sequrity Question*</item>
-    <item>ما هو اسم وموديل اول سيارة امتلكتها ؟</item>
-
-</string-array>
+        <item>Security Question*</item>
+        <item>ما هو اسم وموديل اول سيارة امتلكتها ؟</item>
+        <item>بأي مدينة ولدت ؟</item>
+        <item>ما هو اسم اول مدرسة درست بها ؟</item>
+    </string-array>
 
 </resources>

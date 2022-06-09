@@ -195,7 +195,7 @@
                     android:layout_height="50dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/squre_editext"
-                    android:hint="@string/enter_sequrity_question_answer"
+                    android:hint="@string/enter_Security_question_answer"
                     android:imeOptions="actionDone"
                     android:textCursorDrawable="@null"
 

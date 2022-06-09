@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.sunmi.printerhelper.activity.FunctionActivity">
+    tools:context="com.sunmi.tafani_printerhelper.activity.FunctionActivity">
     
     <view class="androidx.recyclerview.widget.RecyclerView"
         android:id="@+id/worklist"

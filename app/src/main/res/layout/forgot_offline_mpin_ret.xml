@@ -144,9 +144,9 @@
                 android:background="@drawable/squre_editext"
                 android:ems="10"
                 android:gravity="center_vertical"
-                android:hint="@string/enter_sequrity_question_answer"
+                android:hint="@string/enter_Security_question_answer"
                 android:inputType="textWebEditText"
-                android:maxLength="5"
+
                 android:padding="10dp"
                 android:singleLine="true"
                 android:textColor="@android:color/black"

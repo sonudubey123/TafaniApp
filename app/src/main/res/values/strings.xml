@@ -166,9 +166,9 @@
     <string name="table_instruction">specifications: Bluetooth printing table could only provide examples and printing test. Specific methods could refer to Epson instruction set.  </string>
 
 
-    <string name="app_name">NextGen</string>
+    <string name="app_name">Tafani</string>
     <string name="mobile_money">Subscriber Mobile Money</string>
-    <string name="app_display_name">Next Gen</string>
+    <string name="app_display_name">Tafani</string>
     <string name="please_enter_user_mobile_number">Please Enter User mobile Number</string>
     <string name="id_number">id number</string>
     <string name="network">Network</string>
@@ -184,7 +184,7 @@
     <string name="permanent_address">Permanent address</string>
     <string name="first_name">First name</string>
     <string name="submit">Submit</string>
-    <string name="please_enter_mpin">please enter mpin</string>
+    <string name="please_enter_mpin">please enter MPIN</string>
     <string name="confirm">Confirm</string>
     <string name="edit">Edit</string>
     <string name="action_settings">action_settings</string>
@@ -220,8 +220,8 @@
     <string name="languageChoose">Choose Language</string>
     <string name="englisg">English</string>
     <string name="arabic">عربى</string>
-    <string name="nextGen">NextGen</string>
-    <string name="welcome_to_nextgen">Welcome to NextGen</string>
+    <string name="nextGen">Tafani</string>
+    <string name="welcome_to_nextgen">Welcome to Tafani</string>
     <string name="enter_agent_code">Enter agent code</string>
     <string name="enter_mpin">Enter 4-digit MPIN</string>
     <string name="no_pin_available_in_stock">No PIN available in stock</string>
@@ -254,7 +254,7 @@
     <string name="retailer_print_colon">Retailer:</string>
     <string name="amount_print">Amount</string>
     <string name="footer_heder_print">It may differ from country to country. Our advice and guidance should only be considered a starting point , It may differ from country to country. Our advice and guidance should only be considered a starting point</string>
-    <string name="pinNumber_print_colon_print"> Pin no:</string>
+    <string name="pinNumber_print_colon_print"> PIN No:</string>
     <string name="activitionCode_print">Activation code</string>
 
 
@@ -263,13 +263,14 @@
     <string name="distributor_capital">DISTRIBUTOR</string>
     <string name="transaction_type">Transaction type</string>
     <string name="wallet_balance">Wallet balance</string>
-    <string name="enter_new_pin">Enter new pin</string>
-    <string name="enter_confirm_pin">Enter confirm pin</string>
-    <string name="plz_enter_old_pin">Please enter old pin</string>
-    <string name="plz_enter_new_pin">Please enter new pin</string>
-    <string name="plz_confirm_new_pin">Please enter confirm pin</string>
-    <string name="new_coinfirm_should_be_same">New pin and Confirm  pin should be same</string>
-    <string name="change_mpin_display"> To view the change mpin , please enter the 4-digit MPIN</string>
+    <string name="enter_new_pin">Enter new PIN</string>
+    <string name="enter_confirm_pin">Enter confirm PIN</string>
+    <string name="plz_enter_old_pin">Please enter old PIN</string>
+    <string name="plz_enter_new_pin">Please enter new PIN</string>
+    <string name="plz_confirm_new_pin">Please enter confirm PIN</string>
+    <string name="new_coinfirm_should_be_same">New PIN and Confirm  PIN should be same</string>
+    <string name="change_mpin_display"> To view the change MPIN , please enter the 4-digit MPIN</string>
+    <string name="change_ofline_mpin_display"> To change offline MPIN , please enter the 5-digit MPIN</string>
     <string name="enter_old_pin"> Enter old MPIN </string>
     <string name="enter_new_mpin">Enter new MPIN </string>
     <string name="enter_confirm_mpin"> Enter confirm MPIN </string>
@@ -309,8 +310,8 @@
     <string name="change_oofline_mpin">Change Offline Mpin  </string>
     <string name="transaction_history">Transaction history  </string>
     <string name="stock_report">Stock report  </string>
-    <string name="pin_sale">Pin sale  </string>
-    <string name="order_pin">Order pin  </string>
+    <string name="pin_sale">PIN sale  </string>
+    <string name="order_pin">Order PIN  </string>
 
     <string name="nav_open">Open</string>
     <string name="nav_close">Close</string>
@@ -335,15 +336,15 @@
     <string name="please_enter_activitionCode">Please enter activation code</string>
     <string name="please_enter_terminal_id">Please enter terminal id</string>
     <string name="activation_page">Activation Page</string>
-    <string name="pin_number">Pin number</string>
+    <string name="pin_number">PIN number</string>
     <string name="seriol_number">Serial number</string>
     <string name="expiry_date">Expiry date</string>
-    <string name="set_pin">App Pin</string>
-    <string name="offline_pin_set">Set offline pin</string>
+    <string name="set_pin">App PIN</string>
+    <string name="offline_pin_set">Set offline PIN</string>
     <string name="plz_enter_5_digit_offline_pinn">Please enter 5-digit offline PIN</string>
     <string name="plz_enter_5_digit_offline_pin">Please set 5-digit offline PIN</string>
-    <string name="your_mpin_offline_is">Your offline Pin is </string>
-    <string name="your_offline_pin_is_incorrect">Your offline Pin is incorrect </string>
+    <string name="your_mpin_offline_is">Your offline PIN is </string>
+    <string name="your_offline_pin_is_incorrect">Your offline PIN is incorrect </string>
     <string name="order_now">Order now</string>
     <string name="order">Order</string>
     <string name="quantity">Quantity</string>
@@ -355,9 +356,9 @@
     <string name="plz_check_internet">Please chek internet</string>
     <string name="already_sync">Already Sync</string>
     <string name="this_application_run_pos">This application Run only POS Device</string>
-    <string name="offline_pin_sale_sucess">Offline Pin Sale is Successful</string>
-    <string name="online_pin_sale_sucess">Online Pin Sale is Successful</string>
-    <string name="orderpin_success">Order pin  is Successful</string>
+    <string name="offline_pin_sale_sucess">Offline PIN Sale is Successful</string>
+    <string name="online_pin_sale_sucess">Online PIN Sale is Successful</string>
+    <string name="orderpin_success">Order PIN  is Successful</string>
     <string name="product_code">Product code</string>
     <string name="purchase_pin_capita">PURCHASE PIN</string>
     <string name="mobile_number_new">Mobile number</string>
@@ -375,18 +376,20 @@
 
 
     <string name="old_offline_pin_is_not_correct_please_enter_correct_offline_old_pin">Old Offline PIN is not correct,Please Enter Correct Offline Old PIN</string>
-    <string name="your_offline_pin_is_successfully_changed">Your Offline PIn is successfully Changed</string>
+    <string name="your_offline_pin_is_successfully_changed">Your Offline PIN is successfully Changed</string>
     <string name="old_and_new_offline_pin_should_be_same">Old and New Offline PIN Should be same</string>
-    <string name="enter_sequrity_question_answer">Enter Sequrity Question Answer</string>
-    <string name="choose_sequrity_question">Choose Sequrity Question</string>
+    <string name="enter_Security_question_answer">Enter Security Question Answer</string>
+    <string name="choose_Security_question">Choose Security Question</string>
     <string name="enter_ans">Enter Sequirty Question Answer </string>
-    <string name="forgot_offline_pin">Forgot offline pin?</string>
-    <string name="choose_correct_sequrity_question">Choose correct sequrity question</string>
+    <string name="forgot_offline_pin">Forgot offline PIN?</string>
+    <string name="choose_correct_Security_question">Choose correct Security question</string>
     <string name="your_answer_is_incorrect_please_enter_again">your answer is incorrect please enter again</string>
 
     <string-array name="spinner_question">
-        <item>Sequrity Question*</item>
+        <item>Security Question*</item>
         <item>What was the model of your first car?</item>
+        <item>In what city were you born?</item>
+        <item>What is the name of your first school?</item>
 
 
     </string-array>
