@@ -46,6 +46,7 @@ public class AccountBalanceRetailer extends AppCompatActivity implements View.On
 
     private boolean isBold, isUnderLine;
     private String testFont;
+    //gg
     //s
 
 
