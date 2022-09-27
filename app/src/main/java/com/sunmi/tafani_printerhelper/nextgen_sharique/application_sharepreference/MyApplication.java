@@ -19,7 +19,7 @@ public class MyApplication extends Application {
     public static Boolean isSrviceStarted=false;
     private SharedPreferences mSharedPreferences;
     private String PREF_NAME = "NEXTGEN";
-    private static boolean ISMobileT=false;
+    private static boolean ISMobileT=true;
 
     public  static JSONArray jsonArray_bulkdownload= new JSONArray();
     public static Boolean isTimerStopped=false;
