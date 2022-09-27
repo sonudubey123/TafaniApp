@@ -45,6 +45,7 @@ public class LoginActivityPin extends AppCompatActivity implements View.OnClickL
 
     String languageToUse="";
 
+
     ServiceRepository serviceRepository;
     List<BulkDownloadOfflineModel> arraylist_details_pin_y;
 
