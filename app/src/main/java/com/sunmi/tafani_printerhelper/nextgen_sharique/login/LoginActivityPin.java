@@ -44,7 +44,8 @@ public class LoginActivityPin extends AppCompatActivity implements View.OnClickL
     MyApplication myApplication;
 
     String languageToUse="";
-    //ghdwuhdiqwdh
+
+    //Hello changes
 
 
     ServiceRepository serviceRepository;
