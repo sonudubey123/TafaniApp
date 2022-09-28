@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/white"
-    android:layout_height="match_parent"
-
-
-    >
+    android:background="drawable/"
+    android:layout_height="match_parent">
 
 
     <ScrollView
@@ -21,8 +15,19 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
-            android:layout_margin="10dp"
             android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/squre_editext4"
+                android:orientation="vertical">
+
+
 
 
 
@@ -36,7 +41,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:layout_marginTop="30dp"
                 android:orientation="horizontal">
 
 
@@ -44,7 +49,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="80dp"
                     android:layout_gravity="left"
-                    android:layout_marginTop="20dp"
+
+                    android:background=""
                     android:src="@drawable/ani_green_g" />
 
 
@@ -110,7 +116,7 @@
                         android:gravity="center"
 
                         android:text="@string/welcome_to_nextgen"
-                        android:textColor="@color/tafani_logo_colour"
+                        android:textColor="@color/green_loginpage"
 
                         android:textSize="25dp"
                         android:textStyle="bold" />
@@ -149,37 +155,82 @@
                 android:layout_margin="10dp"
                 android:orientation="vertical">
 
-
-                <EditText
-                    android:id="@+id/edit_mobile_number"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:textCursorDrawable="@null"
-
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="15dp"
+                    android:gravity="center"
                     android:background="@drawable/squre_editext"
-                    android:hint="@string/enter_agent_code"
-                    android:imeOptions="actionNext"
-                    android:maxLength="10"
-                    android:inputType="number"
-                    android:padding="10dp"
-                    android:textColor="@color/gray_colour"
-                    android:textSize="16sp" />
+                    android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/edittext_mpin"
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/ic_factory_user_icon"/>
+
+                    <EditText
+                        android:id="@+id/edit_mobile_number"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:textCursorDrawable="@null"
+                        android:hint="@string/enter_agent_code"
+                        android:background="@drawable/squre_editext3"
+                        android:imeOptions="actionNext"
+                        android:maxLength="10"
+                        android:inputType="number"
+                        android:padding="10dp"
+                        android:textColor="@color/gray_colour"
+                        android:textSize="18sp" />
+
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:textCursorDrawable="@null"
-
-                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="15dp"
+                    android:gravity="center"
                     android:background="@drawable/squre_editext"
-                    android:hint="@string/plz_enter_5_digit_offline_pinn"
-                    android:imeOptions="actionDone"
-                    android:maxLength="5"
-                    android:inputType="numberPassword"
-                    android:padding="10dp"
-                    android:textColor="@color/gray_colour"
-                    android:textSize="16sp" />
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/ic_code_icon"/>
+
+                    <EditText
+                        android:id="@+id/edittext_mpin"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:textCursorDrawable="@null"
+                        android:background="@drawable/squre_editext3"
+                        android:hint="@string/plz_enter_5_digit_offline_pinn"
+                        android:imeOptions="actionDone"
+                        android:maxLength="5"
+                        android:inputType="numberPassword"
+                        android:padding="10dp"
+                        android:textColor="@color/gray_colour"
+                        android:textSize="18sp" />
+
+
+
+                </LinearLayout>
+
+
 
                 <TextView
                     android:layout_marginTop="15dp"
@@ -188,10 +239,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:gravity="right"
-
+                    android:visibility="gone"
                     android:text="@string/forgot_offline_pin"
                     android:textColor="@color/orange_colour"
-
                     android:textSize="16dp"
                     android:textStyle="bold" />
 
@@ -223,20 +273,21 @@
                 android:orientation="horizontal"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:layout_margin="10dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="30dp"
                 android:padding="10dp"
                 android:layout_height="wrap_content">
 
                  <TextView
                     android:id="@+id/btn_submit"
-                     android:layout_width="120dp"
+                     android:layout_width="250dp"
                      android:layout_height="50dp"
                      android:background="@drawable/squre_editext_2"
                     android:gravity="center"
                     android:padding="10dp"
                     android:text="@string/login"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
 
@@ -246,9 +297,11 @@
 
 
 
-
+            </LinearLayout>
 
         </LinearLayout>
+
+
 
 
 
