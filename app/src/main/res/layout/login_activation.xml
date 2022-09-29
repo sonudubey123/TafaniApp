@@ -6,7 +6,7 @@
 
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="@android:color/white"
+    android:background="#76D7C4"
     android:layout_height="match_parent"
 
 
@@ -27,25 +27,24 @@
 
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:orientation="horizontal"
-            android:layout_margin="10dp"
             android:layout_gravity="center"
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:layout_width="119dp"
-                android:layout_height="67dp"
-                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:orientation="horizontal">
 
 
                 <ImageView
-                    android:layout_width="117dp"
+                    android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:layout_gravity="left"
+                    android:layout_gravity="center"
                     android:layout_marginTop="20dp"
-                    android:src="@drawable/ani_green_g" />
+                    android:src="@drawable/estellogo" />
 
 
             </LinearLayout>
@@ -85,18 +84,14 @@
         </LinearLayout>
 
 
-            <LinearLayout
-                android:layout_width="364dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:orientation="horizontal">
+
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_margin="10dp"
+                    android:layout_marginTop="80dp"
                     android:gravity="center"
 
                     android:orientation="vertical">
@@ -109,25 +104,14 @@
                         android:gravity="center"
 
                         android:text="@string/activation_page"
-                        android:textColor="@color/tafani_logo_colour"
+                        android:textColor="#8E44AD"
 
                         android:textSize="25dp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:text="G - Kala"
-
-                        android:textColor="@color/green_loginpage"
-                        android:textSize="25dp"
-                        android:textStyle="bold"
-                        android:visibility="gone" />
 
 
                 </LinearLayout>
-            </LinearLayout>
 
 
             <LinearLayout
@@ -145,7 +129,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="50dp"
                 android:orientation="vertical">
 
 
@@ -157,10 +143,14 @@
                     android:hint="@string/enter_agent_code"
                     android:imeOptions="actionNext"
                     android:maxLength="10"
+                    android:layout_gravity="center"
                     android:textCursorDrawable="@null"
 
+                    android:drawablePadding="10dp"
+                    android:drawableLeft="@drawable/cp_small"
+
                     android:inputType="number"
-                    android:padding="10dp"
+                    android:padding="15dp"
                     android:textColor="@color/gray_colour"
                     android:textSize="16sp" />
 
@@ -168,15 +158,18 @@
                     android:id="@+id/edittext_activationCode"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="30dp"
                     android:background="@drawable/squre_editext"
                     android:hint="@string/activitionCode"
                     android:imeOptions="actionNext"
                     android:maxLength="20"
+                    android:layout_gravity="center"
                     android:textCursorDrawable="@null"
+                    android:drawableLeft="@drawable/cp_small"
+                    android:drawablePadding="10dp"
 
                     android:inputType="number"
-                    android:padding="10dp"
+                    android:padding="15dp"
                     android:textColor="@color/gray_colour"
                     android:textSize="16sp" />
 
@@ -240,13 +233,13 @@
                 android:orientation="horizontal"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:layout_margin="10dp"
                 android:padding="10dp"
+                android:layout_marginTop="100dp"
                 android:layout_height="wrap_content">
 
                  <TextView
                     android:id="@+id/btn_submit"
-                     android:layout_width="120dp"
+                     android:layout_width="300dp"
                      android:layout_height="50dp"
                      android:background="@drawable/squre_editext_2"
                     android:gravity="center"

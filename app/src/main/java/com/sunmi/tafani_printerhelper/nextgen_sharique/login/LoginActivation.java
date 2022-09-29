@@ -5,11 +5,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +29,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.sunmi.tafani_printerhelper.local_set.LocalSetLanguage;
 import com.sunmi.tafani_printerhelper.nextgen_sharique.application_sharepreference.MyApplication;
@@ -48,6 +54,7 @@ public class LoginActivation extends AppCompatActivity implements View.OnClickLi
     MyApplication myApplication;
 
     String languageToUse="";
+    ImageView activationImage,agentImage;
 
     String imeiString="";
     int PERMISSIONS_REQUEST_READ_PHONE_STATE=100;
@@ -97,13 +104,18 @@ public class LoginActivation extends AppCompatActivity implements View.OnClickLi
             btn_submit = (TextView) findViewById(R.id.btn_submit);
             btn_submit.setOnClickListener(this);
 
-
+            Drawable img = LoginActivation.this.getResources().getDrawable(R.drawable.cp_small);
             if(languageToUse.equalsIgnoreCase("ar"))
             {
+
+                edit_mobile_number.setCompoundDrawablesWithIntrinsicBounds(null, null, ContextCompat.getDrawable(LoginActivation.this,R.drawable.cp_small), null);
+                edittext_activationCode.setCompoundDrawablesWithIntrinsicBounds(null, null, ContextCompat.getDrawable(LoginActivation.this,R.drawable.cp_small), null);
+
                 edit_mobile_number.setGravity(Gravity.RIGHT);
                 edittext_mpin.setGravity(Gravity.RIGHT);
                 edittext_activationCode.setGravity(Gravity.RIGHT);
                 edittext_terminalId.setGravity(Gravity.RIGHT);
+
             }
             else
             {
