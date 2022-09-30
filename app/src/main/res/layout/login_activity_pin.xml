@@ -6,7 +6,7 @@
 
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="#76D7C4"
     android:layout_height="match_parent"
 
 
@@ -148,8 +148,27 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:orientation="vertical">
+                <EditText
+                    android:id="@+id/edit_mobile_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/squre_editext"
+                    android:hint="@string/enter_agent_code"
+                    android:imeOptions="actionNext"
+                    android:maxLength="10"
+                    android:layout_gravity="center"
+                    android:textCursorDrawable="@null"
+
+                    android:drawablePadding="10dp"
+                    android:drawableLeft="@drawable/cp_small"
+
+                    android:inputType="number"
+                    android:padding="15dp"
+                    android:textColor="@color/gray_colour"
+                    android:textSize="16sp" />
 
 
+<!--
                 <EditText
                     android:id="@+id/edit_mobile_number"
                     android:layout_width="match_parent"
@@ -164,22 +183,46 @@
                     android:padding="10dp"
                     android:textColor="@color/gray_colour"
                     android:textSize="16sp" />
+-->
+
 
                 <EditText
                     android:id="@+id/edittext_mpin"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:textCursorDrawable="@null"
-
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="30dp"
                     android:background="@drawable/squre_editext"
                     android:hint="@string/plz_enter_5_digit_offline_pinn"
-                    android:imeOptions="actionDone"
-                    android:maxLength="5"
-                    android:inputType="numberPassword"
-                    android:padding="10dp"
+                    android:imeOptions="actionNext"
+                    android:maxLength="20"
+                    android:layout_gravity="center"
+                    android:textCursorDrawable="@null"
+                    android:drawableLeft="@drawable/cp_small"
+                    android:drawablePadding="10dp"
+
+                    android:inputType="number"
+                    android:padding="15dp"
                     android:textColor="@color/gray_colour"
                     android:textSize="16sp" />
+
+
+                <!--
+                                <EditText
+                                    android:id="@+id/edittext_mpin"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:textCursorDrawable="@null"
+
+                                    android:layout_marginTop="10dp"
+                                    android:background="@drawable/squre_editext"
+                                    android:hint="@string/plz_enter_5_digit_offline_pinn"
+                                    android:imeOptions="actionDone"
+                                    android:maxLength="5"
+                                    android:inputType="numberPassword"
+                                    android:padding="10dp"
+                                    android:textColor="@color/gray_colour"
+                                    android:textSize="16sp" />
+                -->
 
                 <TextView
                     android:layout_marginTop="15dp"
@@ -223,13 +266,13 @@
                 android:orientation="horizontal"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:layout_margin="10dp"
                 android:padding="10dp"
+                android:layout_marginTop="100dp"
                 android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/btn_submit"
-                    android:layout_width="120dp"
+                    android:layout_width="300dp"
                     android:layout_height="50dp"
                     android:background="@drawable/squre_editext_2"
                     android:gravity="center"

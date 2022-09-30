@@ -26,6 +26,7 @@
         android:id="@+id/drawer_layout_ret"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         tools:openDrawer="start">
 
 
@@ -72,7 +73,35 @@
                     android:padding="5dp"
                     android:visibility="visible">
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                       android:layout_weight="2"
+                        android:layout_margin="10dp"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
 
+                    <Button
+                        android:id="@+id/buttonOffline"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Offiline"
+                        android:layout_weight="0.5"
+                        android:background="#eee"/>
+
+
+                    <Button
+                        android:id="@+id/buttonOnline"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Online"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="0.5"
+                        android:background="#eee">
+
+                    </Button>
+                    </LinearLayout>
+
+<!--
                     <RadioGroup
                         android:id="@+id/optionRadioGroup"
                         android:layout_width="match_parent"
@@ -100,6 +129,7 @@
                             android:buttonTint="@color/tafani_logo_colour"
                             android:text="@string/online" />
                     </RadioGroup>
+-->
 
 
                     <LinearLayout
@@ -108,6 +138,12 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:orientation="vertical">
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/operatorRecycler"
+                            android:visibility="visible"
+                            android:layout_margin="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
 
                         <Spinner
                             android:id="@+id/spinner_operator_offline"
@@ -116,13 +152,14 @@
                             android:layout_marginTop="10dp"
                             android:background="@drawable/squre_editext"
                             android:gravity="center"
+
                             android:hint="@string/please_select_operator"
                             android:paddingStart="5dp"
                             android:paddingTop="3dp"
                             android:paddingEnd="5dp"
                             android:paddingBottom="3dp"
                             android:textSize="13sp"
-                            android:visibility="visible" />
+                            android:visibility="gone" />
 
 
                         <Spinner
@@ -209,6 +246,12 @@
                         android:gravity="center_horizontal"
                         android:orientation="vertical"
                         android:visibility="gone">
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/operatoronlineRecycler"
+                           android:visibility="visible"
+                            android:layout_width="match_parent"
+                            android:layout_margin="10dp"
+                            android:layout_height="wrap_content"/>
 
                         <Spinner
                             android:id="@+id/spinner_operator_online"
@@ -224,7 +267,7 @@
                             android:paddingBottom="3dp"
                             android:textAlignment="center"
                             android:textSize="13sp"
-                            android:visibility="visible" />
+                            android:visibility="gone" />
 
 
                         <Spinner
@@ -336,6 +379,7 @@
             android:layout_gravity="start"
             app:headerLayout="@layout/nav_header_main"
             app:itemTextColor="@color/black"
+            android:visibility="gone"
             app:menu="@menu/left_menu_ret"
 
 

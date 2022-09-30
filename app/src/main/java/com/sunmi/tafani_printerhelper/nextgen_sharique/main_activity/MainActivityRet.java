@@ -39,6 +39,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -49,6 +51,7 @@ import com.sunmi.tafani_printerhelper.nextgen_sharique.application_sharepreferen
 import com.sunmi.tafani_printerhelper.nextgen_sharique.changeMpin.ChangeOfflineMpinRetailer;
 import com.sunmi.tafani_printerhelper.nextgen_sharique.contact.ContactDetails;
 import com.sunmi.tafani_printerhelper.nextgen_sharique.database.adapter_online.DenominationAdapter;
+import com.sunmi.tafani_printerhelper.nextgen_sharique.database.adapter_online.OperatorOnlineRecyclerAdapter;
 import com.sunmi.tafani_printerhelper.nextgen_sharique.database.adapter_online.ProductAdapter;
 import com.sunmi.tafani_printerhelper.nextgen_sharique.database.adapter_online.OperatorAdapter;
 import com.sunmi.tafani_printerhelper.nextgen_sharique.database.model_online.DenominationModel;
@@ -57,6 +60,7 @@ import com.sunmi.tafani_printerhelper.nextgen_sharique.database.model_online.Ope
 import com.sunmi.tafani_printerhelper.nextgen_sharique.database.offline.OperatorOfflineModel;
 import com.sunmi.tafani_printerhelper.nextgen_sharique.database.offline.ProductOfflineModel;
 import com.sunmi.tafani_printerhelper.nextgen_sharique.database.offline.ServiceRepository;
+import com.sunmi.tafani_printerhelper.nextgen_sharique.database.offline.adapter.OperatorRecyclerAdapter;
 import com.sunmi.tafani_printerhelper.nextgen_sharique.database.offline.modal_offline.BulkDownloadOfflineModel;
 import com.sunmi.tafani_printerhelper.nextgen_sharique.database.offline.adapter.DenominationAdapterOffline;
 import com.sunmi.tafani_printerhelper.nextgen_sharique.database.offline.adapter.OperatorAdapterOffline;
@@ -96,6 +100,8 @@ public class MainActivityRet extends AppCompatActivity
     FloatingActionButton fab;
     NavigationView navigationView;
     private String testFont;
+    RecyclerView operatorRecycler,operatoronlineRecycler;
+    private Button buttonOffline,buttonOnline;
 
     String amountFromServer="",transactionStatus="",vendorcode_offline="",transid_online="",transactionDate_online="",transactionTime_online="",footer_first_online="",footer_second_online="",footer_first_offline="",footer_second_offline="";
     private boolean isBold, isUnderLine;
@@ -175,6 +181,8 @@ public class MainActivityRet extends AppCompatActivity
             setContentView(R.layout.main_activity_ret);
             //startService(new Intent(this, BroadcastService.class));
 
+            operatorRecycler=findViewById(R.id.operatorRecycler);
+            operatoronlineRecycler=findViewById(R.id.operatoronlineRecycler);
             serviceRepository = new ServiceRepository(MainActivityRet.this);
 
 
@@ -220,10 +228,11 @@ public class MainActivityRet extends AppCompatActivity
             navigationView.inflateMenu(R.menu.left_menu_ret);
 
 
+            buttonOffline=findViewById(R.id.buttonOffline);
+            buttonOnline=findViewById(R.id.buttonOnline);
 
 
-
-           navigationView.setNavigationItemSelectedListener(this);
+            navigationView.setNavigationItemSelectedListener(this);
 
 
             getIds();
@@ -248,9 +257,9 @@ public class MainActivityRet extends AppCompatActivity
      */
 
 
-             operator_offline = serviceRepository.getList_service_operator_download_offline();
-             productList_offline = serviceRepository.getList_service_product_download_offline();
-             productList_offline_filter = serviceRepository.getList_service_product_download_offline();
+            operator_offline = serviceRepository.getList_service_operator_download_offline();
+            productList_offline = serviceRepository.getList_service_product_download_offline();
+            productList_offline_filter = serviceRepository.getList_service_product_download_offline();
 
 
             System.out.println(operator_offline);
@@ -259,10 +268,16 @@ public class MainActivityRet extends AppCompatActivity
 
             ServiceOperatorDownloadOfflineModel serviceOperatorDownloadOfflineModel = new ServiceOperatorDownloadOfflineModel(getString(R.string.please_select_operator),getString(R.string.please_select_operator));
             operator_offline.add(0, serviceOperatorDownloadOfflineModel);
-            OperatorAdapterOffline operatorAdapterOffline = new OperatorAdapterOffline(MainActivityRet.this,operator_offline);
-            spinner_operator_offline.setAdapter(operatorAdapterOffline);
+           // OperatorAdapterOffline operatorAdapterOffline = new OperatorAdapterOffline(MainActivityRet.this,operator_offline);
+//            spinner_operator_offline.setAdapter(operatorAdapterOffline);
 
 
+            OperatorRecyclerAdapter operatorAdapterOffline = new OperatorRecyclerAdapter(MainActivityRet.this,operator_offline);
+            operatorRecycler.setHasFixedSize(true);
+
+            operatorRecycler.setAdapter(operatorAdapterOffline);
+            RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
+            operatorRecycler.setLayoutManager(mLayoutManager);
             ServiceProductDownloadOfflineModel serviceProductDownloadOfflineModel = new ServiceProductDownloadOfflineModel(getString(R.string.please_select_product),getString(R.string.please_select_vendor_type),getString(R.string.please_select_denomination));
             productList_offline.add(0, serviceProductDownloadOfflineModel);
             ProductAdapterOffline opproductAdapter = new ProductAdapterOffline(MainActivityRet.this, productList_offline);
@@ -272,7 +287,7 @@ public class MainActivityRet extends AppCompatActivity
             DenominationAdapterOffline denominationAdapter = new DenominationAdapterOffline(MainActivityRet.this, productList_offline);
             spinner_denomination_offline.setAdapter(denominationAdapter);
 
-          //  spinner_denomination_offline.setVisibility(View.GONE);
+            //  spinner_denomination_offline.setVisibility(View.GONE);
 
 
 
@@ -395,10 +410,10 @@ public class MainActivityRet extends AppCompatActivity
 
                 }
             }
-              else {
-                    Toast.makeText(MainActivityRet.this, getString(R.string.please_select_vendor_type), Toast.LENGTH_SHORT).show();
+            else {
+                Toast.makeText(MainActivityRet.this, getString(R.string.please_select_vendor_type), Toast.LENGTH_SHORT).show();
 
-                }
+            }
 
 
 
@@ -467,7 +482,7 @@ public class MainActivityRet extends AppCompatActivity
         spinner_operator_offline = findViewById(R.id.spinner_operator_offline);
         spinner_product_offline = findViewById(R.id.spinner_product_offline);
         spinner_denomination_offline = findViewById(R.id.spinner_denomination_offline);
-       // spinner_denomination_offline.setVisibility(View.GONE);
+        // spinner_denomination_offline.setVisibility(View.GONE);
 
         spinner_operator_offline.setOnItemSelectedListener(this);
         spinner_product_offline.setOnItemSelectedListener(this);
@@ -484,10 +499,19 @@ public class MainActivityRet extends AppCompatActivity
         denominationList_online.clear();
 
 
-        OperatorModal vendorTypeMode_temp = new OperatorModal(getString(R.string.please_select_operator),getString(R.string.please_select_operator));
+      /*  OperatorModal vendorTypeMode_temp = new OperatorModal(getString(R.string.please_select_operator),getString(R.string.please_select_operator));
         operatorList_online.add(vendorTypeMode_temp);
         OperatorAdapter vendorAdapter = new OperatorAdapter(this, operatorList_online);
         spinner_operator_online.setAdapter(vendorAdapter);
+*/
+
+
+        OperatorOnlineRecyclerAdapter operatorAdapterOffline = new OperatorOnlineRecyclerAdapter(MainActivityRet.this,operatorList_online);
+        operatoronlineRecycler.setHasFixedSize(true);
+
+        operatoronlineRecycler.setAdapter(operatorAdapterOffline);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
+        operatoronlineRecycler.setLayoutManager(mLayoutManager);
 
         ProductModel opeproduct_temp = new ProductModel(getString(R.string.please_select_product));
         productList_online.add(opeproduct_temp);
@@ -516,7 +540,103 @@ public class MainActivityRet extends AppCompatActivity
 
 
 
+        buttonOnline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                operatorList_online = new ArrayList<>();
+                productList_online = new ArrayList<>();
+                denominationList_online = new ArrayList<>();
 
+                operatorList_online.clear();
+                productList_online.clear();
+                denominationList_online.clear();
+
+                etPin.setText("");
+
+                spinner_operator_offline.setEnabled(true);
+                spinner_product_offline.setEnabled(false);
+                spinner_denomination_offline.setEnabled(false);
+
+
+                OperatorModal vendorTypeMode_temp = new OperatorModal(getString(R.string.please_select_operator), getString(R.string.please_select_operator));
+                operatorList_online.add(vendorTypeMode_temp);
+                      /*  OperatorAdapter operatorAdapter1 = new OperatorAdapter(MainActivityRet.this, operatorList_online);
+                        spinner_operator_online.setAdapter(operatorAdapter1);
+*/
+
+                    /*    OperatorOnlineRecyclerAdapter operatorAdapterOffline = new OperatorOnlineRecyclerAdapter(MainActivityRet.this,operatorList_online);
+                        operatoronlineRecycler.setHasFixedSize(true);
+
+                        operatoronlineRecycler.setAdapter(operatorAdapterOffline);
+                        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(MainActivityRet.this, 2);
+                        operatoronlineRecycler.setLayoutManager(mLayoutManager);
+*/
+                ProductModel operatorModel_temp = new ProductModel(getString(R.string.please_select_product));
+                productList_online.add(operatorModel_temp);
+                ProductAdapter productAdapter = new ProductAdapter(MainActivityRet.this, productList_online);
+                spinner_productType_online.setAdapter(productAdapter);
+
+                DenominationModel productModel_temp = new DenominationModel(getString(R.string.please_select_denomination));
+                denominationList_online.add(productModel_temp);
+                DenominationAdapter productAdapter2 = new DenominationAdapter(MainActivityRet.this, denominationList_online);
+                spinner_denomination_online.setAdapter(productAdapter2);
+
+
+                linOnline.setVisibility(View.VISIBLE);
+                linOffline.setVisibility(View.GONE);
+                ll_pinsale_orderpin.setVisibility(View.GONE);
+
+                if (CommonUtility.isOnline(MainActivityRet.this)) {
+
+                    CommonUtility.showProgressDialog(MainActivityRet.this);
+
+                    request_service_online_volly(100);
+                } else {
+                    Toast.makeText(MainActivityRet.this, R.string.please_check_connection, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        buttonOffline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                linOffline.setVisibility(View.VISIBLE);
+                linOnline.setVisibility(View.GONE);
+                ll_pinsale_orderpin.setVisibility(View.VISIBLE);
+
+
+                operator_offline.clear();
+                productList_offline.clear();
+                productList_offline_filter.clear();
+                edittext_quantity.setText("");
+
+                operator_offline = serviceRepository.getList_service_operator_download_offline();
+                productList_offline = serviceRepository.getList_service_product_download_offline();
+                productList_offline_filter = serviceRepository.getList_service_product_download_offline();
+
+                ServiceOperatorDownloadOfflineModel serviceOperatorDownloadOfflineModel = new ServiceOperatorDownloadOfflineModel(getString(R.string.please_select_operator),getString(R.string.please_select_operator));
+                operator_offline.add(0, serviceOperatorDownloadOfflineModel);
+                        /*OperatorAdapterOffline operatorAdapterOffline = new OperatorAdapterOffline(MainActivityRet.this,operator_offline);
+                        spinner_operator_offline.setAdapter(operatorAdapterOffline);
+*/
+
+                OperatorRecyclerAdapter operatorAdapterOffline = new OperatorRecyclerAdapter(MainActivityRet.this,operator_offline);
+                operatorRecycler.setHasFixedSize(true);
+
+                operatorRecycler.setAdapter(operatorAdapterOffline);
+                RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(MainActivityRet.this, 2);
+                operatorRecycler.setLayoutManager(mLayoutManager);
+                ServiceProductDownloadOfflineModel serviceProductDownloadOfflineModel = new ServiceProductDownloadOfflineModel(getString(R.string.please_select_product),getString(R.string.please_select_vendor_type),getString(R.string.please_select_denomination));
+                productList_offline.add(0, serviceProductDownloadOfflineModel);
+                ProductAdapterOffline opproductAdapter = new ProductAdapterOffline(MainActivityRet.this, productList_offline);
+                spinner_product_offline.setAdapter(opproductAdapter);
+
+                DenominationAdapterOffline denominationAdapter = new DenominationAdapterOffline(MainActivityRet.this, productList_offline);
+                spinner_denomination_offline.setAdapter(denominationAdapter);
+
+            }
+        });
+
+/*
         optionRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -542,9 +662,18 @@ public class MainActivityRet extends AppCompatActivity
 
                         ServiceOperatorDownloadOfflineModel serviceOperatorDownloadOfflineModel = new ServiceOperatorDownloadOfflineModel(getString(R.string.please_select_operator),getString(R.string.please_select_operator));
                         operator_offline.add(0, serviceOperatorDownloadOfflineModel);
-                        OperatorAdapterOffline operatorAdapterOffline = new OperatorAdapterOffline(MainActivityRet.this,operator_offline);
+                        */
+/*OperatorAdapterOffline operatorAdapterOffline = new OperatorAdapterOffline(MainActivityRet.this,operator_offline);
                         spinner_operator_offline.setAdapter(operatorAdapterOffline);
+*//*
 
+
+                        OperatorRecyclerAdapter operatorAdapterOffline = new OperatorRecyclerAdapter(MainActivityRet.this,operator_offline);
+                        operatorRecycler.setHasFixedSize(true);
+
+                        operatorRecycler.setAdapter(operatorAdapterOffline);
+                        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(MainActivityRet.this, 2);
+                        operatorRecycler.setLayoutManager(mLayoutManager);
                         ServiceProductDownloadOfflineModel serviceProductDownloadOfflineModel = new ServiceProductDownloadOfflineModel(getString(R.string.please_select_product),getString(R.string.please_select_vendor_type),getString(R.string.please_select_denomination));
                         productList_offline.add(0, serviceProductDownloadOfflineModel);
                         ProductAdapterOffline opproductAdapter = new ProductAdapterOffline(MainActivityRet.this, productList_offline);
@@ -553,8 +682,8 @@ public class MainActivityRet extends AppCompatActivity
                         DenominationAdapterOffline denominationAdapter = new DenominationAdapterOffline(MainActivityRet.this, productList_offline);
                         spinner_denomination_offline.setAdapter(denominationAdapter);
 
-                   }
-                        break;
+                    }
+                    break;
 
                     case R.id.onlineradioButton: {
 
@@ -575,8 +704,20 @@ public class MainActivityRet extends AppCompatActivity
 
                         OperatorModal vendorTypeMode_temp = new OperatorModal(getString(R.string.please_select_operator), getString(R.string.please_select_operator));
                         operatorList_online.add(vendorTypeMode_temp);
-                        OperatorAdapter operatorAdapter1 = new OperatorAdapter(MainActivityRet.this, operatorList_online);
+                      */
+/*  OperatorAdapter operatorAdapter1 = new OperatorAdapter(MainActivityRet.this, operatorList_online);
                         spinner_operator_online.setAdapter(operatorAdapter1);
+*//*
+
+
+                    */
+/*    OperatorOnlineRecyclerAdapter operatorAdapterOffline = new OperatorOnlineRecyclerAdapter(MainActivityRet.this,operatorList_online);
+                        operatoronlineRecycler.setHasFixedSize(true);
+
+                        operatoronlineRecycler.setAdapter(operatorAdapterOffline);
+                        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(MainActivityRet.this, 2);
+                        operatoronlineRecycler.setLayoutManager(mLayoutManager);
+*//*
 
                         ProductModel operatorModel_temp = new ProductModel(getString(R.string.please_select_product));
                         productList_online.add(operatorModel_temp);
@@ -603,12 +744,14 @@ public class MainActivityRet extends AppCompatActivity
                         }
 
                     }
-                        break;
+                    break;
 
                 }
             }
         });
+*/
 
+/*
         spinner_operator_online.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
                     @Override
@@ -629,7 +772,7 @@ public class MainActivityRet extends AppCompatActivity
                         {
 
 
-                         //   Toast.makeText(MainActivityRet.this, " -----selected--name--"+select_vendorName+"-----selected---Code----"+select_vendorCode,Toast.LENGTH_SHORT).show();
+                            //   Toast.makeText(MainActivityRet.this, " -----selected--name--"+select_vendorName+"-----selected---Code----"+select_vendorCode,Toast.LENGTH_SHORT).show();
                         }
                         else {
 
@@ -642,6 +785,7 @@ public class MainActivityRet extends AppCompatActivity
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) { }
                 });
+*/
 
         spinner_productType_online.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
@@ -660,14 +804,14 @@ public class MainActivityRet extends AppCompatActivity
                         }
 
                         else
-                            {
+                        {
 
 
 
-                                DenominationAdapter denominationAdapter1 = new DenominationAdapter(MainActivityRet.this, denominationList_online);
-                                spinner_denomination_online.setAdapter(denominationAdapter1);
-                                spinner_denomination_online.setSelection(position);
-                            }
+                            DenominationAdapter denominationAdapter1 = new DenominationAdapter(MainActivityRet.this, denominationList_online);
+                            spinner_denomination_online.setAdapter(denominationAdapter1);
+                            spinner_denomination_online.setSelection(position);
+                        }
 
                     }
                     @Override
@@ -685,7 +829,7 @@ public class MainActivityRet extends AppCompatActivity
 
                         select_denominationCode = clickedItem.getDenominationCode();
 
-                     //   Toast.makeText(MainActivityRet.this, " -----selected--product Code--"+select_productCode,Toast.LENGTH_SHORT).show();
+                        //   Toast.makeText(MainActivityRet.this, " -----selected--product Code--"+select_productCode,Toast.LENGTH_SHORT).show();
                     }
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) { }
@@ -737,8 +881,8 @@ public class MainActivityRet extends AppCompatActivity
 
                 request_pinsalepurchase_online_volly(101);
 
-              }
-                break;
+            }
+            break;
 
             case R.id.button_pinsale_offline:
             {
@@ -779,7 +923,7 @@ public class MainActivityRet extends AppCompatActivity
 
                 operator_offline.clear();
                 productList_offline.clear();
-               // productList_offline_filter.clear();
+                // productList_offline_filter.clear();
                 edittext_quantity.setText("");
 
                 operator_offline.clear();
@@ -793,9 +937,16 @@ public class MainActivityRet extends AppCompatActivity
 
                 ServiceOperatorDownloadOfflineModel serviceOperatorDownloadOfflineModel = new ServiceOperatorDownloadOfflineModel(getString(R.string.please_select_operator),getString(R.string.please_select_operator));
                 operator_offline.add(0, serviceOperatorDownloadOfflineModel);
-                OperatorAdapterOffline operatorAdapterOffline = new OperatorAdapterOffline(MainActivityRet.this,operator_offline);
+              /*  OperatorAdapterOffline operatorAdapterOffline = new OperatorAdapterOffline(MainActivityRet.this,operator_offline);
                 spinner_operator_offline.setAdapter(operatorAdapterOffline);
+*/
 
+                OperatorRecyclerAdapter operatorAdapterOffline = new OperatorRecyclerAdapter(MainActivityRet.this,operator_offline);
+                operatorRecycler.setHasFixedSize(true);
+
+                operatorRecycler.setAdapter(operatorAdapterOffline);
+                RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
+                operatorRecycler.setLayoutManager(mLayoutManager);
                 ServiceProductDownloadOfflineModel serviceProductDownloadOfflineModel = new ServiceProductDownloadOfflineModel(getString(R.string.please_select_product),getString(R.string.please_select_vendor_type),getString(R.string.please_select_denomination));
                 productList_offline.add(0, serviceProductDownloadOfflineModel);
                 ProductAdapterOffline opproductAdapter = new ProductAdapterOffline(MainActivityRet.this, productList_offline);
@@ -842,8 +993,8 @@ public class MainActivityRet extends AppCompatActivity
                         System.out.println(arraylist_details_pin);
 
 
-                   //    Intent intent = new Intent(MainActivityRet.this, OrderPinOfflineReceiptPage.class);
-                     //   startActivity(intent);
+                        //    Intent intent = new Intent(MainActivityRet.this, OrderPinOfflineReceiptPage.class);
+                        //   startActivity(intent);
 
                         for (int i=0;i<arraylist_details_pin_print.size();i++){
                             System.out.println("Print Data+===   "+arraylist_details_pin_print.get(i));
@@ -851,7 +1002,7 @@ public class MainActivityRet extends AppCompatActivity
                             print_pos_data_offline(i);
 
                         }
-                       // offline_print_popup(getString(R.string.offline_pin_sale_sucess));
+                        // offline_print_popup(getString(R.string.offline_pin_sale_sucess));
 
 
                         alertDialog_orderPin.cancel();
@@ -962,7 +1113,7 @@ public class MainActivityRet extends AppCompatActivity
             {
                 dialog.dismiss();
 
-               // MainActivityRet.this.finish();
+                // MainActivityRet.this.finish();
 
             }
         });
@@ -1017,7 +1168,7 @@ public class MainActivityRet extends AppCompatActivity
             // Bitmap bitmap_new = getResizedBitmap(bitmap ,200);
 
 
-        //   String vendorcode_offline_print = MyApplication.getSaveString("vendorcode_offline_print",MainActivityRet.this);
+            //   String vendorcode_offline_print = MyApplication.getSaveString("vendorcode_offline_print",MainActivityRet.this);
 
             String vendorcode_offline_print = arraylist_details_pin_print.get(i).getVendorcode();
 
@@ -1026,7 +1177,7 @@ public class MainActivityRet extends AppCompatActivity
             if(vendorcode_offline_print.equalsIgnoreCase("LIBYANA"))
             {
 
-             //   Toast.makeText(MainActivityRet.this, vendorcode_offline_print, Toast.LENGTH_SHORT).show();
+                //   Toast.makeText(MainActivityRet.this, vendorcode_offline_print, Toast.LENGTH_SHORT).show();
 
                 bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ani_libyana, options);
 
@@ -1044,7 +1195,7 @@ public class MainActivityRet extends AppCompatActivity
 
             else if(vendorcode_offline_print.equalsIgnoreCase("CFNET"))   // Not available
             {
-               // Toast.makeText(MainActivityRet.this, vendorcode_offline_print, Toast.LENGTH_SHORT).show();
+                // Toast.makeText(MainActivityRet.this, vendorcode_offline_print, Toast.LENGTH_SHORT).show();
                 bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.city_wifi, options);  // Not available
 
                 if(languageToUse.equalsIgnoreCase("ar"))
@@ -1061,7 +1212,7 @@ public class MainActivityRet extends AppCompatActivity
 
             else if(vendorcode_offline_print.equalsIgnoreCase("RDIT"))
             {
-             //   Toast.makeText(MainActivityRet.this, vendorcode_offline_print, Toast.LENGTH_SHORT).show();
+                //   Toast.makeText(MainActivityRet.this, vendorcode_offline_print, Toast.LENGTH_SHORT).show();
                 bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ani_airiyada, options);  // Not available
 
                 if(languageToUse.equalsIgnoreCase("ar"))
@@ -1078,7 +1229,7 @@ public class MainActivityRet extends AppCompatActivity
 
             else if(vendorcode_offline_print.equalsIgnoreCase("LTT"))
             {
-             //   Toast.makeText(MainActivityRet.this, vendorcode_offline_print, Toast.LENGTH_SHORT).show();
+                //   Toast.makeText(MainActivityRet.this, vendorcode_offline_print, Toast.LENGTH_SHORT).show();
                 bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ani_ltt, options);
 
                 if(languageToUse.equalsIgnoreCase("ar"))
@@ -1096,7 +1247,7 @@ public class MainActivityRet extends AppCompatActivity
 
             else if(vendorcode_offline_print.equalsIgnoreCase("FNET"))
             {
-              //  Toast.makeText(MainActivityRet.this, vendorcode_offline_print, Toast.LENGTH_SHORT).show();
+                //  Toast.makeText(MainActivityRet.this, vendorcode_offline_print, Toast.LENGTH_SHORT).show();
                 bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ani_first_net, options);
 
                 if(languageToUse.equalsIgnoreCase("ar"))
@@ -1116,7 +1267,7 @@ public class MainActivityRet extends AppCompatActivity
 
             else if(vendorcode_offline_print.equalsIgnoreCase("MADAR"))
             {
-              //  Toast.makeText(MainActivityRet.this, vendorcode_offline_print, Toast.LENGTH_SHORT).show();
+                //  Toast.makeText(MainActivityRet.this, vendorcode_offline_print, Toast.LENGTH_SHORT).show();
                 bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ani_madar, options);
 
                 if(languageToUse.equalsIgnoreCase("ar"))
@@ -1133,7 +1284,7 @@ public class MainActivityRet extends AppCompatActivity
 
             else if(vendorcode_offline_print.equalsIgnoreCase("THLC"))
             {
-             //   Toast.makeText(MainActivityRet.this, vendorcode_offline_print, Toast.LENGTH_SHORT).show();
+                //   Toast.makeText(MainActivityRet.this, vendorcode_offline_print, Toast.LENGTH_SHORT).show();
                 bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.logo_ani_operator_hatif_new, options);
 
                 if(languageToUse.equalsIgnoreCase("ar"))
@@ -1151,7 +1302,7 @@ public class MainActivityRet extends AppCompatActivity
 
             else if(vendorcode_offline_print.equalsIgnoreCase("ALKAFAA"))
             {
-              //  Toast.makeText(MainActivityRet.this, vendorcode_offline_print, Toast.LENGTH_SHORT).show();
+                //  Toast.makeText(MainActivityRet.this, vendorcode_offline_print, Toast.LENGTH_SHORT).show();
                 bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ani_alkafa, options);
 
                 if(languageToUse.equalsIgnoreCase("ar"))
@@ -1167,7 +1318,7 @@ public class MainActivityRet extends AppCompatActivity
 
             else if(vendorcode_offline_print.equalsIgnoreCase("NBDA"))
             {
-              //  Toast.makeText(MainActivityRet.this, vendorcode_offline_print, Toast.LENGTH_SHORT).show();
+                //  Toast.makeText(MainActivityRet.this, vendorcode_offline_print, Toast.LENGTH_SHORT).show();
                 bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ani_digital_implus, options);
                 if(languageToUse.equalsIgnoreCase("ar"))
                 {
@@ -1231,7 +1382,7 @@ public class MainActivityRet extends AppCompatActivity
 
             else {
 
-               // Toast.makeText(MainActivityRet.this, vendorcode_offline_print, Toast.LENGTH_SHORT).show();
+                // Toast.makeText(MainActivityRet.this, vendorcode_offline_print, Toast.LENGTH_SHORT).show();
 
 
                 bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.logo_stock, options);
@@ -1239,7 +1390,7 @@ public class MainActivityRet extends AppCompatActivity
                 footer_second_offline="";
             }
 
-           SunmiPrintHelper.getInstance().printBitmap_nextgen(bitmap,1);
+            SunmiPrintHelper.getInstance().printBitmap_nextgen(bitmap,1);
 
 
             if (languageToUse.equalsIgnoreCase("en")) {
@@ -1410,15 +1561,15 @@ public class MainActivityRet extends AppCompatActivity
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inTargetDensity = 200;
             options.inDensity = 200;
-           // bitmap2 = BitmapFactory.decodeResource(getResources(), R.drawable.logo, options);
+            // bitmap2 = BitmapFactory.decodeResource(getResources(), R.drawable.logo, options);
 
 
             // Bitmap bitmap_new = getResizedBitmap(bitmap ,200);
 
             if(vendorcode_online.equalsIgnoreCase("LIBYANA"))
             {
-              //  Toast.makeText(MainActivityRet.this, vendorcode_online, Toast.LENGTH_SHORT).show();
-              //  bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.arabic_logo, options);
+                //  Toast.makeText(MainActivityRet.this, vendorcode_online, Toast.LENGTH_SHORT).show();
+                //  bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.arabic_logo, options);
                 bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ani_libyana, options);
 
 
@@ -1435,9 +1586,9 @@ public class MainActivityRet extends AppCompatActivity
                 }
             }
 
-           else if(vendorcode_online.equalsIgnoreCase("CFNET"))   // Not available
+            else if(vendorcode_online.equalsIgnoreCase("CFNET"))   // Not available
             {
-               // Toast.makeText(MainActivityRet.this, vendorcode_online, Toast.LENGTH_SHORT).show();
+                // Toast.makeText(MainActivityRet.this, vendorcode_online, Toast.LENGTH_SHORT).show();
                 bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.city_wifi, options);  // Not available
 
                 if(languageToUse.equalsIgnoreCase("ar"))
@@ -1454,24 +1605,24 @@ public class MainActivityRet extends AppCompatActivity
 
             else if(vendorcode_online.equalsIgnoreCase("RDIT"))
             {
-                  //  Toast.makeText(MainActivityRet.this, vendorcode_online, Toast.LENGTH_SHORT).show();
-                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ani_airiyada, options);  // Not available
+                //  Toast.makeText(MainActivityRet.this, vendorcode_online, Toast.LENGTH_SHORT).show();
+                bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ani_airiyada, options);  // Not available
 
-                    if(languageToUse.equalsIgnoreCase("ar"))
-                    {
-                        footer_first_online="للتعبئة: أرسل رسالة نصية إلى الرقم (13434): رقم العقد*الرقم السري*رقم كرت التعبئة# ";
-                        footer_second_online="www.Tafani.ly";
-                    }
-                    else {
-                        footer_first_online="To top-up: send a text message to the number (13434): Contract number * PIN code * Top-up card number #";
-                        footer_second_online="www.Tafani.ly";
-
-                    }
+                if(languageToUse.equalsIgnoreCase("ar"))
+                {
+                    footer_first_online="للتعبئة: أرسل رسالة نصية إلى الرقم (13434): رقم العقد*الرقم السري*رقم كرت التعبئة# ";
+                    footer_second_online="www.Tafani.ly";
                 }
+                else {
+                    footer_first_online="To top-up: send a text message to the number (13434): Contract number * PIN code * Top-up card number #";
+                    footer_second_online="www.Tafani.ly";
+
+                }
+            }
 
             else if(vendorcode_online.equalsIgnoreCase("LTT"))
             {
-              //  Toast.makeText(MainActivityRet.this, vendorcode_online, Toast.LENGTH_SHORT).show();
+                //  Toast.makeText(MainActivityRet.this, vendorcode_online, Toast.LENGTH_SHORT).show();
                 bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ani_ltt, options);
 
                 if(languageToUse.equalsIgnoreCase("ar"))
@@ -1489,7 +1640,7 @@ public class MainActivityRet extends AppCompatActivity
 
             else if(vendorcode_online.equalsIgnoreCase("FNET"))
             {
-               // Toast.makeText(MainActivityRet.this, vendorcode_online, Toast.LENGTH_SHORT).show();
+                // Toast.makeText(MainActivityRet.this, vendorcode_online, Toast.LENGTH_SHORT).show();
                 bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ani_first_net, options);
 
                 if(languageToUse.equalsIgnoreCase("ar"))
@@ -1509,7 +1660,7 @@ public class MainActivityRet extends AppCompatActivity
 
             else if(vendorcode_online.equalsIgnoreCase("MADAR"))
             {
-              //  Toast.makeText(MainActivityRet.this, vendorcode_online, Toast.LENGTH_SHORT).show();
+                //  Toast.makeText(MainActivityRet.this, vendorcode_online, Toast.LENGTH_SHORT).show();
                 bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ani_madar, options);
 
                 if(languageToUse.equalsIgnoreCase("ar"))
@@ -1526,7 +1677,7 @@ public class MainActivityRet extends AppCompatActivity
 
             else if(vendorcode_online.equalsIgnoreCase("THLC"))
             {
-               // Toast.makeText(MainActivityRet.this, vendorcode_online, Toast.LENGTH_SHORT).show();
+                // Toast.makeText(MainActivityRet.this, vendorcode_online, Toast.LENGTH_SHORT).show();
                 bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.logo_ani_operator_hatif_new, options);
 
                 if(languageToUse.equalsIgnoreCase("ar"))
@@ -1544,7 +1695,7 @@ public class MainActivityRet extends AppCompatActivity
 
             else if(vendorcode_online.equalsIgnoreCase("ALKAFAA"))
             {
-             //   Toast.makeText(MainActivityRet.this, vendorcode_online, Toast.LENGTH_SHORT).show();
+                //   Toast.makeText(MainActivityRet.this, vendorcode_online, Toast.LENGTH_SHORT).show();
                 bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ani_alkafa, options);
 
                 if(languageToUse.equalsIgnoreCase("ar"))
@@ -1560,7 +1711,7 @@ public class MainActivityRet extends AppCompatActivity
 
             else if(vendorcode_online.equalsIgnoreCase("NBDA"))
             {
-             //   Toast.makeText(MainActivityRet.this, vendorcode_online, Toast.LENGTH_SHORT).show();
+                //   Toast.makeText(MainActivityRet.this, vendorcode_online, Toast.LENGTH_SHORT).show();
                 bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ani_digital_implus, options);
                 if(languageToUse.equalsIgnoreCase("ar"))
                 {
@@ -1627,7 +1778,7 @@ public class MainActivityRet extends AppCompatActivity
             }
 
 
-           // Bitmap bitmap3=mergeToPin(bitmap,bitmap2);
+            // Bitmap bitmap3=mergeToPin(bitmap,bitmap2);
 
             //SunmiPrintHelper.getInstance().printBitmap_nextgen(bitmap3,0);
             SunmiPrintHelper.getInstance().printBitmap_nextgen(bitmap,0);
@@ -1639,9 +1790,9 @@ public class MainActivityRet extends AppCompatActivity
             image_view_rightside.setScaleType(ImageView.ScaleType.CENTER_INSIDE);*/
 
 
-          //  image_view_rightside.setBackgroundResource(R.drawable.madar_p);
-          //  bitmap = Bitmap.createBitmap(ll_header_print.getDrawingCache());
-          //  SunmiPrintHelper.getInstance().printBitmap_nextgen(bitmap,1);
+            //  image_view_rightside.setBackgroundResource(R.drawable.madar_p);
+            //  bitmap = Bitmap.createBitmap(ll_header_print.getDrawingCache());
+            //  SunmiPrintHelper.getInstance().printBitmap_nextgen(bitmap,1);
 
 
 
@@ -1669,7 +1820,7 @@ public class MainActivityRet extends AppCompatActivity
                 SunmiPrintHelper.getInstance().printText_nextgen("---------------" + "\n", 50, isBold, isUnderLine, testFont, 0);
 
                 String pinNumberString_online_print = pinNumberString_online.replaceAll("...", "$0 ");
-               // SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.pin_number) +" "+pinNumberString_online_print+"\n",  20, true, isUnderLine, testFont, 1);
+                // SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.pin_number) +" "+pinNumberString_online_print+"\n",  20, true, isUnderLine, testFont, 1);
                 SunmiPrintHelper.getInstance().printText_nextgen(pinNumberString_online_print+"\n",  30, true, isUnderLine, testFont, 1);
 
                 SunmiPrintHelper.getInstance().printText_nextgen("LYD " +" "+amount_online+"\n",  35, true, isUnderLine, testFont, 1);
@@ -1685,7 +1836,7 @@ public class MainActivityRet extends AppCompatActivity
 
 
 
-            //    SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.footer_heder_print) + "\n\n", 20, isBold, isUnderLine, testFont, 0);
+                //    SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.footer_heder_print) + "\n\n", 20, isBold, isUnderLine, testFont, 0);
 
                 SunmiPrintHelper.getInstance().feedPaper();
 
@@ -1693,42 +1844,42 @@ public class MainActivityRet extends AppCompatActivity
             }
             else
 
-                {
+            {
 
 
 
 
 
 
-                    SunmiPrintHelper.getInstance().printText_nextgen("\n\n"+transactionDate_online, 20, true, isUnderLine, testFont, 0);
-                    SunmiPrintHelper.getInstance().printText_nextgen("               " + transactionTime_online + "\n", 20, true, isUnderLine, testFont, 2);
+                SunmiPrintHelper.getInstance().printText_nextgen("\n\n"+transactionDate_online, 20, true, isUnderLine, testFont, 0);
+                SunmiPrintHelper.getInstance().printText_nextgen("               " + transactionTime_online + "\n", 20, true, isUnderLine, testFont, 2);
 
-                    SunmiPrintHelper.getInstance().printText_nextgen(  transid_online+"                    ", 20, isBold, isUnderLine, testFont, 0);
-                    SunmiPrintHelper.getInstance().printText_nextgen( getString(R.string.transaction_id) + "\n", 20, isBold, isUnderLine, testFont, 2);
+                SunmiPrintHelper.getInstance().printText_nextgen(  transid_online+"                    ", 20, isBold, isUnderLine, testFont, 0);
+                SunmiPrintHelper.getInstance().printText_nextgen( getString(R.string.transaction_id) + "\n", 20, isBold, isUnderLine, testFont, 2);
 
 
-                    SunmiPrintHelper.getInstance().printText_nextgen(  MyApplication.getSaveString("terminalIdString",MainActivityRet.this)+"              ", 20, isBold, isUnderLine, testFont, 0);
-                    SunmiPrintHelper.getInstance().printText_nextgen( getString(R.string.terminal_id) +"      " + "\n", 20, isBold, isUnderLine, testFont, 2);
+                SunmiPrintHelper.getInstance().printText_nextgen(  MyApplication.getSaveString("terminalIdString",MainActivityRet.this)+"              ", 20, isBold, isUnderLine, testFont, 0);
+                SunmiPrintHelper.getInstance().printText_nextgen( getString(R.string.terminal_id) +"      " + "\n", 20, isBold, isUnderLine, testFont, 2);
 
                  /*   SunmiPrintHelper.getInstance().printText_nextgen(  MyApplication.getSaveString("terminalIdString", MainActivityRet.this)+"              ", 20, isBold, isUnderLine, testFont, 0);
                     SunmiPrintHelper.getInstance().printText_nextgen( getString(R.string.retailer)+"    " + "\n", 20, isBold, isUnderLine, testFont, 2);
 */
-                    SunmiPrintHelper.getInstance().printText_nextgen("---------------" + "\n", 50, isBold, isUnderLine, testFont, 0);
+                SunmiPrintHelper.getInstance().printText_nextgen("---------------" + "\n", 50, isBold, isUnderLine, testFont, 0);
 
-                    String pinNumberString_online_print = pinNumberString_online.replaceAll("...", "$0 ");
-                  //  SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.pin_number) +" "+pinNumberString_online_print+"\n",  20, true, isUnderLine, testFont, 1);
-                    SunmiPrintHelper.getInstance().printText_nextgen(pinNumberString_online_print+"\n",  30, true, isUnderLine, testFont, 1);
+                String pinNumberString_online_print = pinNumberString_online.replaceAll("...", "$0 ");
+                //  SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.pin_number) +" "+pinNumberString_online_print+"\n",  20, true, isUnderLine, testFont, 1);
+                SunmiPrintHelper.getInstance().printText_nextgen(pinNumberString_online_print+"\n",  30, true, isUnderLine, testFont, 1);
 
-                    SunmiPrintHelper.getInstance().printText_nextgen("دينار " +" "+amount_online+"\n",  30, true, isUnderLine, testFont, 1);
-                    SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.seriol_number) +" "+serialNumberString_online+"\n",  20, isBold, isUnderLine, testFont, 1);
+                SunmiPrintHelper.getInstance().printText_nextgen("دينار " +" "+amount_online+"\n",  30, true, isUnderLine, testFont, 1);
+                SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.seriol_number) +" "+serialNumberString_online+"\n",  20, isBold, isUnderLine, testFont, 1);
 
-                    SunmiPrintHelper.getInstance().printText_nextgen("---------------" + "\n", 50, isBold, isUnderLine, testFont, 0);
+                SunmiPrintHelper.getInstance().printText_nextgen("---------------" + "\n", 50, isBold, isUnderLine, testFont, 0);
 
-                    SunmiPrintHelper.getInstance().printText_nextgen( footer_first_online + "\n", 16, isBold, isUnderLine, testFont, 1);
+                SunmiPrintHelper.getInstance().printText_nextgen( footer_first_online + "\n", 16, isBold, isUnderLine, testFont, 1);
 
-                    SunmiPrintHelper.getInstance().printText_nextgen(footer_second_online + "  " + "\n\n", 16, isBold, isUnderLine, testFont, 1);
+                SunmiPrintHelper.getInstance().printText_nextgen(footer_second_online + "  " + "\n\n", 16, isBold, isUnderLine, testFont, 1);
 
-                    // SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.footer_heder_print) + "\n\n", 20, isBold, isUnderLine, testFont,0);
+                // SunmiPrintHelper.getInstance().printText_nextgen(getString(R.string.footer_heder_print) + "\n\n", 20, isBold, isUnderLine, testFont,0);
 
                 SunmiPrintHelper.getInstance().feedPaper();
 
@@ -1786,8 +1937,8 @@ public class MainActivityRet extends AppCompatActivity
 
     private boolean checkValidation_orderPopup() {
 
-       mpinString_orderPin = editext_popup_order.getText().toString().trim();
-       // String offlinePinString = MyApplication.getSaveString("offlinePinString", MainActivityRet.this);
+        mpinString_orderPin = editext_popup_order.getText().toString().trim();
+        // String offlinePinString = MyApplication.getSaveString("offlinePinString", MainActivityRet.this);
         //mpinString_orderPin = offlinePinString;
 
         if (mpinString_orderPin.isEmpty()) {
@@ -1905,8 +2056,8 @@ public class MainActivityRet extends AppCompatActivity
                     JSONObject jsonObject_stock = new JSONObject();
 
                     jsonObject_stock.put("s", arraylist_details_pin_y.get(i).serialNumber);
-                   // jsonObject_stock.put("d", "19/01/21 19:08:33");
-                //    jsonObject_stock.put("d", MyApplication.current_sell_dateTime());
+                    // jsonObject_stock.put("d", "19/01/21 19:08:33");
+                    //    jsonObject_stock.put("d", MyApplication.current_sell_dateTime());
                     jsonObject_stock.put("d", arraylist_details_pin_y.get(i).sell_dateTime);
 
                     jsonArray_stock.put(jsonObject_stock);
@@ -1926,8 +2077,8 @@ public class MainActivityRet extends AppCompatActivity
                         JSONObject jsonObject_stock = new JSONObject();
 
                         jsonObject_stock.put("s", arraylist_details_pin_y.get(i).serialNumber);
-                      //  jsonObject_stock.put("d", "19/01/21 19:08:33");
-                      //  jsonObject_stock.put("d", MyApplication.current_sell_dateTime());
+                        //  jsonObject_stock.put("d", "19/01/21 19:08:33");
+                        //  jsonObject_stock.put("d", MyApplication.current_sell_dateTime());
                         jsonObject_stock.put("d", arraylist_details_pin_y.get(i).sell_dateTime);
 
 
@@ -1947,7 +2098,7 @@ public class MainActivityRet extends AppCompatActivity
 
                         jsonObject_stock.put("s", arraylist_details_pin_y.get(i).serialNumber);
                         //jsonObject_stock.put("d", "19/01/21 19:08:33");
-                      //  jsonObject_stock.put("d", MyApplication.current_sell_dateTime());
+                        //  jsonObject_stock.put("d", MyApplication.current_sell_dateTime());
                         jsonObject_stock.put("d", arraylist_details_pin_y.get(i).sell_dateTime);
 
                         jsonArray_stock.put(jsonObject_stock);
@@ -2046,10 +2197,10 @@ public class MainActivityRet extends AppCompatActivity
                 if (requestNo == 100) {
 
 
-                 //   serverResponse = new JSONObject("{\"apiname\":\"SERVICE\",\"response\":{\"responsects\":\"01/11/2022 09:11:16 AM\",\"agentcode\":\"0925443779\",\"agentname\":\"Saleh Abozeed Buss\",\"vendorcode\":\"TAFANI\",\"transid\":\"45631341\",\"resultcode\":\"0\",\"resultdescription\":\"Transaction Successful\",\"clienttype\":\"\",\"recordcount\":\"28\",\"productDetails\":[{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"MADAR\",\"vendordesc\":\"MADAR\",\"productcode\":\"AAMP3\",\"productdesc\":\"AAMP3\",\"denomination\":\"3.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"LIBYANA\",\"vendordesc\":\"LIBYANA\",\"productcode\":\"LMP3\",\"productdesc\":\"LMP3\",\"denomination\":\"3.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"THLC\",\"vendordesc\":\"Hatif Libya\",\"productcode\":\"HLC5\",\"productdesc\":\"HLC5\",\"denomination\":\"5.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"LTT\",\"vendordesc\":\"LTT\",\"productcode\":\"LTT5\",\"productdesc\":\"LTT5\",\"denomination\":\"5.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"MADAR\",\"vendordesc\":\"MADAR\",\"productcode\":\"AAMP5\",\"productdesc\":\"AAMP5\",\"denomination\":\"5.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"LIBYANA\",\"vendordesc\":\"LIBYANA\",\"productcode\":\"LMP5\",\"productdesc\":\"LMP5\",\"denomination\":\"5.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"LIBYANA\",\"vendordesc\":\"LIBYANA\",\"productcode\":\"LMP10\",\"productdesc\":\"LMP10\",\"denomination\":\"10.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"THLC\",\"vendordesc\":\"Hatif Libya\",\"productcode\":\"HLC10\",\"productdesc\":\"HLC10\",\"denomination\":\"10.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"LTT\",\"vendordesc\":\"LTT\",\"productcode\":\"LTT10\",\"productdesc\":\"LTT10\",\"denomination\":\"10.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"MADAR\",\"vendordesc\":\"MADAR\",\"productcode\":\"AAMP10\",\"productdesc\":\"AAMP10\",\"denomination\":\"10.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"LTT\",\"vendordesc\":\"LTT\",\"productcode\":\"LTT20\",\"productdesc\":\"LTT20\",\"denomination\":\"20.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"MADAR\",\"vendordesc\":\"MADAR\",\"productcode\":\"AAMP20\",\"productdesc\":\"AAMP20\",\"denomination\":\"20.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"LIBYANA\",\"vendordesc\":\"LIBYANA\",\"productcode\":\"LMP30\",\"productdesc\":\"LMP30\",\"denomination\":\"30.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"THLC\",\"vendordesc\":\"Hatif Libya\",\"productcode\":\"HLC30\",\"productdesc\":\"HLC30\",\"denomination\":\"30.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"LTT\",\"vendordesc\":\"LTT\",\"productcode\":\"LTT30\",\"productdesc\":\"LTT30\",\"denomination\":\"30.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"MADAR\",\"vendordesc\":\"MADAR\",\"productcode\":\"AAMP40\",\"productdesc\":\"AAMP40\",\"denomination\":\"40.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"THLC\",\"vendordesc\":\"Hatif Libya\",\"productcode\":\"HLC50\",\"productdesc\":\"HLC50\",\"denomination\":\"50.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"MADAR\",\"vendordesc\":\"MADAR\",\"productcode\":\"AAMP50\",\"productdesc\":\"AAMP50\",\"denomination\":\"50.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"LIBYANA\",\"vendordesc\":\"LIBYANA\",\"productcode\":\"LMP50\",\"productdesc\":\"LMP50\",\"denomination\":\"50.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"LIBYANA\",\"vendordesc\":\"LIBYANA\",\"productcode\":\"LMP80\",\"productdesc\":\"LMP80\",\"denomination\":\"80.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"LTT\",\"vendordesc\":\"LTT\",\"productcode\":\"LTT80\",\"productdesc\":\"LTT80\",\"denomination\":\"80.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"LIBYANA\",\"vendordesc\":\"LIBYANA\",\"productcode\":\"LMP100\",\"productdesc\":\"LMP100\",\"denomination\":\"100.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"THLC\",\"vendordesc\":\"Hatif Libya\",\"productcode\":\"HLC100\",\"productdesc\":\"HLC100\",\"denomination\":\"100.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"MADAR\",\"vendordesc\":\"MADAR\",\"productcode\":\"AAMP100\",\"productdesc\":\"AAMP100\",\"denomination\":\"100.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"THLC\",\"vendordesc\":\"Hatif Libya\",\"productcode\":\"HLC200\",\"productdesc\":\"HLC200\",\"denomination\":\"200.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"MADAR\",\"vendordesc\":\"MADAR\",\"productcode\":\"AAMP200\",\"productdesc\":\"AAMP200\",\"denomination\":\"200.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"MADAR\",\"vendordesc\":\"MADAR\",\"productcode\":\"AAMP500\",\"productdesc\":\"AAMP500\",\"denomination\":\"500.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"THLC\",\"vendordesc\":\"Hatif Libya\",\"productcode\":\"HLC500\",\"productdesc\":\"HLC500\",\"denomination\":\"500.0\"}],\"qty\":\"1000\",\"parentname\":\"\",\"parentcode\":\"\",\"terminalid\":\"\",\"operatorcount\":\"18\",\"settings\":{},\"operatorDetails\":[{\"name\":\"TAFANI\",\"code\":\"TAFANI\"},{\"name\":\"Hatif Libya\",\"code\":\"THLC\"},{\"name\":\"LTT\",\"code\":\"LTT\"},{\"name\":\"MADAR\",\"code\":\"MADAR\"},{\"name\":\"LIBYANA\",\"code\":\"LIBYANA\"},{\"name\":\"ANI Pay\",\"code\":\"ANIP\"},{\"name\":\"1st NET\",\"code\":\"FNET\"},{\"name\":\"Digital Impulse\",\"code\":\"NBDA\"},{\"name\":\"City WiFi\",\"code\":\"CFNET\"},{\"name\":\"AlRiyada\",\"code\":\"RDIT\"},{\"name\":\"XNET\",\"code\":\"XNET\"},{\"name\":\"ALKAFAA\",\"code\":\"ALKAFAA\"},{\"name\":\"CONNECT\",\"code\":\"CONNECT\"},{\"name\":\"Giga Net\",\"code\":\"GIGA\"},{\"name\":\"Souqprimo\",\"code\":\"SP\"},{\"name\":\"ZAJEL\",\"code\":\"ZAJEL\"},{\"name\":\"SPGF test\",\"code\":\"SPGF\"},{\"name\":\"PrimoTech\",\"code\":\"PT\"}],\"onlineoperatorcount\":\"3\",\"onlineoperatorDetails\":[{\"name\":\"TAFANI\",\"code\":\"TAFANI\"},{\"name\":\"Hatif Libya\",\"code\":\"THLC\"},{\"name\":\"LTT\",\"code\":\"LTT\"}]}}");
+                    //   serverResponse = new JSONObject("{\"apiname\":\"SERVICE\",\"response\":{\"responsects\":\"01/11/2022 09:11:16 AM\",\"agentcode\":\"0925443779\",\"agentname\":\"Saleh Abozeed Buss\",\"vendorcode\":\"TAFANI\",\"transid\":\"45631341\",\"resultcode\":\"0\",\"resultdescription\":\"Transaction Successful\",\"clienttype\":\"\",\"recordcount\":\"28\",\"productDetails\":[{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"MADAR\",\"vendordesc\":\"MADAR\",\"productcode\":\"AAMP3\",\"productdesc\":\"AAMP3\",\"denomination\":\"3.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"LIBYANA\",\"vendordesc\":\"LIBYANA\",\"productcode\":\"LMP3\",\"productdesc\":\"LMP3\",\"denomination\":\"3.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"THLC\",\"vendordesc\":\"Hatif Libya\",\"productcode\":\"HLC5\",\"productdesc\":\"HLC5\",\"denomination\":\"5.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"LTT\",\"vendordesc\":\"LTT\",\"productcode\":\"LTT5\",\"productdesc\":\"LTT5\",\"denomination\":\"5.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"MADAR\",\"vendordesc\":\"MADAR\",\"productcode\":\"AAMP5\",\"productdesc\":\"AAMP5\",\"denomination\":\"5.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"LIBYANA\",\"vendordesc\":\"LIBYANA\",\"productcode\":\"LMP5\",\"productdesc\":\"LMP5\",\"denomination\":\"5.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"LIBYANA\",\"vendordesc\":\"LIBYANA\",\"productcode\":\"LMP10\",\"productdesc\":\"LMP10\",\"denomination\":\"10.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"THLC\",\"vendordesc\":\"Hatif Libya\",\"productcode\":\"HLC10\",\"productdesc\":\"HLC10\",\"denomination\":\"10.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"LTT\",\"vendordesc\":\"LTT\",\"productcode\":\"LTT10\",\"productdesc\":\"LTT10\",\"denomination\":\"10.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"MADAR\",\"vendordesc\":\"MADAR\",\"productcode\":\"AAMP10\",\"productdesc\":\"AAMP10\",\"denomination\":\"10.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"LTT\",\"vendordesc\":\"LTT\",\"productcode\":\"LTT20\",\"productdesc\":\"LTT20\",\"denomination\":\"20.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"MADAR\",\"vendordesc\":\"MADAR\",\"productcode\":\"AAMP20\",\"productdesc\":\"AAMP20\",\"denomination\":\"20.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"LIBYANA\",\"vendordesc\":\"LIBYANA\",\"productcode\":\"LMP30\",\"productdesc\":\"LMP30\",\"denomination\":\"30.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"THLC\",\"vendordesc\":\"Hatif Libya\",\"productcode\":\"HLC30\",\"productdesc\":\"HLC30\",\"denomination\":\"30.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"LTT\",\"vendordesc\":\"LTT\",\"productcode\":\"LTT30\",\"productdesc\":\"LTT30\",\"denomination\":\"30.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"MADAR\",\"vendordesc\":\"MADAR\",\"productcode\":\"AAMP40\",\"productdesc\":\"AAMP40\",\"denomination\":\"40.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"THLC\",\"vendordesc\":\"Hatif Libya\",\"productcode\":\"HLC50\",\"productdesc\":\"HLC50\",\"denomination\":\"50.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"MADAR\",\"vendordesc\":\"MADAR\",\"productcode\":\"AAMP50\",\"productdesc\":\"AAMP50\",\"denomination\":\"50.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"LIBYANA\",\"vendordesc\":\"LIBYANA\",\"productcode\":\"LMP50\",\"productdesc\":\"LMP50\",\"denomination\":\"50.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"LIBYANA\",\"vendordesc\":\"LIBYANA\",\"productcode\":\"LMP80\",\"productdesc\":\"LMP80\",\"denomination\":\"80.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"LTT\",\"vendordesc\":\"LTT\",\"productcode\":\"LTT80\",\"productdesc\":\"LTT80\",\"denomination\":\"80.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"LIBYANA\",\"vendordesc\":\"LIBYANA\",\"productcode\":\"LMP100\",\"productdesc\":\"LMP100\",\"denomination\":\"100.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"THLC\",\"vendordesc\":\"Hatif Libya\",\"productcode\":\"HLC100\",\"productdesc\":\"HLC100\",\"denomination\":\"100.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"MADAR\",\"vendordesc\":\"MADAR\",\"productcode\":\"AAMP100\",\"productdesc\":\"AAMP100\",\"denomination\":\"100.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"THLC\",\"vendordesc\":\"Hatif Libya\",\"productcode\":\"HLC200\",\"productdesc\":\"HLC200\",\"denomination\":\"200.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"MADAR\",\"vendordesc\":\"MADAR\",\"productcode\":\"AAMP200\",\"productdesc\":\"AAMP200\",\"denomination\":\"200.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"MADAR\",\"vendordesc\":\"MADAR\",\"productcode\":\"AAMP500\",\"productdesc\":\"AAMP500\",\"denomination\":\"500.0\"},{\"servicecode\":\"BULKDWN\",\"servicedesc\":\"Bulk Download\",\"vendortypecode\":\"\",\"vendortypedesc\":\"\",\"vendorcode\":\"THLC\",\"vendordesc\":\"Hatif Libya\",\"productcode\":\"HLC500\",\"productdesc\":\"HLC500\",\"denomination\":\"500.0\"}],\"qty\":\"1000\",\"parentname\":\"\",\"parentcode\":\"\",\"terminalid\":\"\",\"operatorcount\":\"18\",\"settings\":{},\"operatorDetails\":[{\"name\":\"TAFANI\",\"code\":\"TAFANI\"},{\"name\":\"Hatif Libya\",\"code\":\"THLC\"},{\"name\":\"LTT\",\"code\":\"LTT\"},{\"name\":\"MADAR\",\"code\":\"MADAR\"},{\"name\":\"LIBYANA\",\"code\":\"LIBYANA\"},{\"name\":\"ANI Pay\",\"code\":\"ANIP\"},{\"name\":\"1st NET\",\"code\":\"FNET\"},{\"name\":\"Digital Impulse\",\"code\":\"NBDA\"},{\"name\":\"City WiFi\",\"code\":\"CFNET\"},{\"name\":\"AlRiyada\",\"code\":\"RDIT\"},{\"name\":\"XNET\",\"code\":\"XNET\"},{\"name\":\"ALKAFAA\",\"code\":\"ALKAFAA\"},{\"name\":\"CONNECT\",\"code\":\"CONNECT\"},{\"name\":\"Giga Net\",\"code\":\"GIGA\"},{\"name\":\"Souqprimo\",\"code\":\"SP\"},{\"name\":\"ZAJEL\",\"code\":\"ZAJEL\"},{\"name\":\"SPGF test\",\"code\":\"SPGF\"},{\"name\":\"PrimoTech\",\"code\":\"PT\"}],\"onlineoperatorcount\":\"3\",\"onlineoperatorDetails\":[{\"name\":\"TAFANI\",\"code\":\"TAFANI\"},{\"name\":\"Hatif Libya\",\"code\":\"THLC\"},{\"name\":\"LTT\",\"code\":\"LTT\"}]}}");
 
 
-                 //   Toast.makeText(this, "HARD CODE ----------100 ---101", Toast.LENGTH_SHORT).show();
+                    //   Toast.makeText(this, "HARD CODE ----------100 ---101", Toast.LENGTH_SHORT).show();
 
                     if (serverResponse.has("response")) {
 
@@ -2086,10 +2237,16 @@ public class MainActivityRet extends AppCompatActivity
 
 
 
-                                OperatorAdapter operatorAdapter = new OperatorAdapter(this, operatorList_online);
-                                spinner_operator_online.setAdapter(operatorAdapter);
+                              //  OperatorAdapter operatorAdapter = new OperatorAdapter(this, operatorList_online);
+                              //  spinner_operator_online.setAdapter(operatorAdapter);
 
 
+                                OperatorOnlineRecyclerAdapter operatorAdapterOffline = new OperatorOnlineRecyclerAdapter(MainActivityRet.this,operatorList_online);
+                                operatoronlineRecycler.setHasFixedSize(true);
+
+                                operatoronlineRecycler.setAdapter(operatorAdapterOffline);
+                                RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
+                                operatoronlineRecycler.setLayoutManager(mLayoutManager);
 
                                 // ##################################  For Data Base Used #################
 
@@ -2121,7 +2278,7 @@ public class MainActivityRet extends AppCompatActivity
 
                                     serviceRepository.insert(operatorOfflineModel);
 
-                                 // ####################################################################
+                                    // ####################################################################
 
                                 }
 
@@ -2158,10 +2315,10 @@ public class MainActivityRet extends AppCompatActivity
 
 
 
-                                 agenttransid_online = jsonObject_response.getString("agenttransid");
-                                 vendorcode_online = jsonObject_response.getString("vendorcode");
-                                 productcode_online = jsonObject_response.getString("productcode");
-                                 amount_online = jsonObject_response.getString("amount");
+                                agenttransid_online = jsonObject_response.getString("agenttransid");
+                                vendorcode_online = jsonObject_response.getString("vendorcode");
+                                productcode_online = jsonObject_response.getString("productcode");
+                                amount_online = jsonObject_response.getString("amount");
 
                                 JSONArray jsonArray_record =jsonObject_response.getJSONArray("records");
                                 for(int b=0;b<jsonArray_record.length();b++)
@@ -2181,7 +2338,7 @@ public class MainActivityRet extends AppCompatActivity
 
 
 
-                               // online_print_popup(getString(R.string.online_pin_sale_sucess));
+                                // online_print_popup(getString(R.string.online_pin_sale_sucess));
 
                                 print_pos_data_online();
 
@@ -2203,7 +2360,7 @@ public class MainActivityRet extends AppCompatActivity
 
                 else   if (requestNo == 99) {
 
-                  //  serverResponse=new JSONObject("{\"apiname\":\"ONLINESERVICE\",\"response\":{\"responsects\":\"01/11/2022 12:28:25 PM\",\"agentcode\":\"0982650605\",\"agentname\":\"Prashun\",\"vendorcode\":\"TAFANI\",\"transid\":\"45631408\",\"resultcode\":\"0\",\"resultdescription\":\"Transaction Successful\",\"clienttype\":\"POS\",\"recordcount\":\"6\",\"productDetails\":[{\"servicecode\":\"PURCHASE\",\"servicedesc\":\"PIN Purchase\",\"vendorcode\":\"MADAR\",\"vendordesc\":\"MADAR\",\"productcode\":\"AAMP3\",\"productdesc\":\"AAMP3\",\"denomination\":\"3.0\",\"producttype\":\"PINS\"},{\"servicecode\":\"PURCHASE\",\"servicedesc\":\"PIN Purchase\",\"vendorcode\":\"MADAR\",\"vendordesc\":\"MADAR\",\"productcode\":\"AAMP5\",\"productdesc\":\"AAMP5\",\"denomination\":\"5.0\",\"producttype\":\"PINS\"},{\"servicecode\":\"PURCHASE\",\"servicedesc\":\"PIN Purchase\",\"vendorcode\":\"MADAR\",\"vendordesc\":\"MADAR\",\"productcode\":\"AAMP10\",\"productdesc\":\"AAMP10\",\"denomination\":\"10.0\",\"producttype\":\"PINS\"},{\"servicecode\":\"PURCHASE\",\"servicedesc\":\"PIN Purchase\",\"vendorcode\":\"MADAR\",\"vendordesc\":\"MADAR\",\"productcode\":\"AAMP20\",\"productdesc\":\"AAMP20\",\"denomination\":\"20.0\",\"producttype\":\"PINS\"},{\"servicecode\":\"PURCHASE\",\"servicedesc\":\"PIN Purchase\",\"vendorcode\":\"MADAR\",\"vendordesc\":\"MADAR\",\"productcode\":\"AAMP40\",\"productdesc\":\"AAMP40\",\"denomination\":\"40.0\",\"producttype\":\"PINS\"},{\"servicecode\":\"PURCHASE\",\"servicedesc\":\"PIN Purchase\",\"vendorcode\":\"MADAR\",\"vendordesc\":\"MADAR\",\"productcode\":\"AAMP100\",\"productdesc\":\"AAMP100\",\"denomination\":\"100.0\",\"producttype\":\"PINS\"}],\"terminalid\":\"861256041366507\",\"operator\":\"MADAR\",\"service\":\"F\",\"settings\":{\"type\":\"GPRS\",\"refill\":\"N\",\"sync\":\"01/10/2022 01:41:04 PM\",\"userid\":\"11111\",\"password\":\"11111\",\"language\":\"English\",\"phonenumber\":\"9977011209\",\"dialnumber\":\"*99***#\",\"apn\":\"airtelgprs.com\",\"ip\":\"202.131.144.156\",\"port\":\"7101\"},\"operatorDetails\":[]}}");
+                    //  serverResponse=new JSONObject("{\"apiname\":\"ONLINESERVICE\",\"response\":{\"responsects\":\"01/11/2022 12:28:25 PM\",\"agentcode\":\"0982650605\",\"agentname\":\"Prashun\",\"vendorcode\":\"TAFANI\",\"transid\":\"45631408\",\"resultcode\":\"0\",\"resultdescription\":\"Transaction Successful\",\"clienttype\":\"POS\",\"recordcount\":\"6\",\"productDetails\":[{\"servicecode\":\"PURCHASE\",\"servicedesc\":\"PIN Purchase\",\"vendorcode\":\"MADAR\",\"vendordesc\":\"MADAR\",\"productcode\":\"AAMP3\",\"productdesc\":\"AAMP3\",\"denomination\":\"3.0\",\"producttype\":\"PINS\"},{\"servicecode\":\"PURCHASE\",\"servicedesc\":\"PIN Purchase\",\"vendorcode\":\"MADAR\",\"vendordesc\":\"MADAR\",\"productcode\":\"AAMP5\",\"productdesc\":\"AAMP5\",\"denomination\":\"5.0\",\"producttype\":\"PINS\"},{\"servicecode\":\"PURCHASE\",\"servicedesc\":\"PIN Purchase\",\"vendorcode\":\"MADAR\",\"vendordesc\":\"MADAR\",\"productcode\":\"AAMP10\",\"productdesc\":\"AAMP10\",\"denomination\":\"10.0\",\"producttype\":\"PINS\"},{\"servicecode\":\"PURCHASE\",\"servicedesc\":\"PIN Purchase\",\"vendorcode\":\"MADAR\",\"vendordesc\":\"MADAR\",\"productcode\":\"AAMP20\",\"productdesc\":\"AAMP20\",\"denomination\":\"20.0\",\"producttype\":\"PINS\"},{\"servicecode\":\"PURCHASE\",\"servicedesc\":\"PIN Purchase\",\"vendorcode\":\"MADAR\",\"vendordesc\":\"MADAR\",\"productcode\":\"AAMP40\",\"productdesc\":\"AAMP40\",\"denomination\":\"40.0\",\"producttype\":\"PINS\"},{\"servicecode\":\"PURCHASE\",\"servicedesc\":\"PIN Purchase\",\"vendorcode\":\"MADAR\",\"vendordesc\":\"MADAR\",\"productcode\":\"AAMP100\",\"productdesc\":\"AAMP100\",\"denomination\":\"100.0\",\"producttype\":\"PINS\"}],\"terminalid\":\"861256041366507\",\"operator\":\"MADAR\",\"service\":\"F\",\"settings\":{\"type\":\"GPRS\",\"refill\":\"N\",\"sync\":\"01/10/2022 01:41:04 PM\",\"userid\":\"11111\",\"password\":\"11111\",\"language\":\"English\",\"phonenumber\":\"9977011209\",\"dialnumber\":\"*99***#\",\"apn\":\"airtelgprs.com\",\"ip\":\"202.131.144.156\",\"port\":\"7101\"},\"operatorDetails\":[]}}");
 
 
                     if (serverResponse.has("response")) {
@@ -2267,10 +2424,10 @@ public class MainActivityRet extends AppCompatActivity
 
                 }
 
-              else   if (requestNo == 50) {
+                else   if (requestNo == 50) {
 
 
-                 //    serverResponse=new JSONObject("{\"apiname\":\"SYNCH\",\"response\":{\"responsects\":\"01/19/2022 09:59:15 AM\",\"agentcode\":\"0982650605\",\"agentname\":\"Prashun\",\"vendorcode\":\"TAFANI\",\"transid\":\"45632743\",\"resultcode\":\"0\",\"resultdescription\":\"Transaction Successful\",\"clienttype\":\"POS\",\"utilities\":\"ALKAFAA|KAFA10,KAFA10,10.0;KAFA25,KAFA25,25.0;KAFA50,KAFA50,50.0;KAFA100,KAFA100,100.0:CFNET|CFNET1,CFNET1,1.0:FNET|FNET5,FNET5,5.0;FNET10,FNET10,10.0;FNET20,FNET20,20.0;FNET100,FNET100,100.0:LIBYANA|LMP3,LMP3,3.0;LMP5,LMP5,5.0;LMP10,LMP10,10.0;LMP100,LMP100,100.0:LTT|LTT5,LTT5,5.0;LTT10,LTT10,10.0;LTT20,LTT20,20.0;LTT30,LTT30,30.0;LTT 100,LTT100,100.0:MADAR|AAMP3,AAMP3,3.0;AAMP5,AAMP5,5.0;AAMP10,AAMP10,10.0;AAMP20,AAMP20,20.0;AAMP40,AAMP40,40.0;AAMP100,AAMP100,100.0:NBDA|NBDA10,NBDA10,10.0;NBDA5,NBDA5,5.0:RDIT|RDIT5,RDIT5,5.0;RDIT10,RDIT10,10.0;RDIT20,RDIT20,20.0;RDIT35,RDIT35,35.0:THLC|HLC5,HLC5,5.0;HLC10,HLC10,10.0;HLC100,HLC100,100.0;HLC20,HLC20,20.0\"}}");
+                    //    serverResponse=new JSONObject("{\"apiname\":\"SYNCH\",\"response\":{\"responsects\":\"01/19/2022 09:59:15 AM\",\"agentcode\":\"0982650605\",\"agentname\":\"Prashun\",\"vendorcode\":\"TAFANI\",\"transid\":\"45632743\",\"resultcode\":\"0\",\"resultdescription\":\"Transaction Successful\",\"clienttype\":\"POS\",\"utilities\":\"ALKAFAA|KAFA10,KAFA10,10.0;KAFA25,KAFA25,25.0;KAFA50,KAFA50,50.0;KAFA100,KAFA100,100.0:CFNET|CFNET1,CFNET1,1.0:FNET|FNET5,FNET5,5.0;FNET10,FNET10,10.0;FNET20,FNET20,20.0;FNET100,FNET100,100.0:LIBYANA|LMP3,LMP3,3.0;LMP5,LMP5,5.0;LMP10,LMP10,10.0;LMP100,LMP100,100.0:LTT|LTT5,LTT5,5.0;LTT10,LTT10,10.0;LTT20,LTT20,20.0;LTT30,LTT30,30.0;LTT 100,LTT100,100.0:MADAR|AAMP3,AAMP3,3.0;AAMP5,AAMP5,5.0;AAMP10,AAMP10,10.0;AAMP20,AAMP20,20.0;AAMP40,AAMP40,40.0;AAMP100,AAMP100,100.0:NBDA|NBDA10,NBDA10,10.0;NBDA5,NBDA5,5.0:RDIT|RDIT5,RDIT5,5.0;RDIT10,RDIT10,10.0;RDIT20,RDIT20,20.0;RDIT35,RDIT35,35.0:THLC|HLC5,HLC5,5.0;HLC10,HLC10,10.0;HLC100,HLC100,100.0;HLC20,HLC20,20.0\"}}");
 
                     if (serverResponse.has("response")) {
 
@@ -2303,7 +2460,7 @@ public class MainActivityRet extends AppCompatActivity
 
                 }
 
-              else   if (requestNo == 49) // Sync respone
+                else   if (requestNo == 49) // Sync respone
                 {
 
                     // serverResponse = new JSONObject("");
@@ -2437,7 +2594,7 @@ public class MainActivityRet extends AppCompatActivity
             }
 
             jsonObject_request.put("destination",MyApplication.getSaveString("mobileNoString", MainActivityRet.this));
-         //   jsonObject_request.put("vendorcode",vendorCode);
+            //   jsonObject_request.put("vendorcode",vendorCode);
             jsonObject_request.put("vendorcode","TAFANI");
             jsonObject_request.put("productcode",select_operatorCode);   //
             jsonObject_request.put("clienttype","POS");
@@ -2456,7 +2613,7 @@ public class MainActivityRet extends AppCompatActivity
         }
 
 
-}
+    }
 
     private void request_getOnlineService_volly(int requestNo) {
 
@@ -2529,7 +2686,7 @@ public class MainActivityRet extends AppCompatActivity
                         select_operatorCode = operator_offline.get(i).getOperatorCode();
 
 
-                       //   Toast.makeText(MainActivityRet.this, " -----selected--name--"+select_operatorName+"-----selected---Code----"+select_operatorCode,Toast.LENGTH_SHORT).show();
+                        //   Toast.makeText(MainActivityRet.this, " -----selected--name--"+select_operatorName+"-----selected---Code----"+select_operatorCode,Toast.LENGTH_SHORT).show();
 
                         spinner_operator_offline.setEnabled(true);
                         spinner_product_offline.setEnabled(false);
@@ -2543,15 +2700,15 @@ public class MainActivityRet extends AppCompatActivity
                         select_operatorCode = operator_offline.get(i).getOperatorCode();
                         String  vendorcode_offline_select = operator_offline.get(i).getOperatorCode();
 
-                     //   Toast.makeText(MainActivityRet.this, " -----selected--name--"+select_operatorName+"-----selected---Code----"+select_operatorCode,Toast.LENGTH_SHORT).show();
+                        //   Toast.makeText(MainActivityRet.this, " -----selected--name--"+select_operatorName+"-----selected---Code----"+select_operatorCode,Toast.LENGTH_SHORT).show();
 
-                       String select_operatorName_offline = operator_offline.get(i).getOperatorName();
+                        String select_operatorName_offline = operator_offline.get(i).getOperatorName();
 
                         MyApplication.saveString("select_operatorName_offline",select_operatorName_offline,MainActivityRet.this);
 
 
                         MyApplication.saveString("vendorcode_offline_print",vendorcode_offline_select,MainActivityRet.this);
-                     //     Toast.makeText(MainActivityRet.this, " -----selected--name--"+vendorcode_offline_select+"-----selected---Code----"+select_operatorCode,Toast.LENGTH_SHORT).show();
+                        //     Toast.makeText(MainActivityRet.this, " -----selected--name--"+vendorcode_offline_select+"-----selected---Code----"+select_operatorCode,Toast.LENGTH_SHORT).show();
 
 
 
@@ -2559,7 +2716,7 @@ public class MainActivityRet extends AppCompatActivity
                         spinner_product_offline.setEnabled(true);
                         spinner_denomination_offline.setEnabled(true);
 
-                      //  Toast.makeText(MainActivityRet.this, " --- select  **************--"+select_operatorName,Toast.LENGTH_SHORT).show();
+                        //  Toast.makeText(MainActivityRet.this, " --- select  **************--"+select_operatorName,Toast.LENGTH_SHORT).show();
 
                         productList_offline_filter.clear();
                         //  denominationList_filter_pinsale.clear();
@@ -2627,7 +2784,7 @@ public class MainActivityRet extends AppCompatActivity
                     select_productCode_offline = productList_offline_filter.get(i).getProductcode();
                     select_vendorCode_offline = productList_offline_filter.get(i).getVendorcode();
 
-                  //  Toast.makeText(MainActivityRet.this, " -----Selected--Product--offline----" + select_productCode_offline, Toast.LENGTH_SHORT).show();
+                    //  Toast.makeText(MainActivityRet.this, " -----Selected--Product--offline----" + select_productCode_offline, Toast.LENGTH_SHORT).show();
 
                     spinner_operator_offline.setEnabled(true);
                     spinner_product_offline.setEnabled(true);
@@ -2643,18 +2800,18 @@ public class MainActivityRet extends AppCompatActivity
 
                     MyApplication.saveString("select_productCode_offline",select_productCode_offline,MainActivityRet.this);
 
-                 //   Toast.makeText(MainActivityRet.this, " -----Selected--Product--offline----" + select_productCode_offline, Toast.LENGTH_SHORT).show();
+                    //   Toast.makeText(MainActivityRet.this, " -----Selected--Product--offline----" + select_productCode_offline, Toast.LENGTH_SHORT).show();
 
                     spinner_operator_offline.setEnabled(true);
                     spinner_product_offline.setEnabled(true);
                     spinner_denomination_offline.setEnabled(true);
 
-                  //  spinner_product_offline.setSelection(i);
+                    //  spinner_product_offline.setSelection(i);
                     spinner_denomination_offline.setSelection(i);
 
 
                     //    Toast.makeText(MainActivityRet.this, " -----Selected--Product--offline----" + select_productCode, Toast.LENGTH_SHORT).show();
-                 //   Toast.makeText(MainActivityRet.this, " -----Vendor select Offline ------  " + select_vendorcode, Toast.LENGTH_SHORT).show();
+                    //   Toast.makeText(MainActivityRet.this, " -----Vendor select Offline ------  " + select_vendorcode, Toast.LENGTH_SHORT).show();
 
                     //  spinner_denomination_orderpin.setSelection(i);
                 }
@@ -2667,7 +2824,7 @@ public class MainActivityRet extends AppCompatActivity
 
                 if(i==0)
                 {
-                  //  Toast.makeText(MainActivityRet.this, " -----selected--denomination-offline-"+select_denomination,Toast.LENGTH_SHORT).show();
+                    //  Toast.makeText(MainActivityRet.this, " -----selected--denomination-offline-"+select_denomination,Toast.LENGTH_SHORT).show();
 
 
                     spinner_operator_offline.setEnabled(true);
@@ -2682,17 +2839,17 @@ public class MainActivityRet extends AppCompatActivity
                     select_denomination_offline = productList_offline_filter.get(i).getDenomination();
 
 
-                   arraylist_details_pin =  serviceRepository.getpin_download(select_productCode_offline,select_denomination_offline);
+                    arraylist_details_pin =  serviceRepository.getpin_download(select_productCode_offline,select_denomination_offline);
 
 
                     if(arraylist_details_pin.size()>0)
-                       {
-                           Log.e("---arraylist_deta--",""+arraylist_details_pin.toString());
-                       }
-                       else
-                       {
-                           Toast.makeText(MainActivityRet.this, " "+"No pin available",Toast.LENGTH_SHORT).show();
-                       }
+                    {
+                        Log.e("---arraylist_deta--",""+arraylist_details_pin.toString());
+                    }
+                    else
+                    {
+                        Toast.makeText(MainActivityRet.this, " "+"No pin available",Toast.LENGTH_SHORT).show();
+                    }
 
                     System.out.println(arraylist_details_pin);
                     //   Toast.makeText(MainActivityRet.this, " -----selected--denomination-offline-"+select_denomination,Toast.LENGTH_SHORT).show();
@@ -2731,24 +2888,24 @@ public class MainActivityRet extends AppCompatActivity
             MyApplication.isSrviceStarted=true;
 startService(new Intent(this, BroadcastService.class));
         }*/
-       // MyApplication.isSrviceStarted=true;
-       // startService(new Intent(this, BroadcastService.class));
+        // MyApplication.isSrviceStarted=true;
+        // startService(new Intent(this, BroadcastService.class));
         if( MyApplication.isTimerStopped){
             etPin.setVisibility(View.VISIBLE);
         }
     }
 
-   /* @Override
-    public void onUserInteraction() {
-        super.onUserInteraction();
-        MyApplication.isSrviceStarted=false;
-        stopService(new Intent(this, BroadcastService.class));
-        Log.i(TAG, "Stopped service");
+    /* @Override
+     public void onUserInteraction() {
+         super.onUserInteraction();
+         MyApplication.isSrviceStarted=false;
+         stopService(new Intent(this, BroadcastService.class));
+         Log.i(TAG, "Stopped service");
 
-        MyApplication.isSrviceStarted=true;
-        startService(new Intent(this, BroadcastService.class));
-    }
-*/
+         MyApplication.isSrviceStarted=true;
+         startService(new Intent(this, BroadcastService.class));
+     }
+ */
     @Override
     public void onPause() {
         super.onPause();
