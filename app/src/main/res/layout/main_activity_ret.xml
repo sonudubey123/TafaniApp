@@ -379,7 +379,7 @@
             android:layout_gravity="start"
             app:headerLayout="@layout/nav_header_main"
             app:itemTextColor="@color/black"
-            android:visibility="gone"
+            android:visibility="visible"
             app:menu="@menu/left_menu_ret"
 
 
