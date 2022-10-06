@@ -385,6 +385,8 @@ public class LoginActivation extends AppCompatActivity implements View.OnClickLi
 
 
 
+
+
             //   MyApplication.saveString("terminalIdString","861256041366507",LoginActivation.this);
 
 

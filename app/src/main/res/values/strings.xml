@@ -285,16 +285,14 @@
     <string name="toast_8">Now QrCode size must be less than 7!</string>
     <string name="toast_9">BarCode type or conent error!</string>
     <string name="toast_10">Please set the printer as black label mode!</string>
-    <string name="toast_11">Settings->System->Advanced->InnerPrinter-> set black mark
-        function</string>
+    <string name="toast_11">Settings->System->Advanced->InnerPrinter-> set black mark function</string>
     <string name="toast_12">Please set the printer to label mode!</string>
 
     <string name="enter_amount">Enter amount</string>
     <string name="etopabg">Etop up Image</string>
     <string name="e_top_display">To transfer credit, please enter the required information</string>
 
-    <string name="enterdestinationtext">Enter the customer code
-   </string>
+    <string name="enterdestinationtext">Enter the customer code</string>
     <string name="confirmdestinationtext">To confirm, enter the customer code againً </string>
     <string name="customer_agentCode_confirm_agentCode_should_be_same">customer code confirm customer code should be same </string>
     <string name="agent_code">Agent code  </string>

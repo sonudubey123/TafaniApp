@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.sunmi.tafani_printerhelper.R;
 import com.sunmi.tafani_printerhelper.local_set.LocalSetLanguage;
@@ -35,22 +36,20 @@ import java.util.List;
 public class LoginActivityPin extends AppCompatActivity implements View.OnClickListener, InterHttpServerResponse {
 
 
-    TextView btn_submit,forgot_offline_pin;
-    EditText edit_mobile_number,edittext_mpin;
-    String mobileNoString="",mpinString="";
+    TextView btn_submit, forgot_offline_pin;
+    EditText edit_mobile_number, edittext_mpin, edittext_terminalId;
+    String mobileNoString = "", mpinString = "";
     AlertDialog dialog;
-
     String dateOfBirthString;
     MyApplication myApplication;
 
-    String languageToUse="";
+    String languageToUse = "";
 
     //Hello changes
 
 
     ServiceRepository serviceRepository;
     List<BulkDownloadOfflineModel> arraylist_details_pin_y;
-
 
 
     @Override
@@ -60,15 +59,13 @@ public class LoginActivityPin extends AppCompatActivity implements View.OnClickL
 
         try {
             myApplication = (MyApplication) getApplicationContext();
-            languageToUse=myApplication.getmSharedPreferences().getString("languageToUse","");
+            languageToUse = myApplication.getmSharedPreferences().getString("languageToUse", "");
 
             if (languageToUse.trim().length() == 0) {
 
                 languageToUse = "ar";
                 LocalSetLanguage.LocalSet(languageToUse, LoginActivityPin.this);
-            }
-            else
-            {
+            } else {
                 LocalSetLanguage.LocalSet(languageToUse, LoginActivityPin.this);
             }
 
@@ -77,33 +74,33 @@ public class LoginActivityPin extends AppCompatActivity implements View.OnClickL
 
 
             MyApplication.getSaveString("ANSWER", LoginActivityPin.this);
-            MyApplication.getSaveString("QUESTION",  LoginActivityPin.this);
+            MyApplication.getSaveString("QUESTION", LoginActivityPin.this);
 
 
             edit_mobile_number = (EditText) findViewById(R.id.edit_mobile_number);
             edittext_mpin = (EditText) findViewById(R.id.edittext_mpin);
-            forgot_offline_pin= (TextView) findViewById(R.id.forgot_offline_pin);
+            forgot_offline_pin = (TextView) findViewById(R.id.forgot_offline_pin);
             forgot_offline_pin.setOnClickListener(this);
             btn_submit = (TextView) findViewById(R.id.btn_submit);
             btn_submit.setOnClickListener(this);
 
-            if(languageToUse.equalsIgnoreCase("ar"))
-            {
+            if (languageToUse.equalsIgnoreCase("ar")) {
+                //edit_mobile_number.setCompoundDrawablesWithIntrinsicBounds(null, null, ContextCompat.getDrawable(LoginActivityPin.this,R.drawable.cp_small), null);
+                //edittext_mpin.setCompoundDrawablesWithIntrinsicBounds(null, null, ContextCompat.getDrawable(LoginActivityPin.this,R.drawable.cp_small), null);
+
                 edit_mobile_number.setGravity(Gravity.RIGHT);
                 edittext_mpin.setGravity(Gravity.RIGHT);
-            }
-            else
-            {
+                edittext_terminalId.setGravity(Gravity.RIGHT);
+            } else {
                 edit_mobile_number.setGravity(Gravity.LEFT);
                 edittext_mpin.setGravity(Gravity.LEFT);
+                edittext_terminalId.setGravity(Gravity.LEFT);
 
 
             }
 
 
-
-
-            serviceRepository = new ServiceRepository(LoginActivityPin .this);
+            serviceRepository = new ServiceRepository(LoginActivityPin.this);
 
             arraylist_details_pin_y = serviceRepository.getpin_download_statrus_y();
 
@@ -116,16 +113,10 @@ public class LoginActivityPin extends AppCompatActivity implements View.OnClickL
             edit_mobile_number.setText(mobileNoString);
 
 
-
-        }
-        catch (Exception e)
-        {
-            Toast.makeText(LoginActivityPin.this,e.toString(),Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            Toast.makeText(LoginActivityPin.this, e.toString(), Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
-
-
-
 
 
     }
@@ -139,35 +130,32 @@ public class LoginActivityPin extends AppCompatActivity implements View.OnClickL
 
                 if (checkValidation()) {
 
-                 //   if (CommonUtility.isOnline(LoginActivityPin.this)) {
+                    //   if (CommonUtility.isOnline(LoginActivityPin.this)) {
 
-                        //  serverRequest(4);
+                    //  serverRequest(4);
 
-                        try {
-
-
-                            String offlinePinString = MyApplication.getSaveString("offlinePinString", LoginActivityPin.this);
+                    try {
 
 
-                           if(offlinePinString.equalsIgnoreCase(mpinString))
-                           {
-
-                               String LOGIN_APP = MyApplication.getSaveString("LOGIN_APP", LoginActivityPin.this);
-
-                               if(LOGIN_APP.equalsIgnoreCase("RETAILER")) {
+                        String offlinePinString = MyApplication.getSaveString("offlinePinString", LoginActivityPin.this);
 
 
+                        if (offlinePinString.equalsIgnoreCase(mpinString)) {
 
-                                  if (CommonUtility.isOnline(LoginActivityPin.this)) {
+                            String LOGIN_APP = MyApplication.getSaveString("LOGIN_APP", LoginActivityPin.this);
+
+                            if (LOGIN_APP.equalsIgnoreCase("RETAILER")) {
 
 
-                                      if(arraylist_details_pin_y.size()>0)
-                                      {
+                                if (CommonUtility.isOnline(LoginActivityPin.this)) {
 
 
-                                          CommonUtility.showProgressDialog(LoginActivityPin.this);
+                                    if (arraylist_details_pin_y.size() > 0) {
 
-                                          request_posstock_S_2nd_volly(49);   // 2nd Time Api
+
+                                        CommonUtility.showProgressDialog(LoginActivityPin.this);
+
+                                        request_posstock_S_2nd_volly(49);   // 2nd Time Api
 
 /*
                                           Intent i = new Intent(LoginActivityPin.this, MainActivityRet.class);
@@ -175,68 +163,51 @@ public class LoginActivityPin extends AppCompatActivity implements View.OnClickL
                                           startActivity(i);
                                           LoginActivityPin.this.finish();*/
 
-                                      }
+                                    } else {
 
-                                      else {
-
-                                          Intent i = new Intent(LoginActivityPin.this, MainActivityRet.class);
-                                          i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                          startActivity(i);
-                                          LoginActivityPin.this.finish();
-                                      }
+                                        Intent i = new Intent(LoginActivityPin.this, MainActivityRet.class);
+                                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(i);
+                                        LoginActivityPin.this.finish();
+                                    }
 
 
+                                } else {
+                                    Intent i = new Intent(LoginActivityPin.this, MainActivityRet.class);
+                                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(i);
+                                    LoginActivityPin.this.finish();
+                                }
 
 
-                                  }
-
-                                  else {
-                                      Intent i = new Intent(LoginActivityPin.this, MainActivityRet.class);
-                                      i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                      startActivity(i);
-                                      LoginActivityPin.this.finish();
-                                  }
-
-
-
-
-
-
-
-
-                               }
-                               else
-                               {
+                            } else {
                                   /* Intent i = new Intent(LoginActivityPin.this, MainActivityDis.class);
                                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                    startActivity(i);
                                    LoginActivityPin.this.finish();*/
 
-                                   Intent i = new Intent(LoginActivityPin.this, MainActivityRet.class);
-                                   i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                   startActivity(i);
-                                   LoginActivityPin.this.finish();
-                               }
+                                Intent i = new Intent(LoginActivityPin.this, MainActivityRet.class);
+                                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(i);
+                                LoginActivityPin.this.finish();
+                            }
 
-                           }
-                           else
-                           {
-                               Toast.makeText(LoginActivityPin.this, getString(R.string.your_offline_pin_is_incorrect), Toast.LENGTH_SHORT).show();
-                           }
-
-
-
-                              // serverRequest_login_retrofit(100);
-
-                        } catch (Exception e) {
-
-                            CommonUtility.hideProgressDialog(LoginActivityPin.this);
-
-                            Toast.makeText(LoginActivityPin.this, e.toString(), Toast.LENGTH_SHORT).show();
-                            e.printStackTrace();
+                        } else {
+                            Toast.makeText(LoginActivityPin.this, getString(R.string.your_offline_pin_is_incorrect), Toast.LENGTH_SHORT).show();
                         }
 
-                        // callApiLogin(100);
+
+                        // serverRequest_login_retrofit(100);
+
+                    } catch (Exception e) {
+
+                        CommonUtility.hideProgressDialog(LoginActivityPin.this);
+
+                        Toast.makeText(LoginActivityPin.this, e.toString(), Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+                    }
+
+                    // callApiLogin(100);
 
 
                    /* } else {
@@ -251,8 +222,6 @@ public class LoginActivityPin extends AppCompatActivity implements View.OnClickL
 
 
                 break;
-
-
 
 
         }
@@ -298,16 +267,14 @@ public class LoginActivityPin extends AppCompatActivity implements View.OnClickL
             JSONObject jsonObject_request = new JSONObject();
             jsonObject_request.put("agentcode", MyApplication.getSaveString("mobileNoString", LoginActivityPin.this));
             jsonObject_request.put("pin", MyApplication.getSaveString("activationCodeString", LoginActivityPin.this));
-            jsonObject_request.put("vendorcode","TAFANI");
-            jsonObject_request.put("posserialno",MyApplication.getSN());
-            jsonObject_request.put("clienttype","POS");
-            jsonObject_request.put("terminalid",MyApplication.getSaveString("terminalIdString", LoginActivityPin.this));
-            jsonObject_request.put("action","S");
-            jsonObject_request.put("comments","POSSTOCK STATUS");
-            jsonObject_request.put("transtypecode","OFFLINEPURCHASE");
-            jsonObject_request.put("posserialno",MyApplication.getSN());
-
-
+            jsonObject_request.put("vendorcode", "TAFANI");
+            jsonObject_request.put("posserialno", MyApplication.getSN());
+            jsonObject_request.put("clienttype", "POS");
+            jsonObject_request.put("terminalid", MyApplication.getSaveString("terminalIdString", LoginActivityPin.this));
+            jsonObject_request.put("action", "S");
+            jsonObject_request.put("comments", "POSSTOCK STATUS");
+            jsonObject_request.put("transtypecode", "OFFLINEPURCHASE");
+            jsonObject_request.put("posserialno", MyApplication.getSN());
 
 
             JSONArray jsonArray = new JSONArray();
@@ -321,24 +288,22 @@ public class LoginActivityPin extends AppCompatActivity implements View.OnClickL
             System.out.println(aaaaaa);
 
 
-            for(int i=0;i<arraylist_details_pin_y.size();i++)
-            {
+            for (int i = 0; i < arraylist_details_pin_y.size(); i++) {
 
 
-                if(i==0)
-                {
+                if (i == 0) {
 
                     JSONArray jsonArray_stock = new JSONArray();
                     JSONObject jsonObject_inner = new JSONObject();
 
-                    jsonObject_inner.put("productcode",arraylist_details_pin_y.get(i).productcode);
-                    jsonObject_inner.put("denomination",arraylist_details_pin_y.get(i).denomination);
-                    jsonObject_inner.put("stockcount","1");
+                    jsonObject_inner.put("productcode", arraylist_details_pin_y.get(i).productcode);
+                    jsonObject_inner.put("denomination", arraylist_details_pin_y.get(i).denomination);
+                    jsonObject_inner.put("stockcount", "1");
 
                     JSONObject jsonObject_stock = new JSONObject();
 
-                    jsonObject_stock.put("s",arraylist_details_pin_y.get(i).serialNumber);
-                 //   jsonObject_stock.put("d",MyApplication.current_sell_dateTime());
+                    jsonObject_stock.put("s", arraylist_details_pin_y.get(i).serialNumber);
+                    //   jsonObject_stock.put("d",MyApplication.current_sell_dateTime());
 
                     jsonObject_stock.put("d", arraylist_details_pin_y.get(i).sell_dateTime);
 
@@ -346,64 +311,61 @@ public class LoginActivityPin extends AppCompatActivity implements View.OnClickL
 
                     jsonArray_stock.put(jsonObject_stock);
 
-                    jsonObject_inner.put("stock",jsonArray_stock);
+                    jsonObject_inner.put("stock", jsonArray_stock);
 
                     jsonArray.put(jsonObject_inner);
 
-                }
-                else {
+                } else {
 
-                     int hasdata=hasValue(jsonArray,"productcode",arraylist_details_pin_y.get(i).productcode);
+                    int hasdata = hasValue(jsonArray, "productcode", arraylist_details_pin_y.get(i).productcode);
 
-                     if(hasdata!= -1)
-                     {
+                    if (hasdata != -1) {
 
-                         JSONObject jsonObject_stock = new JSONObject();
+                        JSONObject jsonObject_stock = new JSONObject();
 
-                         jsonObject_stock.put("s", arraylist_details_pin_y.get(i).serialNumber);
+                        jsonObject_stock.put("s", arraylist_details_pin_y.get(i).serialNumber);
                         // jsonObject_stock.put("d", "19/01/21 19:08:33");
-                      //   jsonObject_stock.put("d",MyApplication.current_sell_dateTime());
-                      //   jsonObject_stock.put("d",MyApplication.current_sell_dateTime());
-                         jsonObject_stock.put("d", arraylist_details_pin_y.get(i).sell_dateTime);
+                        //   jsonObject_stock.put("d",MyApplication.current_sell_dateTime());
+                        //   jsonObject_stock.put("d",MyApplication.current_sell_dateTime());
+                        jsonObject_stock.put("d", arraylist_details_pin_y.get(i).sell_dateTime);
 
 
-                         jsonArray.optJSONObject(hasdata).put("stockcount", (Integer.parseInt(jsonArray.optJSONObject(hasdata).optString("stockcount"))+1)+"");
+                        jsonArray.optJSONObject(hasdata).put("stockcount", (Integer.parseInt(jsonArray.optJSONObject(hasdata).optString("stockcount")) + 1) + "");
 
-                         jsonArray.optJSONObject(hasdata).optJSONArray("stock").put(jsonObject_stock);
-                     }
-                     else {
-                         JSONArray jsonArray_stock = new JSONArray();
-                         JSONObject jsonObject_inner = new JSONObject();
+                        jsonArray.optJSONObject(hasdata).optJSONArray("stock").put(jsonObject_stock);
+                    } else {
+                        JSONArray jsonArray_stock = new JSONArray();
+                        JSONObject jsonObject_inner = new JSONObject();
 
-                         jsonObject_inner.put("productcode",arraylist_details_pin_y.get(i).productcode);
-                         jsonObject_inner.put("denomination",arraylist_details_pin_y.get(i).denomination);
-                         jsonObject_inner.put("stockcount","1");
+                        jsonObject_inner.put("productcode", arraylist_details_pin_y.get(i).productcode);
+                        jsonObject_inner.put("denomination", arraylist_details_pin_y.get(i).denomination);
+                        jsonObject_inner.put("stockcount", "1");
 
-                         JSONObject jsonObject_stock = new JSONObject();
+                        JSONObject jsonObject_stock = new JSONObject();
 
-                         jsonObject_stock.put("s", arraylist_details_pin_y.get(i).serialNumber);
-                       //  jsonObject_stock.put("d", "19/01/21 19:08:33");
-                       //  jsonObject_stock.put("d", MyApplication.current_sell_dateTime());
-                         jsonObject_stock.put("d", arraylist_details_pin_y.get(i).sell_dateTime);
+                        jsonObject_stock.put("s", arraylist_details_pin_y.get(i).serialNumber);
+                        //  jsonObject_stock.put("d", "19/01/21 19:08:33");
+                        //  jsonObject_stock.put("d", MyApplication.current_sell_dateTime());
+                        jsonObject_stock.put("d", arraylist_details_pin_y.get(i).sell_dateTime);
 
-                         jsonArray_stock.put(jsonObject_stock);
+                        jsonArray_stock.put(jsonObject_stock);
 
-                         jsonObject_inner.put("stock",jsonArray_stock);
-                         jsonArray.put(jsonObject_inner);
+                        jsonObject_inner.put("stock", jsonArray_stock);
+                        jsonArray.put(jsonObject_inner);
 
-                     }
+                    }
                 }
 
             }
-            jsonObject_request.put("recordcount",jsonArray.length());
+            jsonObject_request.put("recordcount", jsonArray.length());
 
-            jsonObject_request.put("records",jsonArray);
+            jsonObject_request.put("records", jsonArray);
             json_main.put("request", jsonObject_request);
 
 
-            System.out.println(json_main);
+            System.out.println("request" + json_main);
 
-           new VollyRequestResponse(LoginActivityPin.this, LoginActivityPin.this, requestNo, base_url+ret_posstock_apiname, json_main.toString());
+            new VollyRequestResponse(LoginActivityPin.this, LoginActivityPin.this, requestNo, base_url + ret_posstock_apiname, json_main.toString());
 
         } catch (Exception e) {
             Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
@@ -416,9 +378,9 @@ public class LoginActivityPin extends AppCompatActivity implements View.OnClickL
 
 
     public int hasValue(JSONArray json, String key, String value) {
-        for(int i = 0; i < json.length(); i++) {  // iterate through the JsonArray
+        for (int i = 0; i < json.length(); i++) {  // iterate through the JsonArray
             // first I get the 'i' JsonElement as a JsonObject, then I get the key as a string and I compare it with the value
-            if(json.optJSONObject(i).optString(key).equals(value)) return i;
+            if (json.optJSONObject(i).optString(key).equals(value)) return i;
         }
         return -1;
     }
@@ -427,7 +389,6 @@ public class LoginActivityPin extends AppCompatActivity implements View.OnClickL
 
         mobileNoString = edit_mobile_number.getText().toString().trim();
         mpinString = edittext_mpin.getText().toString().trim();
-
 
 
         if (mpinString.isEmpty()) {
@@ -443,9 +404,6 @@ public class LoginActivityPin extends AppCompatActivity implements View.OnClickL
 
         return true;
     }
-
-
-
 
 
     private void showAlertDialog(String msg, final int requestId) {
@@ -469,8 +427,6 @@ public class LoginActivityPin extends AppCompatActivity implements View.OnClickL
     }
 
 
-
-
     private void showAlertDialog_sh(String msg) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivityPin.this);
@@ -489,31 +445,21 @@ public class LoginActivityPin extends AppCompatActivity implements View.OnClickL
     }
 
 
-   void  failure_case(String resultdescription )
-    {
+    void failure_case(String resultdescription) {
         if (resultdescription.equalsIgnoreCase("Invalid PIN")) {
             Toast.makeText(this, getString(R.string.invalid_pin), Toast.LENGTH_SHORT).show();
-        }
-        else if ((resultdescription.equalsIgnoreCase("Subscriber Blocked"))) {
+        } else if ((resultdescription.equalsIgnoreCase("Subscriber Blocked"))) {
 
             Toast.makeText(this, getString(R.string.subscriber_blocked), Toast.LENGTH_SHORT).show();
 
-        }
-
-        else if ((resultdescription.equalsIgnoreCase("Agent Blocked"))) {
+        } else if ((resultdescription.equalsIgnoreCase("Agent Blocked"))) {
             Toast.makeText(this, getString(R.string.agent_bloack), Toast.LENGTH_SHORT).show();
-        }
-
-        else if ((resultdescription.equalsIgnoreCase("Subscriber/Agent Blocked"))) {
+        } else if ((resultdescription.equalsIgnoreCase("Subscriber/Agent Blocked"))) {
             Toast.makeText(this, getString(R.string.subscriber_agent_blocked), Toast.LENGTH_SHORT).show();
-        }
-
-        else if ((resultdescription.equalsIgnoreCase("Your account is Blocked"))) {
+        } else if ((resultdescription.equalsIgnoreCase("Your account is Blocked"))) {
             Toast.makeText(this, getString(R.string.subscriber_agent_blocked), Toast.LENGTH_SHORT).show();
 
-        }
-
-        else if ((resultdescription.equalsIgnoreCase("Insufficient Fund"))) {
+        } else if ((resultdescription.equalsIgnoreCase("Insufficient Fund"))) {
             Toast.makeText(this, getString(R.string.insuffience_fund), Toast.LENGTH_SHORT).show();
         } else if ((resultdescription.equalsIgnoreCase("Insufficient Wallet"))) {
             Toast.makeText(this, getString(R.string.insuffience_wallet), Toast.LENGTH_SHORT).show();
@@ -536,15 +482,12 @@ public class LoginActivityPin extends AppCompatActivity implements View.OnClickL
                 showAlertDialog_sh("Time Out");
             } else if (serverResponse.toString().contains("Please try again later")) {
                 showAlertDialog_sh("Please try again later");
-            }
-
-
-            else {
+            } else {
 
                 if (requestNo == 49) // **********Login Activation
                 {
 
-                   // serverResponse = new JSONObject("");
+                    // serverResponse = new JSONObject("");
 
                     if (serverResponse.has("response")) {
 
@@ -560,7 +503,7 @@ public class LoginActivityPin extends AppCompatActivity implements View.OnClickL
                             if (resultcode.equalsIgnoreCase("0")) {
 
 
-                             serviceRepository.deletAllYStatusbulkDownload();
+                                serviceRepository.deletAllYStatusbulkDownload();
 
                                 Toast.makeText(LoginActivityPin.this, "Sync Successfully", Toast.LENGTH_SHORT).show();
 
@@ -570,12 +513,11 @@ public class LoginActivityPin extends AppCompatActivity implements View.OnClickL
                                 startActivity(i);
                                 LoginActivityPin.this.finish();
 
-                            }
-                            else {
+                            } else {
 
                                 failure_case(resultdescription);
 
-                              //  Toast.makeText(LoginActivityPin.this, "Sync Successfully", Toast.LENGTH_SHORT).show();
+                                //  Toast.makeText(LoginActivityPin.this, "Sync Successfully", Toast.LENGTH_SHORT).show();
 
 
                                 Intent i = new Intent(LoginActivityPin.this, MainActivityRet.class);
@@ -589,10 +531,6 @@ public class LoginActivityPin extends AppCompatActivity implements View.OnClickL
 
                     }
                 }
-
-
-
-
 
 
             }

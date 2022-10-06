@@ -22,7 +22,6 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.drawerlayout.widget.DrawerLayout
-
         android:id="@+id/drawer_layout_ret"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -68,6 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="0dp"
+                    android:background="@drawable/squre_editext4"
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
                     android:padding="5dp"
@@ -75,12 +75,10 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                       android:layout_weight="2"
-                        android:layout_margin="10dp"
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
 
-                    <Button
+           <!--         <Button
                         android:id="@+id/buttonOffline"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
@@ -89,7 +87,7 @@
                         android:background="#eee"/>
 
 
-                    <Button
+                   <Button
                         android:id="@+id/buttonOnline"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
@@ -98,7 +96,34 @@
                         android:layout_weight="0.5"
                         android:background="#eee">
 
-                    </Button>
+                    </Button> -->
+
+                       <TextView
+                            android:id="@+id/buttonOffline"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:text="Offiline"
+                            android:textSize="20sp"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            />
+
+                        <TextView
+                            android:id="@+id/buttonOnline"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:text="Online"
+                            android:clickable="true"
+                            android:background="@color/purple_700"
+                            android:textSize="20sp"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            />
+
+
+
+
+
                     </LinearLayout>
 
 <!--
@@ -246,6 +271,7 @@
                         android:gravity="center_horizontal"
                         android:orientation="vertical"
                         android:visibility="gone">
+
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/operatoronlineRecycler"
                            android:visibility="visible"
@@ -385,5 +411,18 @@
 
 
             />
+
+
     </androidx.drawerlayout.widget.DrawerLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="220dp"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="25dp"
+        android:src="@drawable/tafani_transparent"/>
+
+
 </RelativeLayout>

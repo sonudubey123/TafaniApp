@@ -17,9 +17,11 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -42,6 +44,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.sunmi.tafani_printerhelper.R;
@@ -101,7 +104,9 @@ public class MainActivityRet extends AppCompatActivity
     NavigationView navigationView;
     private String testFont;
     RecyclerView operatorRecycler,operatoronlineRecycler;
-    private Button buttonOffline,buttonOnline;
+    //private Button buttonOffline,buttonOnline;
+    private TextView buttonOffline,buttonOnline;
+    private Toolbar toolbar_ret;
 
     String amountFromServer="",transactionStatus="",vendorcode_offline="",transid_online="",transactionDate_online="",transactionTime_online="",footer_first_online="",footer_second_online="",footer_first_offline="",footer_second_offline="";
     private boolean isBold, isUnderLine;
@@ -212,7 +217,7 @@ public class MainActivityRet extends AppCompatActivity
 
 
             // Initialize Widgets
-            Toolbar toolbar_ret = (Toolbar) findViewById(R.id.toolbar_ret);
+             toolbar_ret = (Toolbar) findViewById(R.id.toolbar_ret);
             setSupportActionBar(toolbar_ret);
 
             fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -223,6 +228,9 @@ public class MainActivityRet extends AppCompatActivity
 
 
             navigationView = (NavigationView) findViewById(R.id.nav_view_ret);
+
+
+
 
             navigationView.getMenu().clear();
             navigationView.inflateMenu(R.menu.left_menu_ret);
@@ -278,6 +286,7 @@ public class MainActivityRet extends AppCompatActivity
             operatorRecycler.setAdapter(operatorAdapterOffline);
             RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
             operatorRecycler.setLayoutManager(mLayoutManager);
+
             ServiceProductDownloadOfflineModel serviceProductDownloadOfflineModel = new ServiceProductDownloadOfflineModel(getString(R.string.please_select_product),getString(R.string.please_select_vendor_type),getString(R.string.please_select_denomination));
             productList_offline.add(0, serviceProductDownloadOfflineModel);
             ProductAdapterOffline opproductAdapter = new ProductAdapterOffline(MainActivityRet.this, productList_offline);
@@ -541,6 +550,7 @@ public class MainActivityRet extends AppCompatActivity
 
 
         buttonOnline.setOnClickListener(new View.OnClickListener() {
+            private boolean stateChanged;
             @Override
             public void onClick(View v) {
                 operatorList_online = new ArrayList<>();
@@ -550,6 +560,12 @@ public class MainActivityRet extends AppCompatActivity
                 operatorList_online.clear();
                 productList_online.clear();
                 denominationList_online.clear();
+                if(stateChanged){
+                    buttonOnline.setBackgroundResource(R.color.gray_colour_new);
+                }else{
+                    buttonOnline.setBackgroundResource(R.color.white);
+                }
+                stateChanged = !stateChanged;
 
                 etPin.setText("");
 
@@ -1042,6 +1058,17 @@ public class MainActivityRet extends AppCompatActivity
         if(languageToUse.equalsIgnoreCase("ar"))
         {
             // dialogbutton1.setBackgroundResource(R.drawable.conform);
+            toolbar_ret.setNavigationOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    if (drawer_layout_ret.isDrawerOpen(Gravity.RIGHT)) {
+                        drawer_layout_ret.closeDrawer(Gravity.RIGHT);
+                    } else {
+                        drawer_layout_ret.openDrawer(Gravity.RIGHT);
+                    }
+                }
+            });
 
         }
         else
