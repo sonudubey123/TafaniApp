@@ -109,8 +109,8 @@ public class LoginActivityPin extends AppCompatActivity implements View.OnClickL
             Eeditor.commit();
 
 
-            mobileNoString = MyApplication.getSaveString("mobileNoString", LoginActivityPin.this);
-            edit_mobile_number.setText(mobileNoString);
+            //mobileNoString = MyApplication.getSaveString("mobileNoString", LoginActivityPin.this);
+            edit_mobile_number.setText("0902244333");
 
 
         } catch (Exception e) {

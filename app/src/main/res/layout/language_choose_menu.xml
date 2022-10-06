@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!--- Hello-->
+
 
     <LinearLayout
         android:id="@+id/topbar"
@@ -18,21 +18,19 @@
             android:layout_width="170dp"
             android:layout_height="30dp"
             android:layout_marginLeft="35dp"
-            android:gravity="center"
             android:layout_marginTop="20dp"
-            android:textSize="18sp"
-            android:text="99,999.99,"
+            android:background="@drawable/squre_editext6"
+            android:gravity="center"
             android:padding="5dp"
-            android:background="@drawable/squre_editext6"/>
+            android:text="99,999.99,"
+            android:textSize="18sp" />
 
         <ImageView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/estellogo"
             android:layout_marginLeft="70dp"
-            android:layout_marginTop="5dp"/>
-
-
+            android:layout_marginTop="5dp"
+            android:src="@drawable/estellogo" />
 
 
     </LinearLayout>
@@ -75,22 +73,41 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/englishLanguageChooseButton"
-                android:layout_width="200dp"
-                android:layout_height="50dp"
-                android:background="@drawable/squre_button"
-                android:text="@string/englisg"
-                android:textSize="20sp" />
-
-            <Button
-                android:id="@+id/frenchLanguageChooseButton"
-                android:layout_width="200dp"
-                android:layout_height="50dp"
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/squre_button"
-                android:text="@string/arabic"
-                android:textSize="20sp" />
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <Button
+                    android:id="@+id/englishLanguageChooseButton"
+                    android:layout_width="220dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/squre_editext_button"
+                    android:text="@string/englisg"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/squre_button"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <Button
+                    android:id="@+id/frenchLanguageChooseButton"
+                    android:layout_width="220dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/squre_editext_button"
+                    android:text="@string/arabic"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
@@ -122,14 +139,14 @@
         </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-           android:id="@+id/fab_language"
+            android:id="@+id/fab_language"
             android:layout_width="200dp"
             android:layout_height="100dp"
-            android:src="@drawable/bg480"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="15dp" />
+            android:layout_marginBottom="15dp"
+            android:src="@drawable/bg480" />
 
 
     </RelativeLayout>
