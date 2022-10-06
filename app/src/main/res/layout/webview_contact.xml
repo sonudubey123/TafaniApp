@@ -36,7 +36,15 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:gravity="center"
+            android:padding="5dp"
             android:background="@drawable/squre_button">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="@drawable/squre_editext_button">
+
 
             <ImageView
                 android:layout_width="60dp"
@@ -58,7 +66,7 @@
                 android:textColor="@color/colorPrimaryDark"/>
 
 
-
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -68,9 +76,18 @@
             android:orientation="horizontal"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
+            android:padding="5dp"
             android:gravity="center"
             android:layout_marginTop="15dp"
             android:background="@drawable/squre_button">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="@drawable/squre_editext_button">
+
+
 
             <ImageView
                 android:layout_width="60dp"
@@ -89,7 +106,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/colorPrimaryDark"/>
-
+            </LinearLayout>
 
 
 
@@ -103,7 +120,16 @@
             android:layout_marginRight="25dp"
             android:gravity="center"
             android:layout_marginTop="15dp"
+            android:padding="5dp"
             android:background="@drawable/squre_button">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="@drawable/squre_editext_button">
+
+
 
             <ImageView
                 android:layout_width="60dp"
@@ -124,6 +150,8 @@
                 android:textStyle="bold"
                 android:textColor="@color/colorPrimaryDark"/>
 
+            </LinearLayout>
+
 
 
 
@@ -137,7 +165,16 @@
             android:layout_marginRight="25dp"
             android:gravity="center"
             android:layout_marginTop="15dp"
+            android:padding="5dp"
             android:background="@drawable/squre_button">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="@drawable/squre_editext_button">
+
+
 
             <ImageView
                 android:layout_width="60dp"
@@ -157,6 +194,8 @@
                 android:textStyle="bold"
                 android:textColor="@color/colorPrimaryDark"/>
 
+            </LinearLayout>
+
 
 
 
@@ -169,8 +208,15 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:gravity="center"
+            android:padding="5dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/squre_button">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="@drawable/squre_editext_button">
 
 
 
@@ -184,6 +230,8 @@
                 android:textStyle="bold"
                 android:textColor="@color/colorPrimaryDark"/>
 
+            </LinearLayout>
+
 
 
 
@@ -197,7 +245,17 @@
             android:layout_marginRight="25dp"
             android:gravity="center"
             android:layout_marginTop="15dp"
+            android:padding="5dp"
             android:background="@drawable/squre_button">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="@drawable/squre_editext_button">
+
+
+
 
             <ImageView
                 android:layout_width="60dp"
@@ -216,6 +274,8 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/colorPrimaryDark"/>
+
+            </LinearLayout>
 
 
 

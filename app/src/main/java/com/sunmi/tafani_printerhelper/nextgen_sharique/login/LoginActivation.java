@@ -569,7 +569,7 @@ public class LoginActivation extends AppCompatActivity implements View.OnClickLi
                 if (requestNo == 200) // **********Login Activation
                 {
 
-                       serverResponse = new JSONObject("{\"apiname\":\"ACTIVATION\",\"response\":{\"requestcts\":\"06-01-2022 07:48:57 AM\",\"responsects\":\"06-01-2022 07:48:57 AM\",\"agentcode\":\"0982650605\",\"agentname\":\"Prashun\",\"vendorcode\":\"TAFANI\",\"transid\":\"45630627\",\"resultcode\":\"0\",\"resultdescription\":\"Transaction Successful\",\"clienttype\":\"android\",\"responsevalue\":\"0\",\"walletbalance\":\"49792.0\",\"agenttype\":\"RET1\",\"terminalid\":\"0982650606\",\"activationcode\":\"1893274393509319\"}}");
+                       //serverResponse = new JSONObject("{\"apiname\":\"ACTIVATION\",\"response\":{\"requestcts\":\"06-01-2022 07:48:57 AM\",\"responsects\":\"06-01-2022 07:48:57 AM\",\"agentcode\":\"0982650605\",\"agentname\":\"Prashun\",\"vendorcode\":\"TAFANI\",\"transid\":\"45630627\",\"resultcode\":\"0\",\"resultdescription\":\"Transaction Successful\",\"clienttype\":\"android\",\"responsevalue\":\"0\",\"walletbalance\":\"49792.0\",\"agenttype\":\"RET1\",\"terminalid\":\"0982650606\",\"activationcode\":\"1893274393509319\"}}");
 
                     if (serverResponse.has("response")) {
 
@@ -584,7 +584,7 @@ public class LoginActivation extends AppCompatActivity implements View.OnClickLi
 
                                 String resultcode = jsonObject_response.getString("resultcode");
                                 String resultdescription = jsonObject_response.getString("resultdescription");
-                                  clienttype="pos";
+                                  //clienttype="pos";
                                 if (resultcode.equalsIgnoreCase("0")) {
 
                                     if (clienttype.equalsIgnoreCase("pos")||
