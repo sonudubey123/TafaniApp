@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:fillViewport="true"
+    android:layout_height="fill_parent"
+    >
+
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <include
+        layout="@layout/backgroundfile"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="100dp" >
+
+        <ImageButton
+            android:id="@+id/accountbalance"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_alignLeft="@+id/transhistory"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/account_balance"
+            android:onClick="ButtonOnClick" />
+
+        <ImageButton
+            android:id="@+id/wallet_transfer"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_alignLeft="@+id/transhistory"
+            android:layout_centerVertical="true"
+            android:background="@drawable/wallet_transfer"
+            android:onClick="ButtonOnClick" />
+
+        <ImageButton
+            android:id="@+id/changempin"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/wallet_transfer"
+            android:layout_alignLeft="@+id/wallet_transfer"
+            android:background="@drawable/change_mpin_arabic"
+            android:onClick="ButtonOnClick" />
+
+        <ImageButton
+            android:id="@+id/image_exit"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_alignLeft="@+id/changempin"
+            android:layout_below="@+id/changempin"
+            android:background="@drawable/exit_image"
+            android:onClick="ButtonOnClick" />
+
+        <ImageButton
+            android:id="@+id/transhistory"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/accountbalance"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/tran_history"
+            android:onClick="ButtonOnClick" />
+
+    </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/ImageButton02"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/relativeLayout1"
+        android:background="@drawable/etopupbutton"
+        android:onClick="ButtonOnClick"
+        android:visibility="gone" />
+</RelativeLayout>
+
+</ScrollView>

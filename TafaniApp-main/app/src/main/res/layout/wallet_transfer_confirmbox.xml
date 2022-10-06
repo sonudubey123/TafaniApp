@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="300dp"
+    android:background="@drawable/resultfield"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/res_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp"
+        android:text="تأكيد"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/greydark"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/header_mobileNumber"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/res_heading"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="53dp"
+        android:gravity="center"
+        android:maxLines="5"
+        android:scrollbars="vertical"
+        android:text="TextView"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/header_amount"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/res_heading"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:maxLines="5"
+        android:scrollbars="vertical"
+        android:text="TextView"></TextView>
+
+    <Button
+        android:id="@+id/reject_button"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/approve_button"
+        android:layout_alignRight="@+id/header_mobileNumber"
+        android:layout_alignBottom="@+id/approve_button"
+        android:background="@drawable/squre_editext_2"
+        android:textColor="@color/white"
+        android:text="@string/reject" />
+
+    <Button
+        android:id="@+id/approve_button"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="100dp"
+        android:background="@drawable/squre_editext_2"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/header_mobileNumber"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="33dp"
+        android:text="@string/accept" />
+
+</RelativeLayout>

@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:layout_height="match_parent">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:layout_height="match_parent">
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="119dp"
+                android:layout_height="67dp"
+                android:layout_margin="10dp"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:layout_width="117dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/ani_green_g" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:visibility="gone"
+                    android:text="Brand Slogan"
+                    android:textSize="20dp"
+                    android:textColor="#000000"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:visibility="gone"
+                    android:textSize="20dp"
+                    android:textColor="#000000"
+                    android:text="Short Spiel"
+                     />
+
+
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:gravity="left"
+                android:orientation="horizontal">
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:gravity="center"
+
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+
+                    android:text="@string/offline_pin_set"
+                    android:textColor="@color/tafani_logo_colour"
+
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="G - Kala"
+
+                    android:textColor="@color/green_loginpage"
+                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+
+
+
+                <EditText
+                    android:id="@+id/edittext_offlinePin"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textCursorDrawable="@null"
+
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/squre_editext"
+                    android:hint="@string/plz_enter_5_digit_offline_pin"
+                    android:imeOptions="actionDone"
+                    android:maxLength="5"
+                    android:inputType="numberPassword"
+                    android:padding="10dp"
+                    android:textColor="@color/gray_colour"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/edittext_mpin"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/squre_editext"
+                    android:hint="@string/enter_mpin_balance_text"
+                    android:imeOptions="actionDone"
+                    android:maxLength="4"
+                    android:textCursorDrawable="@null"
+
+                    android:inputType="numberPassword"
+                    android:padding="10dp"
+                    android:textColor="@color/gray_colour"
+                    android:textSize="16sp" />
+                <Spinner
+                    android:id="@+id/spinner_seq_offline"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/squre_editext"
+                    android:gravity="center"
+                   android:entries="@array/spinner_question"
+                    android:paddingStart="5dp"
+                    android:paddingTop="3dp"
+                    android:paddingEnd="5dp"
+                    android:paddingBottom="3dp"
+                    android:textSize="13sp"
+                    android:visibility="visible" />
+
+                <EditText
+                    android:id="@+id/edittext_ans"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/squre_editext"
+                    android:hint="@string/enter_Security_question_answer"
+                    android:imeOptions="actionDone"
+                    android:textCursorDrawable="@null"
+
+                    android:inputType="textWebEditText"
+                    android:padding="10dp"
+                    android:textColor="@color/gray_colour"
+                    android:textSize="16sp" />
+
+
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/password_aapcompact"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/squre_editext"
+                    android:hint="Enter PIN , Password"
+                    android:imeOptions="actionDone"
+                    android:inputType="numberPassword"
+                    android:visibility="gone"
+
+                    android:maxLength="11"
+                    android:padding="10dp"
+                    android:textColor="@color/gray_colour"
+
+                    android:textColorHint="@color/gray_colour"
+                    android:textSize="16sp" />
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:layout_height="wrap_content">
+
+                 <TextView
+                    android:id="@+id/btn_submit"
+                     android:layout_width="120dp"
+                     android:layout_height="50dp"
+                     android:background="@drawable/squre_editext_2"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="@string/login"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+
+
+
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
+    </ScrollView>
+</LinearLayout>
+
+

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"  
+    android:fillViewport="true"   
+    android:layout_height="fill_parent"
+    >
+
+ <RelativeLayout
+    
+     android:layout_width="fill_parent"
+     android:layout_height="wrap_content"
+     >
+<include 
+   android:layout_width="fill_parent"
+   android:layout_height="fill_parent"
+   layout="@layout/backgroundfile" />
+
+     <RelativeLayout
+
+         android:layout_width="fill_parent"
+         android:layout_height="450dp"
+         android:layout_alignParentLeft="true"
+         android:layout_marginTop="100dp"
+         android:layout_marginBottom="100dp"
+         android:background="@drawable/etopfieldbox">
+
+         <ImageView
+             android:id="@+id/imageView1"
+             android:layout_width="fill_parent"
+             android:layout_height="101dp"
+             android:layout_alignParentTop="true"
+             android:layout_centerHorizontal="true"
+             android:layout_marginLeft="17dp"
+             android:layout_marginRight="10dp"
+             android:contentDescription="@string/etopabg"
+             android:src="@drawable/pupup" />
+
+         <TextView
+             android:id="@+id/textView1"
+             android:layout_width="wrap_content"
+             android:layout_height="40dp"
+             android:layout_alignLeft="@+id/imageView1"
+             android:layout_alignTop="@+id/imageView1"
+             android:layout_alignRight="@+id/edittext_customer_code"
+             android:layout_marginLeft="4dp"
+             android:layout_marginTop="30dp"
+             android:layout_marginRight="10dp"
+             android:gravity="right"
+             android:text="@string/e_top_display"
+             android:textColor="@android:color/black"
+             android:textSize="12sp" />
+
+         <EditText
+             android:id="@+id/edittext_confirm_customer_code"
+             android:layout_width="wrap_content"
+             android:layout_height="40dp"
+             android:layout_below="@+id/edittext_customer_code"
+             android:layout_alignLeft="@+id/edittext_customer_code"
+             android:layout_alignRight="@+id/edittext_customer_code"
+             android:layout_marginTop="10dp"
+             android:background="@drawable/squre_editext"
+             android:ems="10"
+             android:gravity="center_vertical"
+             android:padding="10dp"
+             android:hint="@string/confirmdestinationtext"
+             android:inputType="number"
+             android:maxLength="10"
+             android:singleLine="true"
+             android:textColor="@android:color/black"
+             android:textSize="15sp" />
+
+         <EditText
+             android:id="@+id/edittext_amount"
+             android:layout_width="wrap_content"
+             android:layout_height="40dp"
+             android:layout_below="@+id/edittext_confirm_customer_code"
+             android:layout_alignLeft="@+id/edittext_confirm_customer_code"
+             android:layout_alignRight="@+id/edittext_confirm_customer_code"
+             android:layout_marginTop="10dp"
+             android:background="@drawable/squre_editext"
+             android:ems="10"
+             android:gravity="center_vertical"
+             android:hint="@string/enter_amount"
+             android:inputType="number"
+             android:maxLength="8"
+             android:padding="10dp"
+             android:singleLine="true"
+             android:textColor="@android:color/black"
+             android:textSize="15sp" />
+
+         <EditText
+             android:id="@+id/edittext_customer_code"
+             android:layout_width="wrap_content"
+             android:layout_height="40dp"
+             android:layout_below="@+id/textView1"
+             android:gravity="center_vertical"
+             android:padding="10dp"
+             android:layout_alignLeft="@+id/imageView1"
+             android:layout_alignRight="@+id/imageView1"
+             android:layout_marginLeft="3dp"
+             android:layout_marginTop="20dp"
+             android:layout_marginRight="3dp"
+             android:background="@drawable/squre_editext"
+             android:ems="10"
+             android:hint="@string/enterdestinationtext"
+             android:inputType="number"
+             android:maxLength="10"
+             android:singleLine="true"
+             android:textColor="@android:color/black"
+             android:textSize="15sp" />
+
+         <EditText
+             android:id="@+id/editText5"
+             android:layout_width="wrap_content"
+             android:layout_height="40dp"
+             android:layout_below="@+id/edittext_amount"
+             android:layout_alignLeft="@+id/edittext_amount"
+             android:ems="10"
+             android:hint="Commision "
+             android:inputType="numberDecimal"
+             android:maxLength="3"
+             android:textSize="15sp"
+             android:visibility="gone" />
+
+         <Spinner
+             android:id="@+id/Commisionspinner"
+             android:layout_width="100dp"
+             android:layout_height="40dp"
+             android:layout_alignRight="@+id/edittext_amount"
+             android:layout_alignBottom="@+id/editText5"
+             android:textSize="15sp"
+             android:visibility="gone" />
+
+         <EditText
+             android:id="@+id/EditText01"
+             android:layout_width="wrap_content"
+             android:layout_height="40dp"
+             android:layout_below="@+id/editText5"
+             android:layout_alignLeft="@+id/editText5"
+             android:layout_alignRight="@+id/editText5"
+             android:ems="10"
+             android:hint="TAX "
+             android:inputType="numberDecimal"
+             android:maxLength="3"
+             android:textSize="15sp"
+             android:visibility="gone" />
+
+         <EditText
+             android:id="@+id/EditText02"
+             android:layout_width="wrap_content"
+             android:layout_height="40dp"
+             android:layout_below="@+id/EditText01"
+             android:layout_alignLeft="@+id/EditText01"
+             android:ems="10"
+             android:hint="Discount "
+             android:inputType="numberDecimal"
+             android:maxLength="3"
+             android:textSize="15sp"
+             android:visibility="gone" />
+
+
+         <Button
+             android:id="@+id/imagebutton_confirm"
+             android:layout_width="wrap_content"
+             android:background="@drawable/squre_editext_2"
+             android:textColor="@color/white"
+
+             android:layout_height="wrap_content"
+             android:layout_below="@+id/edittext_mpin"
+             android:layout_alignRight="@+id/edittext_mpin"
+             android:layout_marginTop="26dp"
+             android:text="@string/confirm"
+            >
+
+         </Button>
+         <EditText
+             android:id="@+id/edittext_mpin"
+             android:layout_width="wrap_content"
+             android:layout_height="40dp"
+             android:layout_below="@+id/edittext_amount"
+             android:layout_alignLeft="@+id/imageView1"
+             android:layout_alignRight="@+id/edittext_amount"
+             android:layout_marginTop="10dp"
+             android:background="@drawable/squre_editext"
+             android:ems="10"
+
+             android:gravity="center_vertical"
+             android:hint="@string/enter_mpin"
+             android:inputType="numberPassword"
+             android:maxLength="4"
+             android:padding="10dp"
+
+             android:singleLine="true"
+             android:textColor="@android:color/black"
+             android:textSize="15sp">
+
+             <requestFocus />
+         </EditText>
+
+     </RelativeLayout>
+   
+</RelativeLayout>
+</ScrollView>

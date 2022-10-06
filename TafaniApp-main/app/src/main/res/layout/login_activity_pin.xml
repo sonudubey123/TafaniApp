@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/squre_editext5"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+               android:layout_marginTop="35dp"
+                android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="80dp"
+                        android:layout_gravity="left"
+                        android:src="@drawable/ani_green_g" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:text="Brand Slogan"
+                        android:textColor="#000000"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:text="Short Spiel"
+                        android:textColor="#000000"
+                        android:textSize="20dp"
+                        android:visibility="gone" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+
+                        android:text="@string/welcome_to_nextgen"
+                        android:textColor="#8C0A76"
+
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:text="G - Kala"
+
+                        android:textColor="@color/green_loginpage"
+                        android:textSize="25dp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:gravity="left"
+                android:orientation="horizontal">
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/edit_mobile_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/squre_editext"
+                    android:drawableLeft="@drawable/cp_small"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/enter_agent_code"
+                    android:imeOptions="actionNext"
+
+                    android:inputType="number"
+                    android:maxLength="10"
+
+                    android:padding="15dp"
+                    android:textColor="@color/gray_colour"
+                    android:textCursorDrawable="@null"
+                    android:textSize="16sp" />
+
+
+                <!--
+                                <EditText
+                                    android:id="@+id/edit_mobile_number"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:textCursorDrawable="@null"
+
+                                    android:background="@drawable/squre_editext"
+                                    android:hint="@string/enter_agent_code"
+                                    android:imeOptions="actionNext"
+                                    android:maxLength="10"
+                                    android:inputType="number"
+                                    android:padding="10dp"
+                                    android:textColor="@color/gray_colour"
+                                    android:textSize="16sp" />
+                -->
+
+
+                <EditText
+                    android:id="@+id/edittext_mpin"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/squre_editext"
+                    android:drawableLeft="@drawable/cp_small"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/plz_enter_5_digit_offline_pinn"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="20"
+
+                    android:padding="15dp"
+                    android:textColor="@color/gray_colour"
+                    android:textCursorDrawable="@null"
+                    android:textSize="16sp" />
+
+
+                <!--
+                                <EditText
+                                    android:id="@+id/edittext_mpin"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:textCursorDrawable="@null"
+
+                                    android:layout_marginTop="10dp"
+                                    android:background="@drawable/squre_editext"
+                                    android:hint="@string/plz_enter_5_digit_offline_pinn"
+                                    android:imeOptions="actionDone"
+                                    android:maxLength="5"
+                                    android:inputType="numberPassword"
+                                    android:padding="10dp"
+                                    android:textColor="@color/gray_colour"
+                                    android:textSize="16sp" />
+                -->
+
+                <TextView
+                    android:id="@+id/forgot_offline_pin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="15dp"
+                    android:gravity="right"
+
+                    android:text="@string/forgot_offline_pin"
+                    android:textColor="@color/orange_colour"
+
+                    android:visibility="gone"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/password_aapcompact"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/squre_editext"
+                    android:hint="Enter PIN , Password"
+                    android:imeOptions="actionDone"
+                    android:inputType="numberPassword"
+                    android:maxLength="11"
+
+                    android:padding="10dp"
+                    android:textColor="@color/gray_colour"
+                    android:textColorHint="@color/gray_colour"
+
+                    android:textSize="16sp"
+                    android:visibility="gone" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="100dp"
+                android:layout_marginBottom="50dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/btn_submit"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/squre_editext_2"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="@string/login"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+</LinearLayout>
+
+
